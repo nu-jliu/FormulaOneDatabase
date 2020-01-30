@@ -55,7 +55,7 @@ public class FormulaOneUI {
 		lblPassword.setBounds(110, 283, 68, 16);
 		frmLogin.getContentPane().add(lblPassword);
 		
-		ImageIcon ii = new ImageIcon("/icon.png");
+		ImageIcon ii = new ImageIcon("image/icon.png");
 		JLabel iconLabel = new JLabel(ii);
 		iconLabel.setBounds(62, 13, 389, 188);
 		frmLogin.getContentPane().add(iconLabel);
