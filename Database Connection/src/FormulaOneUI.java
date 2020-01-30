@@ -1,4 +1,6 @@
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -41,10 +43,31 @@ public class FormulaOneUI {
 		
 		JButton btnButton = new JButton("Login");
 		btnButton.setBounds(107, 335, 90, 25);
+		ActionListener loginListener = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		};
+		btnButton.addActionListener(loginListener);
 		frmLogin.getContentPane().add(btnButton);
 		
 		btnNewButton = new JButton("Register");
 		btnNewButton.setBounds(321, 335, 90, 25);
+		ActionListener registerListener = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frmLogin.setVisible(false);
+				RegWindow reg = new RegWindow();
+			}
+			
+		};
+		btnNewButton.addActionListener(registerListener);
 		frmLogin.getContentPane().add(btnNewButton);
 		
 		JLabel lblUsername = new JLabel("Username: ");
@@ -62,4 +85,53 @@ public class FormulaOneUI {
 		
 		frmLogin.setVisible(true);
 	}
+	
+	public class RegWindow {
+		
+		JFrame frame;
+		JButton regButton;
+		JTextField Username;
+		JTextField Password;
+		JTextField Email;
+		
+		public RegWindow() {
+			frame = new JFrame("Formula1Tracker");
+			frame.setBounds(100, 100, 543, 443);
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
+			Username = new JTextField();
+			Username.setBounds(190, 226, 155, 22);
+			frame.getContentPane().add(Username);
+			Username.setColumns(10);
+
+			Password = new JTextField();
+			Password.setBounds(190, 280, 155, 22);
+			frame.getContentPane().add(Password);
+			Password.setColumns(10);
+			
+			Email = new JTextField();
+			Email.setBounds(190, 253, 155, 22);
+			frame.getContentPane().add(Email);
+			Email.setColumns(10);
+			
+			ImageIcon icon = new ImageIcon("image/icon.png");
+			JLabel iconLabel = new JLabel(icon);
+			iconLabel.setBounds(62, 13, 389, 188);
+			frame.getContentPane().add(iconLabel);
+			
+			JLabel lblUsername = new JLabel("Username: ");
+			lblUsername.setBounds(107, 229, 68, 16);
+			frame.getContentPane().add(lblUsername);
+			
+			JLabel lblPassword = new JLabel("Password: ");
+			lblPassword.setBounds(110, 283, 68, 16);
+			frame.getContentPane().add(lblPassword);
+			
+			
+			
+			frame.setVisible(true);
+		}
+	}
+	
+	
 }
