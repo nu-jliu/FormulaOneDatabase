@@ -32,6 +32,7 @@ public class FormulaOneUI {
 		textField.setBounds(190, 226, 155, 22);
 		frmLogin.getContentPane().add(textField);
 		textField.setColumns(10);
+	
 		
 		textField_1 = new JTextField();
 		textField_1.setBounds(190, 280, 155, 22);
@@ -54,7 +55,7 @@ public class FormulaOneUI {
 		lblPassword.setBounds(110, 283, 68, 16);
 		frmLogin.getContentPane().add(lblPassword);
 		
-		ImageIcon ii = new ImageIcon("imgs/icon.png");
+		ImageIcon ii = new ImageIcon("/icon.png");
 		JLabel iconLabel = new JLabel(ii);
 		iconLabel.setBounds(62, 13, 389, 188);
 		frmLogin.getContentPane().add(iconLabel);
