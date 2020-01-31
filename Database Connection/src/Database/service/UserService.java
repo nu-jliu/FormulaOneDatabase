@@ -41,6 +41,7 @@ public class UserService {
 			return false;
 		}
 		try {
+			//FIXME: NullPointerException
 			stmt = this.dbService.getConnection().prepareStatement(query);
 			stmt.setString(1, username);
 			rs = stmt.executeQuery();
