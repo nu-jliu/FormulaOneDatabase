@@ -42,14 +42,13 @@ public class TeamService {
 	}
 	
 	public ArrayList<String> getTeamNameList() {
-		ArrayList<String> teamNames = new ArrayList<String>();
+		ArrayList<String> teamNames = new ArrayList<>();
 		try {
 			CallableStatement cs = this.dbConnection.getConnection().prepareCall("{call SelectTeamName}");
 			cs.execute();
 			ResultSet rs = cs.getResultSet();
-			while (rs.next()) {
+			while (rs.next()) 
 				teamNames.add(rs.getString("Team_Name"));
-			}
 			return teamNames;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
