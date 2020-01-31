@@ -35,7 +35,7 @@ public class Connections {
 			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(null, "Failed to close the connection");
 			e.printStackTrace();
-		}
+		} 
 	}
 		
 
