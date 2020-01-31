@@ -1,9 +1,11 @@
 package Database.service;
 
 import java.sql.CallableStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 
@@ -40,6 +42,24 @@ public class RaceService {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	public ArrayList<String> getRaceNameList() {
+		ArrayList<String> nameList = new ArrayList<>();
+		try {
+			CallableStatement cs = this.dbconnection.getConnection().prepareCall("{? = call SelectRaseName}");
+			cs.execute();
+			ResultSet rs = cs.getResultSet();
+			while (rs.next()) 
+				nameList.add(rs.getString("Race_Name"));
+			return nameList;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, "Failed to get name list");
+			e.printStackTrace();
+			return nameList;
+		}
+		
 	}
 
 }
