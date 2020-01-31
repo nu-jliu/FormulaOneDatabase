@@ -67,7 +67,8 @@ public class FormulaOneUI {
 				try {
 					boolean successLogin = loginService.login(userName, passWord);
 					if(successLogin) {
-						
+						closeFrame();
+						NavigationWindow nw = new NavigationWindow(connection);
 					}
 					else {
 						System.out.println("Login Failed.");
@@ -88,8 +89,8 @@ public class FormulaOneUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				frmLogin.setVisible(false);
-				RegWindow reg = new RegWindow();
+				frmLogin.dispose();
+				RegWindow reg = new RegWindow(loginService);
 			}
 			
 		};
@@ -112,6 +113,9 @@ public class FormulaOneUI {
 		frmLogin.setVisible(true);
 	}
 	
+	public void closeFrame() {
+		this.frmLogin.dispose();
+	}
 	
 	
 }

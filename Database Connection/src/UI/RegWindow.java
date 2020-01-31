@@ -2,12 +2,15 @@ package UI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import Database.service.UserService;
 
 public class RegWindow {
 	
@@ -17,7 +20,10 @@ public class RegWindow {
 	JTextField Password;
 	JTextField Email;
 	
-	public RegWindow() {
+	UserService regService;
+	
+	public RegWindow(UserService regService) {
+		this.regService = regService;
 		frame = new JFrame("Formula1Tracker");
 		frame.setBounds(100, 100, 543, 443);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,9 +68,21 @@ public class RegWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
-				
-				
+				String username = Username.getText();
+				String password = Password.getText();
+				String email = Email.getText();
+				try {
+					boolean successLogin = regService.register(username, email, password);
+					if(successLogin) {
+						closeFrame();
+						FormulaOneUI ui = new FormulaOneUI();
+					}
+					else {
+						System.out.println("Register Failed.");
+					}
+				} catch (SQLException e) {
+					
+				}
 			}
 			
 		};
@@ -72,5 +90,9 @@ public class RegWindow {
 		frame.getContentPane().add(btnButton);
 		
 		frame.setVisible(true);
+	}
+	
+	public void closeFrame() {
+		this.frame.dispose();
 	}
 }
