@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Database.service.Connections;
@@ -38,7 +39,7 @@ public class FormulaOneUI {
 		try {
 			connection.connect();
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, "Failed to connect to the server");
 			e1.printStackTrace();
 		}
 		UserService loginService = new UserService(connection);
