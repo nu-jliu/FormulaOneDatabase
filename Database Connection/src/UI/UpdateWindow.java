@@ -37,6 +37,8 @@ public class UpdateWindow {
 		manfName.setBounds(200, 20, 90, 25);
 		frame.add(manfName);
 		
+		//TODO: add functional actionlistener
+		
 		frame.setVisible(true);
 	}
 	
