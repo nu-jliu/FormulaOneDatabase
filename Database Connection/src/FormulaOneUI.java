@@ -98,6 +98,8 @@ public class FormulaOneUI {
 			frame = new JFrame("Formula1Tracker");
 			frame.setBounds(100, 100, 543, 443);
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.getContentPane().setLayout(null);
+
 			
 			Username = new JTextField();
 			Username.setBounds(190, 226, 155, 22);
@@ -120,14 +122,31 @@ public class FormulaOneUI {
 			frame.getContentPane().add(iconLabel);
 			
 			JLabel lblUsername = new JLabel("Username: ");
-			lblUsername.setBounds(107, 229, 68, 16);
+			lblUsername.setBounds(110, 229, 68, 16);
 			frame.getContentPane().add(lblUsername);
 			
 			JLabel lblPassword = new JLabel("Password: ");
 			lblPassword.setBounds(110, 283, 68, 16);
 			frame.getContentPane().add(lblPassword);
 			
+			JLabel lblEmail = new JLabel("Email: ");
+			lblEmail.setBounds(110, 256, 68, 16);
+			frame.getContentPane().add(lblEmail);
 			
+			JButton btnButton = new JButton("Register");
+			btnButton.setBounds(200, 335, 90, 25);
+			ActionListener loginListener = new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					
+					
+					
+				}
+				
+			};
+			btnButton.addActionListener(loginListener);
+			frame.getContentPane().add(btnButton);
 			
 			frame.setVisible(true);
 		}
