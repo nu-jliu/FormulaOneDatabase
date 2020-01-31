@@ -35,6 +35,12 @@ public class FormulaOneUI {
 		frmLogin.getContentPane().setLayout(null);
 		
 		Connections connection = new Connections();
+		try {
+			connection.connect();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		UserService loginService = new UserService(connection);
 		
 		username = new JTextField();

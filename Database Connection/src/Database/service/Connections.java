@@ -12,7 +12,7 @@ public class Connections {
 	        String connectionUrl =
 					"jdbc:sqlserver://golem.csse.rose-hulman.edu;"
 					+ "databaseName=Formula1Database;"
-					+ "user=zhaoy1020;"
+					+ "user=zhaoy10;"
 					+ "password=Zyqsq20000103";
 	
 	        this.connection = DriverManager.getConnection(connectionUrl);
