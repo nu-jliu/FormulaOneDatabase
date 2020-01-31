@@ -1,19 +1,13 @@
 package Database.service;
 
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.KeySpec;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.Base64;
 import java.util.Random;
 
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
 import javax.swing.JOptionPane;
 
 public class UserService {
@@ -80,10 +74,11 @@ public class UserService {
 		returnValue = cs.getInt(1);
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "ERROR: Register Failed");
+			e.printStackTrace();
 			return false;
 		}
-		if (returnValue >= 1 && returnValue <= 4) {
-			JOptionPane.showMessageDialog(null, "ERROR: Register Failed");
+		if (returnValue == 10) {
+			JOptionPane.showMessageDialog(null, "ERROR: Register Failed - Invalid Input");
 			return false;
 		} else {
 			JOptionPane.showMessageDialog(null, "Registration successful");
