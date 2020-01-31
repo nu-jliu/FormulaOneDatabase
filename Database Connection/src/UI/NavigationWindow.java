@@ -8,6 +8,7 @@ import java.sql.ResultSetMetaData;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -22,22 +23,19 @@ public class NavigationWindow {
 	JButton Race;
 	JButton Driver;
 	JTable Table;
-	JTextField Search;
 	Connections connection;
 	DefaultTableModel model;
 	
 	public NavigationWindow(Connections connection) {
 		this.connection = connection;
 		frame = new JFrame("Formula1Tracker");
-		frame.setBounds(100, 100, 543, 443);
+		frame.setBounds(100, 100, 543, 543);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		Search = new JTextField();
-		
 		Table = new JTable();
 		model = new DefaultTableModel();
-		Table.setBounds(0, 100, 200, 200);
+		Table.setBounds(43, 33, 443, 200);
 		Table.setModel(model);
 		frame.getContentPane().add(Table);
 		
@@ -47,6 +45,8 @@ public class NavigationWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
+					model = new DefaultTableModel();
+					Table.setModel(model);
 					queryData("Team");
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
@@ -65,6 +65,8 @@ public class NavigationWindow {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
+					model = new DefaultTableModel();
+					Table.setModel(model);
 					queryData("Race");
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
@@ -82,6 +84,8 @@ public class NavigationWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
+					model = new DefaultTableModel();
+					Table.setModel(model);
 					queryData("Driver");
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -91,11 +95,23 @@ public class NavigationWindow {
 		};
 		Driver.addActionListener(DriverListener);
 		Driver.setBounds(200, 250, 90, 25);
+		
+		JButton update = new JButton("Update");
+		update.setBounds(200, 400, 90, 25);
+		ActionListener updateListener = new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				closeFrame();
+				UpdateWindow update = new UpdateWindow(connection);
+			}
+			
+		};
+		update.addActionListener(updateListener);
+		frame.getContentPane().add(update);
 		frame.getContentPane().add(Driver);
 		frame.getContentPane().add(Team);
 		frame.getContentPane().add(Race);
-		
 		frame.setVisible(true);
 	}
 	
@@ -104,6 +120,7 @@ public class NavigationWindow {
 	}
 	
 	public void queryData(String tableName) throws Exception{
+//		model = new DefaultTableModel();
 		String query = "select * from " + tableName;
 		System.out.println(query);
 		PreparedStatement stmt;
