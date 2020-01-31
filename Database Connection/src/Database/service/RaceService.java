@@ -7,6 +7,8 @@ import java.sql.Time;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+
 import javax.swing.JOptionPane;
 
 public class RaceService {
@@ -59,7 +61,49 @@ public class RaceService {
 			e.printStackTrace();
 			return nameList;
 		}
+	}
+	
+	public ArrayList<RaceInfo> getRaceInfo(Date time, String racename) {
+		ArrayList<RaceInfo> info = new ArrayList<>();
+		try {
+			CallableStatement cs = this.dbconnection.getConnection().prepareCall("{? = call getRaceInfo(?,?)}");
+			cs.setTime(2, (Time) time);
+			cs.setString(3, racename);
+			cs.registerOutParameter(1, Types.INTEGER);
+			ResultSet rs = cs.executeQuery();
+			int errorCode = cs.getInt(1);
+			if (errorCode == 10) { 
+				JOptionPane.showMessageDialog(null, "Invalid input");
+				return info;
+			}
+			while (rs.next()) {
+				RaceInfo ri = new RaceInfo(rs.getString("Weather"), rs.getDate("Time"), rs.getString("Race_Name"), rs.getTime("Lap_Time"), rs.getString("Name"));
+				info.add(ri);
+			}
+			return info;
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Failed to get race info");
+			e.printStackTrace();
+			return info;
+		}
 		
 	}
-
+	
+	public class RaceInfo {
+		
+		String weather;
+		Date racetime;
+		String racename;
+		Time laptime;
+		String drivername;
+		
+		public RaceInfo(String w, Date r, String ra, Time l, String d) {
+			this.weather = w;
+			this.racename = ra;
+			this.drivername = d;
+			this.laptime = l;
+			this.racetime = r;
+		}
+		
+	}
 }
