@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
@@ -57,5 +58,43 @@ public class TeamService {
 			return teamNames;
 		}
 		
+		
+	}
+	
+	public ArrayList<TeamInfo> getTeamInfo(String name) {
+		ArrayList<TeamInfo> info = new ArrayList<>();
+		try {
+			CallableStatement cs = this.dbConnection.getConnection().prepareCall("{? = call getTeamsInfo(?)}");
+			cs.setString(2, name);
+			cs.registerOutParameter(1, Types.INTEGER);
+			ResultSet rs = cs.executeQuery();
+			int errorCode = cs.getInt(1);
+			if (errorCode == 10) {
+				JOptionPane.showMessageDialog(null, "Enter Team Name");
+				return info;
+			}
+			while (rs.next()) {
+				TeamInfo ti = new TeamInfo(rs.getString("Team_Name"), rs.getString("Engine_manf"), rs.getString("Model_Num"));
+				info.add(ti);
+			}
+			return info;
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Failed to get Team info");
+			e.printStackTrace();
+			return info;
+		}
+		
+	}
+	
+	public class TeamInfo {
+		String name;
+		String manf;
+		String num;
+		
+		public TeamInfo(String n, String m, String nu) {
+			this.name = n;
+			this.manf = m;
+			this.num = nu;
+		}
 	}
 }
