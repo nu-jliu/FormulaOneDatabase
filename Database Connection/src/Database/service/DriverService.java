@@ -1,18 +1,13 @@
 package Database.service;
 
 import java.sql.CallableStatement;
-import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Types;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 import javax.swing.JOptionPane;
 
 
@@ -38,7 +33,6 @@ private Connections dbService = null;
 			}
 			return true;
 		} catch (SQLException | ParseException e) {
-			// TODO Auto-generated catch block
 			if (e instanceof ParseException)
 				JOptionPane.showMessageDialog(null, "Invalid Date Input");
 			else
@@ -49,23 +43,18 @@ private Connections dbService = null;
 		
 	}
 
-	public ArrayList<String> getRestaurants() {	
-		
-		ArrayList<String> Drivers = new ArrayList<String>();
-		String query = "select Name,Age,DOB\n"+"from Driver\n";
-		Connection con = this.dbService.getConnection();
-		try(Statement STMT= con.createStatement())
-		{
-		ResultSet DR= STMT.executeQuery(query);
-		while(DR.next())
-		{
-			String DriverName= DR.getString("Name,Age,DOB");
-			Drivers.add(DriverName);
-		}
+	public ArrayList<String> getDriverNames() {	
+		ArrayList<String> driverNames = new ArrayList<>();
+		try {
+			CallableStatement cs = this.dbService.getConnection().prepareCall("{call getDrivers}");
+			ResultSet rs = cs.executeQuery();
+			while (rs.next()) 
+				driverNames.add(rs.getString("Name"));
+			return driverNames;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, "Failed to add driver");
 			e.printStackTrace();
-		}
-		return Drivers;
+			return driverNames;
+		}		
 	}
 }
