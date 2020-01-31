@@ -4,16 +4,18 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 public class Connections {
-	private Connection  connection = null;
+	private Connection connection = null;
 	public boolean connect() throws SQLException { 
 	        String connectionUrl =
-					"jdbc:sqlserver://Formula1Database;"
+					"jdbc:sqlserver://golem.csse.rose-hulman.edu;"
 					+ "databaseName=Formula1Database;"
 					+ "user=zhaoy1020;"
-					+ "password=Password123";
+					+ "password=Zyqsq20000103";
 	
-	        connection  = DriverManager.getConnection(connectionUrl);
+	        this.connection = DriverManager.getConnection(connectionUrl);
 			if(connection!=null) {
 				return true;
 				
@@ -31,6 +33,7 @@ public class Connections {
 			connection.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, "Failed to close the connection");
 			e.printStackTrace();
 		}
 	}
