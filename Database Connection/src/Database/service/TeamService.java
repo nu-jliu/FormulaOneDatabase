@@ -22,7 +22,7 @@ public class TeamService {
 			CallableStatement cs = this.dbConnection.getConnection().prepareCall("{? = call AddTeam(?,?,?)}");
 			cs.setString(2, name);
 			cs.setString(3, manf);
-			cs.setString(3, model_num);
+			cs.setString(4, model_num);
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();
 			int errorCode = cs.getInt(1);

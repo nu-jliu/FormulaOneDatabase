@@ -1,10 +1,15 @@
 package UI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import Database.service.Connections;
+import Database.service.TeamService;
 
 public class UpdateWindow {
 	JFrame frame;
@@ -34,11 +39,48 @@ public class UpdateWindow {
 		frame.add(manf);
 		
 		JTextField manfName = new JTextField();
-		manfName.setBounds(200, 20, 90, 25);
+		manfName.setBounds(220, 20, 90, 25);
 		frame.add(manfName);
 		
-		//TODO: add functional actionlistener
+		JLabel num = new JLabel("Model Number");
+		num.setBounds(320, 23, 90, 16);
+		frame.add(num);
 		
+		JTextField modelNum = new JTextField();
+		modelNum.setBounds(410, 20, 90, 25);
+		frame.add(modelNum);
+		
+		JButton addTeam = new JButton("Add Team");
+		addTeam.setBounds(0, 50, 100, 25);
+		
+		TeamService teamService = new TeamService(dbservice);
+		ActionListener addteamListener = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String name = teamName.getText();
+				String manfname = manfName.getText();
+				String number = modelNum.getText();
+				teamService.addTeam(name, manfname, number);
+			}
+			
+		};
+		addTeam.addActionListener(addteamListener);
+		frame.getContentPane().add(addTeam);
+		
+		JButton goBack = new JButton("Go Back");
+		goBack.setBounds(200, 400, 90, 25);
+		ActionListener backListener = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				closeFrame();
+				NavigationWindow nw = new NavigationWindow(dbservice);
+			}
+			
+		};
+		goBack.addActionListener(backListener);
+		frame.getContentPane().add(goBack);
 		frame.setVisible(true);
 	}
 	
