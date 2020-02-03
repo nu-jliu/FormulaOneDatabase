@@ -3,7 +3,6 @@ package UI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.CallableStatement;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Types;
@@ -22,6 +21,7 @@ public class NavigationWindow {
 	JButton Team;
 	JButton Race;
 	JButton Driver;
+	JButton Stats;
 	JTable Table;
 	Connections connection;
 	DefaultTableModel model;
@@ -95,8 +95,26 @@ public class NavigationWindow {
 		Driver.addActionListener(DriverListener);
 		Driver.setBounds(200, 250, 90, 25);
 		
+		Stats = new JButton("Stats");
+		ActionListener StatsListener = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					model = new DefaultTableModel();
+					Table.setModel(model);
+					queryData("Stats");
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}				
+			}
+			
+		};
+		Stats.addActionListener(StatsListener);
+		Stats.setBounds(200, 400, 90, 25);
+		
 		JButton update = new JButton("Update");
-		update.setBounds(200, 400, 90, 25);
+		update.setBounds(200, 450, 90, 25);
 		ActionListener updateListener = new ActionListener() {
 
 		
@@ -124,7 +142,11 @@ public class NavigationWindow {
 		frame.getContentPane().add(Driver);
 		frame.getContentPane().add(Team);
 		frame.getContentPane().add(Race);
+<<<<<<< HEAD
 		frame.getContentPane().add(personal);
+=======
+		frame.getContentPane().add(Stats);
+>>>>>>> branch 'master' of https://github.com/liuj9/FormulaOneDatabase.git
 		frame.setVisible(true);
 	}
 	
@@ -143,6 +165,8 @@ public class NavigationWindow {
 		else if(tableName.equals("Race")) {
 			query = "{? = call get_All_Races}";
 		}
+		else if (tableName.equals("Stats"))
+			query = "{? = call get_all_stats}";
 		CallableStatement cs = this.connection.getConnection().prepareCall(query);
 		cs.registerOutParameter(1, Types.INTEGER);
 		ResultSet rs;

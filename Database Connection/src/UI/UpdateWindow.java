@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import Database.service.Connections;
 import Database.service.DriverService;
 import Database.service.ParticipatesService;
+import Database.service.RaceService;
 import Database.service.TeamService;
 
 public class UpdateWindow {
@@ -23,7 +24,7 @@ public class UpdateWindow {
 		this.dbservice = dbservice;
 		this.UID = UID;
 		frame = new JFrame("Formula1Tracker");
-		frame.setBounds(100, 100, 703, 543);
+		frame.setBounds(100, 150, 703, 543);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -81,8 +82,13 @@ public class UpdateWindow {
 		JButton addDriver = new JButton("Add Driver");
 		addDriver.setBounds(0, 140, 100, 25);
 		
+<<<<<<< HEAD
 		JLabel part = new JLabel("Participates");
 		part.setBounds(0, 180, 90, 16);
+=======
+		JLabel part = new JLabel("Part");
+		part.setBounds(0, 180, 68, 16);
+>>>>>>> branch 'master' of https://github.com/liuj9/FormulaOneDatabase.git
 		frame.add(part);
 
 		JLabel driID = new JLabel("DID");
@@ -109,9 +115,56 @@ public class UpdateWindow {
 		rank.setBounds(350, 200, 90, 25);
 		frame.add(rank);
 
-		JButton addPart = new JButton("Add Participates");
+		JButton addPart = new JButton("Add Part");
 		addPart.setBounds(0, 230, 100, 25);
 
+		JLabel race = new JLabel("Race");
+		race.setBounds(0, 270, 68, 16);
+		frame.add(race);
+
+		JLabel weather = new JLabel("Weather");
+		weather.setBounds(0, 293, 68, 16);
+		frame.add(weather);
+
+		JTextField raWeather = new JTextField();
+		raWeather.setBounds(70, 290, 90, 25);
+		frame.add(raWeather);
+
+		JLabel date = new JLabel("Date");
+		date.setBounds(170, 293, 90, 16);
+		frame.add(date);
+
+		JTextField raDate = new JTextField();
+		raDate.setBounds(200, 290, 90, 25);
+		frame.add(raDate);
+
+		JLabel racename = new JLabel("Race Name");
+		racename.setBounds(320, 293, 90, 16);
+		frame.add(racename);
+
+		JTextField raceName = new JTextField();
+		raceName.setBounds(350, 290, 90, 25);
+		frame.add(raceName);
+		
+		JLabel laTime = new JLabel("Laptime");
+		laTime.setBounds(450, 290, 90, 16);
+		frame.add(laTime);
+		
+		JTextField laptime = new JTextField();
+		laptime.setBounds(500, 293, 90, 25);
+		frame.add(laptime);
+		
+		JLabel id = new JLabel("DID");
+		id.setBounds(600, 290, 90, 16);
+		frame.add(id);
+		
+		JTextField newID = new JTextField();
+		newID.setBounds(650, 293, 90, 25);
+		frame.add(newID);
+
+		JButton addRace = new JButton("Add Race");
+		addRace.setBounds(0, 320, 100, 25);
+		
 		TeamService teamService = new TeamService(dbservice);
 		ActionListener addteamListener = new ActionListener() {
 
@@ -166,6 +219,27 @@ public class UpdateWindow {
 			}
 			
 		};
+		RaceService raceService = new RaceService(dbservice);
+		ActionListener addRaceListener = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String weather = raWeather.getText();
+				String raceDate = raDate.getText();
+				String raName = raceName.getText();
+				String lapTime = laTime.getText();
+				int did;
+				try {
+					did = Integer.parseInt(newID.getText());
+				} catch (NumberFormatException e) {
+					JOptionPane.showMessageDialog(null, "Invalid input ID");
+					e.printStackTrace();
+					return;
+				}
+				raceService.addRace(weather, raceDate, raName, lapTime, did);
+			}
+			
+		};
 		
 		addTeam.addActionListener(addteamListener);
 		frame.getContentPane().add(addTeam);
@@ -175,6 +249,9 @@ public class UpdateWindow {
 		
 		addPart.addActionListener(addParticipatesListener);
 		frame.getContentPane().add(addPart);
+		
+		addRace.addActionListener(addRaceListener);
+		frame.getContentPane().add(addRace);
 
 		JButton goBack = new JButton("Go Back");
 		goBack.setBounds(200, 400, 90, 25);
