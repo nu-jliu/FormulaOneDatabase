@@ -9,14 +9,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-
 public class DriverService {
-private Connections dbService = null;
-	
+	private Connections dbService = null;
+
 	public DriverService(Connections dbService) {
 		this.dbService = dbService;
 	}
-	
+
 	public boolean addDriver(int age, String name, String date) {
 		try {
 			CallableStatement cs = this.dbService.getConnection().prepareCall("{? = call AddDriver(?,?,?)}");
@@ -40,21 +39,21 @@ private Connections dbService = null;
 			e.printStackTrace();
 			return false;
 		}
-		
+
 	}
 
-	public ArrayList<String> getDriverNames() {	
+	public ArrayList<String> getDriverNames() {
 		ArrayList<String> driverNames = new ArrayList<>();
 		try {
 			CallableStatement cs = this.dbService.getConnection().prepareCall("{call getDrivers}");
 			ResultSet rs = cs.executeQuery();
-			while (rs.next()) 
+			while (rs.next())
 				driverNames.add(rs.getString("Name"));
 			return driverNames;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to add driver");
 			e.printStackTrace();
 			return driverNames;
-		}		
+		}
 	}
 }

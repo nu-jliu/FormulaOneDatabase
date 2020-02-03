@@ -7,13 +7,13 @@ import java.sql.Types;
 import javax.swing.JOptionPane;
 
 public class Engage_INservice {
-	
+
 	private Connections dbconnection = null;
-	
+
 	public Engage_INservice(Connections connection) {
 		this.dbconnection = connection;
 	}
-	
+
 	public boolean addEngage_IN(int rid, int tid) {
 		try {
 			CallableStatement cs = this.dbconnection.getConnection().prepareCall("{? = call AddEngage_IN(?,?)}");
@@ -32,8 +32,7 @@ public class Engage_INservice {
 			e.printStackTrace();
 			return false;
 		}
-		
+
 	}
-	
-	
+
 }

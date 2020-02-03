@@ -12,17 +12,18 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class RaceService {
-	
+
 	private Connections dbconnection = null;
-	
+
 	public RaceService(Connections connection) {
 		this.dbconnection = connection;
 	}
-	
-	public boolean addRace(String weather, int year, int month, int date, String racename, int hour, int minute, int second, int did) {
+
+	public boolean addRace(String weather, int year, int month, int date, String racename, int hour, int minute,
+			int second, int did) {
 		try {
 			CallableStatement cs = this.dbconnection.getConnection().prepareCall("? = AddRace(?,?,?,?,?)");
-			cs.setString(2,  weather);
+			cs.setString(2, weather);
 			Calendar cal = Calendar.getInstance();
 			cal.set(year, month, date);
 			cs.setDate(3, (java.sql.Date) cal.getTime());
@@ -45,14 +46,14 @@ public class RaceService {
 			return false;
 		}
 	}
-	
+
 	public ArrayList<String> getRaceNameList() {
 		ArrayList<String> nameList = new ArrayList<>();
 		try {
 			CallableStatement cs = this.dbconnection.getConnection().prepareCall("{? = call SelectRaseName}");
 			cs.execute();
 			ResultSet rs = cs.getResultSet();
-			while (rs.next()) 
+			while (rs.next())
 				nameList.add(rs.getString("Race_Name"));
 			return nameList;
 		} catch (SQLException e) {
@@ -62,7 +63,7 @@ public class RaceService {
 			return nameList;
 		}
 	}
-	
+
 	public ArrayList<RaceInfo> getRaceInfo(Date time, String racename) {
 		ArrayList<RaceInfo> info = new ArrayList<>();
 		try {
@@ -72,12 +73,13 @@ public class RaceService {
 			cs.registerOutParameter(1, Types.INTEGER);
 			ResultSet rs = cs.executeQuery();
 			int errorCode = cs.getInt(1);
-			if (errorCode == 10) { 
+			if (errorCode == 10) {
 				JOptionPane.showMessageDialog(null, "Invalid input");
 				return info;
 			}
 			while (rs.next()) {
-				RaceInfo ri = new RaceInfo(rs.getString("Weather"), rs.getDate("Time"), rs.getString("Race_Name"), rs.getTime("Lap_Time"), rs.getString("Name"));
+				RaceInfo ri = new RaceInfo(rs.getString("Weather"), rs.getDate("Time"), rs.getString("Race_Name"),
+						rs.getTime("Lap_Time"), rs.getString("Name"));
 				info.add(ri);
 			}
 			return info;
@@ -86,17 +88,17 @@ public class RaceService {
 			e.printStackTrace();
 			return info;
 		}
-		
+
 	}
-	
+
 	public class RaceInfo {
-		
+
 		String weather;
 		Date racetime;
 		String racename;
 		Time laptime;
 		String drivername;
-		
+
 		public RaceInfo(String w, Date r, String ra, Time l, String d) {
 			this.weather = w;
 			this.racename = ra;
@@ -104,6 +106,6 @@ public class RaceService {
 			this.laptime = l;
 			this.racetime = r;
 		}
-		
+
 	}
 }

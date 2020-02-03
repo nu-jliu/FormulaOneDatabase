@@ -10,13 +10,13 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class TeamService {
-	
+
 	private Connections dbConnection = null;
-	
+
 	public TeamService(Connections connection) {
 		this.dbConnection = connection;
 	}
-	
+
 	public boolean addTeam(String name, String manf, String model_num) {
 		try {
 			CallableStatement cs = this.dbConnection.getConnection().prepareCall("{? = call AddTeam(?,?,?)}");
@@ -40,14 +40,14 @@ public class TeamService {
 			return false;
 		}
 	}
-	
+
 	public ArrayList<String> getTeamNameList() {
 		ArrayList<String> teamNames = new ArrayList<>();
 		try {
 			CallableStatement cs = this.dbConnection.getConnection().prepareCall("{call SelectTeamName}");
 			cs.execute();
 			ResultSet rs = cs.getResultSet();
-			while (rs.next()) 
+			while (rs.next())
 				teamNames.add(rs.getString("Team_Name"));
 			return teamNames;
 		} catch (SQLException e) {
@@ -55,10 +55,9 @@ public class TeamService {
 			e.printStackTrace();
 			return teamNames;
 		}
-		
-		
+
 	}
-	
+
 	public ArrayList<TeamInfo> getTeamInfo(String name) {
 		ArrayList<TeamInfo> info = new ArrayList<>();
 		try {
@@ -72,7 +71,8 @@ public class TeamService {
 				return info;
 			}
 			while (rs.next()) {
-				TeamInfo ti = new TeamInfo(rs.getString("Team_Name"), rs.getString("Engine_manf"), rs.getString("Model_Num"));
+				TeamInfo ti = new TeamInfo(rs.getString("Team_Name"), rs.getString("Engine_manf"),
+						rs.getString("Model_Num"));
 				info.add(ti);
 			}
 			return info;
@@ -81,14 +81,14 @@ public class TeamService {
 			e.printStackTrace();
 			return info;
 		}
-		
+
 	}
-	
+
 	public class TeamInfo {
 		String name;
 		String manf;
 		String num;
-		
+
 		public TeamInfo(String n, String m, String nu) {
 			this.name = n;
 			this.manf = m;
