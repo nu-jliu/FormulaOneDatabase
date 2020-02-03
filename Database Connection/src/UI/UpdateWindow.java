@@ -6,10 +6,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Database.service.Connections;
 import Database.service.DriverService;
+import Database.service.ParticipatesService;
 import Database.service.TeamService;
 
 public class UpdateWindow {
@@ -84,6 +86,37 @@ public class UpdateWindow {
 
 		JButton addDriver = new JButton("Add Driver");
 		addDriver.setBounds(0, 140, 100, 25);
+		
+		JLabel part = new JLabel("Participates");
+		part.setBounds(0, 180, 68, 16);
+		frame.add(part);
+
+		JLabel driID = new JLabel("DID");
+		driID.setBounds(0, 203, 68, 16);
+		frame.add(driID);
+
+		JTextField driverID = new JTextField();
+		driverID.setBounds(40, 200, 90, 25);
+		frame.add(driverID);
+
+		JLabel raID = new JLabel("RID");
+		raID.setBounds(140, 203, 90, 16);
+		frame.add(raID);
+
+		JTextField raceID = new JTextField();
+		raceID.setBounds(170, 200, 90, 25);
+		frame.add(raceID);
+
+		JLabel RANK = new JLabel("Rank");
+		RANK.setBounds(320, 203, 90, 16);
+		frame.add(RANK);
+
+		JTextField rank = new JTextField();
+		rank.setBounds(350, 200, 90, 25);
+		frame.add(rank);
+
+		JButton addPart = new JButton("Add Participates");
+		addPart.setBounds(0, 230, 100, 25);
 
 		TeamService teamService = new TeamService(dbservice);
 		ActionListener addteamListener = new ActionListener() {
@@ -113,11 +146,35 @@ public class UpdateWindow {
 			}
 
 		};
+		
+		ParticipatesService participatesService = new ParticipatesService(dbservice);
+		ActionListener addParticipatesListener = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int did, rid, driverRank;
+				try {
+					did = Integer.parseInt(driverID.getText());
+					rid = Integer.parseInt(raceID.getText());
+					driverRank = Integer.parseInt(rank.getText());
+					participatesService.addParticipates(rid, did, driverRank);
+				} catch (NumberFormatException e) {
+					JOptionPane.showMessageDialog(null, "Invalid Input");
+					e.printStackTrace();
+				}
+				
+			}
+			
+		};
+		
 		addTeam.addActionListener(addteamListener);
 		frame.getContentPane().add(addTeam);
 
 		addDriver.addActionListener(adddriverListener);
 		frame.getContentPane().add(addDriver);
+		
+		addPart.addActionListener(addParticipatesListener);
+		frame.getContentPane().add(addPart);
 
 		JButton goBack = new JButton("Go Back");
 		goBack.setBounds(200, 400, 90, 25);

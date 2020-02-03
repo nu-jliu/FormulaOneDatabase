@@ -78,7 +78,7 @@ public class RaceService {
 				return info;
 			}
 			while (rs.next()) {
-				RaceInfo ri = new RaceInfo(rs.getString("Weather"), rs.getDate("Time"), rs.getString("Race_Name"),
+				RaceInfo ri = new RaceInfo(rs.getString("Weather"), rs.getDate("Date"), rs.getString("Race_Name"),
 						rs.getTime("Lap_Time"), rs.getString("Name"));
 				info.add(ri);
 			}

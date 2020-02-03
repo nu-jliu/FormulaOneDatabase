@@ -97,6 +97,7 @@ public class NavigationWindow {
 		update.setBounds(200, 400, 90, 25);
 		ActionListener updateListener = new ActionListener() {
 
+		
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				closeFrame();
