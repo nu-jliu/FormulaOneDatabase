@@ -106,7 +106,12 @@ public class UpdateWindow {
 			public void actionPerformed(ActionEvent arg0) {
 
 				String dname = DriverName.getText();
-				int dage = Integer.parseInt(age.getText());
+				int dage= 0;
+				try {
+				 dage = Integer.parseInt(age.getText());}
+				catch(NumberFormatException e) {
+					
+				}
 				String ddob = dob.getText();
 
 				driverService.addDriver(dage, dname, ddob);
