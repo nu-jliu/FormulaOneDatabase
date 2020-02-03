@@ -1,7 +1,6 @@
 package Database.service;
 
 import java.sql.CallableStatement;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
@@ -23,11 +22,12 @@ private Connections dbService = null;
 			CallableStatement cs = this.dbService.getConnection().prepareCall("{? = call AddDriver(?,?,?)}");
 			cs.setInt(2, age);
 			cs.setString(3, name);
-			cs.setDate(4, (Date) new SimpleDateFormat("yyyy-mm-dd").parse(date));
+			java.util.Date oldDate = new SimpleDateFormat("yyyy-mm-dd").parse(date);
+			cs.setDate(4, new java.sql.Date(oldDate.getTime()));
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();
 			int errorCode = cs.getInt(1);
-			if (errorCode == 1) {
+			if (errorCode == 2) {
 				JOptionPane.showMessageDialog(null, "Age range is invalid");
 				return false;
 			}
