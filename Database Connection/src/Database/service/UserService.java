@@ -61,6 +61,7 @@ public class UserService {
 			JOptionPane.showMessageDialog(null, "Login Successful");
 			return true;
 		}
+		JOptionPane.showMessageDialog(null, "ERROR: Login Fail");
 		return false;
 	}
 
