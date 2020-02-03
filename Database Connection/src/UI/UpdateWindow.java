@@ -230,9 +230,10 @@ public class UpdateWindow {
 				String lapTime = laTime.getText();
 				int did;
 				try {
-					did = Integer.parseInt(id.getText());
+					did = Integer.parseInt(newID.getText());
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, "Invalid input ID");
+					e.printStackTrace();
 					return;
 				}
 				raceService.addRace(weather, raceDate, raName, lapTime, did);
