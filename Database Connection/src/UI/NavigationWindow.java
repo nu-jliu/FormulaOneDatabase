@@ -30,18 +30,18 @@ public class NavigationWindow {
 	public NavigationWindow(Connections connection, int UID) {
 		this.connection = connection;
 		this.UID = UID;
-		frame = new JFrame("Formula1Tracker");
-		frame.setBounds(100, 100, 700, 700);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		this.frame = new JFrame("Formula1Tracker");
+		this.frame.setBounds(100, 100, 700, 700);
+		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.frame.getContentPane().setLayout(null);
 		
-		Table = new JTable();
-		model = new DefaultTableModel();
-		Table.setBounds(43, 33, 443, 200);
-		Table.setModel(model);
-		frame.getContentPane().add(Table);
+		this.Table = new JTable();
+		this.model = new DefaultTableModel();
+		this.Table.setBounds(43, 33, 443, 200);
+		this.Table.setModel(model);
+		this.frame.getContentPane().add(Table);
 		
-		Team = new JButton("Team");
+		this.Team = new JButton("Team");
 		ActionListener TeamListener = new ActionListener() {
 
 			@Override
@@ -56,10 +56,10 @@ public class NavigationWindow {
 			}
 			
 		};
-		Team.addActionListener(TeamListener);
-		Team.setBounds(200, 350, 90, 25);
+		this.Team.addActionListener(TeamListener);
+		this.Team.setBounds(200, 350, 90, 25);
 
-		Race = new JButton("Race");
+		this.Race = new JButton("Race");
 		ActionListener RaceListener = new ActionListener() {
 
 			@Override
@@ -74,10 +74,10 @@ public class NavigationWindow {
 			}
 			
 		};
-		Race.addActionListener(RaceListener);
-		Race.setBounds(200, 300, 90, 25);
+		this.Race.addActionListener(RaceListener);
+		this.Race.setBounds(200, 300, 90, 25);
 
-		Driver = new JButton("Driver");
+		this.Driver = new JButton("Driver");
 		ActionListener DriverListener = new ActionListener() {
 
 			@Override
@@ -92,10 +92,10 @@ public class NavigationWindow {
 			}
 			
 		};
-		Driver.addActionListener(DriverListener);
-		Driver.setBounds(200, 250, 90, 25);
+		this.Driver.addActionListener(DriverListener);
+		this.Driver.setBounds(200, 250, 90, 25);
 		
-		Stats = new JButton("Stats");
+		this.Stats = new JButton("Stats");
 		ActionListener StatsListener = new ActionListener() {
 
 			@Override
@@ -110,8 +110,8 @@ public class NavigationWindow {
 			}
 			
 		};
-		Stats.addActionListener(StatsListener);
-		Stats.setBounds(200, 400, 90, 25);
+		this.Stats.addActionListener(StatsListener);
+		this.Stats.setBounds(200, 400, 90, 25);
 		
 		JButton update = new JButton("Update");
 		update.setBounds(200, 450, 90, 25);
@@ -139,17 +139,17 @@ public class NavigationWindow {
 		};
 		personal.addActionListener(personalListener);
 		update.addActionListener(updateListener);
-		frame.getContentPane().add(update);
-		frame.getContentPane().add(Driver);
-		frame.getContentPane().add(Team);
-		frame.getContentPane().add(Race);
-		frame.getContentPane().add(personal);
-		frame.getContentPane().add(Stats);
-		frame.setVisible(true);
+		this.frame.getContentPane().add(update);
+		this.frame.getContentPane().add(Driver);
+		this.frame.getContentPane().add(Team);
+		this.frame.getContentPane().add(Race);
+		this.frame.getContentPane().add(personal);
+		this.frame.getContentPane().add(Stats);
+		this.frame.setVisible(true);
 	}
 	
 	public void closeFrame() {
-		frame.dispose();
+		this.frame.dispose();
 	}
 	
 	public void queryData(String tableName) throws Exception{
@@ -172,14 +172,14 @@ public class NavigationWindow {
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int count = rsmd.getColumnCount();
 		for(int i = 1; i <= count; i++) {
-			model.addColumn(rsmd.getColumnName(i));
+			this.model.addColumn(rsmd.getColumnName(i));
 		}
     	String[] row = new String[count];
     	while(rs.next()) {
     		for(int i = 0; i < count; i++) {
     			row[i] = rs.getString(i + 1);
     		}
-    		model.addRow(row);
+    		this.model.addRow(row);
     	}
 	}
 }

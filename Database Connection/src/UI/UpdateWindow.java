@@ -205,11 +205,10 @@ public class UpdateWindow {
 			public void actionPerformed(ActionEvent arg0) {
 
 				String dname = DriverName.getText();
-				int dage= 20;
 				
 				String ddob = dob.getText();
 
-				driverService.addDriver(dage, dname, ddob);
+				driverService.addDriver(dname, ddob);
 			}
 
 		};

@@ -16,13 +16,12 @@ public class DriverService {
 		this.dbService = dbService;
 	}
 
-	public boolean addDriver(int age, String name, String date) {
+	public boolean addDriver(String name, String date) {
 		try {
-			CallableStatement cs = this.dbService.getConnection().prepareCall("{? = call AddDriver(?,?,?)}");
-			cs.setInt(2, age);
-			cs.setString(3, name);
+			CallableStatement cs = this.dbService.getConnection().prepareCall("{? = call AddDriver(?,?)}");
+			cs.setString(2, name);
 			java.util.Date oldDate = new SimpleDateFormat("yyyy-mm-dd").parse(date);
-			cs.setDate(4, new java.sql.Date(oldDate.getTime()));
+			cs.setDate(3, new java.sql.Date(oldDate.getTime()));
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();
 			int errorCode = cs.getInt(1);
@@ -30,6 +29,7 @@ public class DriverService {
 				JOptionPane.showMessageDialog(null, "Age range is invalid");
 				return false;
 			}
+			JOptionPane.showMessageDialog(null, "Driver has been added successfully");
 			return true;
 		} catch (SQLException | ParseException e) {
 			if (e instanceof ParseException)

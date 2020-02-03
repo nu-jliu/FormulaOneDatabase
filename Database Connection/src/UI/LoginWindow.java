@@ -2,6 +2,8 @@ package UI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -34,11 +36,11 @@ public class LoginWindow {
 	 */
 
 	public LoginWindow() throws SQLException{
-		frmLogin = new JFrame();
-		frmLogin.setTitle("Login");
-		frmLogin.setBounds(100, 100, 543, 443);
-		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmLogin.getContentPane().setLayout(null);
+		this.frmLogin = new JFrame();
+		this.frmLogin.setTitle("Login");
+		this.frmLogin.setBounds(100, 100, 543, 443);
+		this.frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.frmLogin.getContentPane().setLayout(null);
 
 		Connections connection = new Connections();
 		try {
@@ -49,15 +51,15 @@ public class LoginWindow {
 		}
 		UserService loginService = new UserService(connection);
 
-		username = new JTextField();
-		username.setBounds(190, 226, 155, 22);
-		frmLogin.getContentPane().add(username);
-		username.setColumns(10);
+		this.username = new JTextField();
+		this.username.setBounds(190, 226, 155, 22);
+		this.frmLogin.getContentPane().add(username);
+		this.username.setColumns(10);
 
-		password = new JPasswordField();
-		password.setBounds(190, 280, 155, 22);
-		frmLogin.getContentPane().add(password);
-		password.setColumns(10);
+		this.password = new JPasswordField();
+		this.password.setBounds(190, 280, 155, 22);
+		this.frmLogin.getContentPane().add(password);
+		this.password.setColumns(10);
 
 		JButton btnButton = new JButton("Login");
 		btnButton.setBounds(107, 335, 90, 25);
@@ -73,7 +75,7 @@ public class LoginWindow {
 					cs.registerOutParameter(1, Types.INTEGER);
 					cs.setString(2, userName);
 					cs.execute();
-					UID = cs.getInt(1);
+					LoginWindow.this.UID = cs.getInt(1);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
@@ -91,36 +93,59 @@ public class LoginWindow {
 
 		};
 		btnButton.addActionListener(loginListener);
-		frmLogin.getContentPane().add(btnButton);
+		this.frmLogin.getContentPane().add(btnButton);
 
-		btnNewButton = new JButton("Register");
-		btnNewButton.setBounds(321, 335, 90, 25);
+		this.btnNewButton = new JButton("Register");
+		this.btnNewButton.setBounds(321, 335, 90, 25);
 		ActionListener registerListener = new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frmLogin.dispose();
+				LoginWindow.this.frmLogin.dispose();
 				RegWindow reg = new RegWindow(loginService);
 			}
 
 		};
-		btnNewButton.addActionListener(registerListener);
-		frmLogin.getContentPane().add(btnNewButton);
+		this.btnNewButton.addActionListener(registerListener);
+		this.frmLogin.getContentPane().add(btnNewButton);
 
 		JLabel lblUsername = new JLabel("Username: ");
 		lblUsername.setBounds(107, 229, 68, 16);
-		frmLogin.getContentPane().add(lblUsername);
+		this.frmLogin.getContentPane().add(lblUsername);
 
 		JLabel lblPassword = new JLabel("Password: ");
 		lblPassword.setBounds(110, 283, 68, 16);
-		frmLogin.getContentPane().add(lblPassword);
+		this.frmLogin.getContentPane().add(lblPassword);
 
 		ImageIcon ii = new ImageIcon("image/icon.png");
 		JLabel iconLabel = new JLabel(ii);
 		iconLabel.setBounds(62, 13, 389, 188);
-		frmLogin.getContentPane().add(iconLabel);
+		this.frmLogin.getContentPane().add(iconLabel);
+		
+		this.password.addKeyListener(new KeyListener() {
 
-		frmLogin.setVisible(true);
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER)
+					loginListener.actionPerformed(null);
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// do nothing
+				
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// do nothing
+				
+			}
+			
+		});
+
+		this.frmLogin.setVisible(true);
 	}
 
 	public void closeFrame() {
