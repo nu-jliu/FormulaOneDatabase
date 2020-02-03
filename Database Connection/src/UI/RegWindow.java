@@ -75,10 +75,7 @@ public class RegWindow {
 					boolean successLogin = regService.register(username, email, password);
 					if(successLogin) {
 						closeFrame();
-						FormulaOneUI ui = new FormulaOneUI();
-					}
-					else {
-						System.out.println("Register Failed.");
+						LoginWindow ui = new LoginWindow();
 					}
 				} catch (SQLException e) {
 					

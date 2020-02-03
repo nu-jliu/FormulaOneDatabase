@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 import Database.service.Connections;
 import Database.service.UserService;
 
-public class FormulaOneUI {
+public class LoginWindow {
 	
 	private JFrame frmLogin;
 	private JTextField username;
@@ -28,7 +28,7 @@ public class FormulaOneUI {
 	 */
 
 	
-	public FormulaOneUI() {
+	public LoginWindow() {
 		frmLogin = new JFrame();
 		frmLogin.setTitle("Login");
 		frmLogin.setBounds(100, 100, 543, 443);
@@ -61,7 +61,6 @@ public class FormulaOneUI {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
 				String userName = username.getText();
 				String passWord = password.getText();
 				try {
@@ -71,7 +70,6 @@ public class FormulaOneUI {
 						NavigationWindow nw = new NavigationWindow(connection);
 					}
 					else {
-						System.out.println("Login Failed.");
 					}
 				} catch (SQLException e) {
 					

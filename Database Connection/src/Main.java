@@ -1,8 +1,8 @@
-import UI.FormulaOneUI;
+import UI.LoginWindow;
 
 public class Main {
 	public static void main(String[] args) {
-		FormulaOneUI ui = new FormulaOneUI();
+		LoginWindow ui = new LoginWindow();
 	}
 
 }

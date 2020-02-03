@@ -35,7 +35,6 @@ public class TeamService {
 			}
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(null, "Failed to add a team");
 			e.printStackTrace();
 			return false;
@@ -52,7 +51,6 @@ public class TeamService {
 				teamNames.add(rs.getString("Team_Name"));
 			return teamNames;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(null, "Failed to get the team name set");
 			e.printStackTrace();
 			return teamNames;
