@@ -40,6 +40,34 @@ public class TeamService {
 			return false;
 		}
 	}
+	public boolean updateTeam(String name, String manfname, String number) {
+		try {
+			CallableStatement cs = this.dbConnection.getConnection().prepareCall("{? = call UpdateTeam(?,?,?)}");
+			cs.setString(2, name);
+			cs.setString(3, manfname);
+			cs.setString(4, number);
+			cs.registerOutParameter(1, Types.INTEGER);
+			cs.execute();
+			int errorCode = cs.getInt(1);
+			if (errorCode == 1) {
+				JOptionPane.showMessageDialog(null, "Team name cannot be null or empty");
+				return false;
+			} else if (errorCode == 3) {
+				JOptionPane.showMessageDialog(null, "No entry detected");
+				return false;
+			}else if(errorCode == 4) 
+			{
+				JOptionPane.showMessageDialog(null, "Not valid Team Name");
+				return false;
+			}
+			return true;
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Failed to update a team");
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
 
 	public ArrayList<String> getTeamNameList() {
 		ArrayList<String> teamNames = new ArrayList<>();
@@ -95,4 +123,6 @@ public class TeamService {
 			this.num = nu;
 		}
 	}
+
+
 }

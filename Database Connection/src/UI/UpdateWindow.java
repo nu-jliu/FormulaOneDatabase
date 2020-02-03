@@ -58,6 +58,10 @@ public class UpdateWindow {
 
 		JButton addTeam = new JButton("Add Team");
 		addTeam.setBounds(0, 50, 100, 25);
+		
+		JButton updateTeam = new JButton("Update Team");
+		updateTeam.setBounds(200, 50, 200, 25);
+		
 
 		JLabel Driver = new JLabel("Driver");
 		Driver.setBounds(0, 90, 68, 16);
@@ -160,6 +164,8 @@ public class UpdateWindow {
 		JButton addRace = new JButton("Add Race");
 		addRace.setBounds(0, 320, 100, 25);
 		
+	
+		
 		TeamService teamService = new TeamService(dbservice);
 		ActionListener addteamListener = new ActionListener() {
 
@@ -169,6 +175,20 @@ public class UpdateWindow {
 				String manfname = manfName.getText();
 				String number = modelNum.getText();
 				teamService.addTeam(name, manfname, number);
+
+			}
+
+		};
+		
+	
+		ActionListener updateteamListener = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String name = teamName.getText();
+				String manfname = manfName.getText();
+				String number = modelNum.getText();
+				teamService.updateTeam(name, manfname, number);
 
 			}
 
@@ -237,7 +257,9 @@ public class UpdateWindow {
 		};
 		
 		addTeam.addActionListener(addteamListener);
+		updateTeam.addActionListener(updateteamListener);
 		frame.getContentPane().add(addTeam);
+		frame.getContentPane().add(updateTeam);
 
 		addDriver.addActionListener(adddriverListener);
 		frame.getContentPane().add(addDriver);
