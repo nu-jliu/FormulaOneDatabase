@@ -23,12 +23,12 @@ public class RaceService {
 
 	public boolean addRace(String weather, String date, String racename, String laptime, int did) {
 		try {
-			CallableStatement cs = this.dbconnection.getConnection().prepareCall("? = AddRace(?,?,?,?,?)");
+			CallableStatement cs = this.dbconnection.getConnection().prepareCall("{? = call AddRace(?,?,?,?,?)}");
 			cs.setString(2, weather);
 			java.util.Date oldDate = null, oldTime = null;
 			try {
 				oldDate = new SimpleDateFormat("yyyy-mm-dd").parse(date);
-				oldTime = new SimpleDateFormat("hh:mm:ss").parse(laptime);
+//				oldTime = new SimpleDateFormat("hh:mm:ss").parse(laptime);
 			} catch (ParseException e) {
 				JOptionPane.showMessageDialog(null, "Incorrect input format");
 				e.printStackTrace();
@@ -36,17 +36,17 @@ public class RaceService {
 			}
 			cs.setDate(3, new java.sql.Date(oldDate.getTime()));
 			cs.setString(4, racename);
-			cs.setTime(6, new Time(oldTime.getTime()));;
+			cs.setTime(5, null);//new Time(oldTime.getTime())
+			cs.setInt(6, did);
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();
 			int errorCode = cs.getInt(1);
 			if (errorCode == 1) {
-				JOptionPane.showMessageDialog(null, "Driver ID not exist");
+				JOptionPane.showMessageDialog(null, "Driver ID not exist" + " " + did);
 				return false;
 			}
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(null, "Failed to add race");
 			e.printStackTrace();
 			return false;
