@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Types;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -19,18 +21,22 @@ public class RaceService {
 		this.dbconnection = connection;
 	}
 
-	public boolean addRace(String weather, int year, int month, int date, String racename, int hour, int minute,
-			int second, int did) {
+	public boolean addRace(String weather, String date, String racename, String laptime, int did) {
 		try {
 			CallableStatement cs = this.dbconnection.getConnection().prepareCall("? = AddRace(?,?,?,?,?)");
 			cs.setString(2, weather);
-			Calendar cal = Calendar.getInstance();
-			cal.set(year, month, date);
-			cs.setDate(3, (java.sql.Date) cal.getTime());
+			java.util.Date oldDate = null, oldTime = null;
+			try {
+				oldDate = new SimpleDateFormat("yyyy-mm-dd").parse(date);
+				oldTime = new SimpleDateFormat("hh:mm:ss").parse(laptime);
+			} catch (ParseException e) {
+				JOptionPane.showMessageDialog(null, "Incorrect input format");
+				e.printStackTrace();
+				return false;
+			}
+			cs.setDate(3, new java.sql.Date(oldDate.getTime()));
 			cs.setString(4, racename);
-			cal = Calendar.getInstance();
-			cal.set(year, month, date, hour, minute, second);
-			cs.setTime(6, (Time) cal.getTime());
+			cs.setTime(6, new Time(oldTime.getTime()));;
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();
 			int errorCode = cs.getInt(1);
