@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import Database.service.Connections;
@@ -50,7 +51,7 @@ public class LoginWindow {
 		username.setColumns(10);
 	
 		
-		password = new JTextField();
+		password = new JPasswordField();
 		password.setBounds(190, 280, 155, 22);
 		frmLogin.getContentPane().add(password);
 		password.setColumns(10);
@@ -86,7 +87,6 @@ public class LoginWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				frmLogin.dispose();
 				RegWindow reg = new RegWindow(loginService);
 			}

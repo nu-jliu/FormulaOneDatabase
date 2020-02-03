@@ -2,15 +2,15 @@ package UI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.sql.Types;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import Database.service.Connections;
@@ -49,7 +49,6 @@ public class NavigationWindow {
 					Table.setModel(model);
 					queryData("Team");
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}				
 			}
@@ -63,13 +62,11 @@ public class NavigationWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				try {
 					model = new DefaultTableModel();
 					Table.setModel(model);
 					queryData("Race");
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -120,14 +117,20 @@ public class NavigationWindow {
 	}
 	
 	public void queryData(String tableName) throws Exception{
-//		model = new DefaultTableModel();
-		String query = "select * from " + tableName;
-		System.out.println(query);
-		PreparedStatement stmt;
+		String query = "";
+		if(tableName.equals("Team")) {
+			query = "{? = call get_All_Teams}";
+		}
+		else if(tableName.equals("Driver")) {
+			query = "{? = call get_All_Drivers}";
+		}
+		else if(tableName.equals("Race")) {
+			query = "{? = call get_All_Races}";
+		}
+		CallableStatement cs = this.connection.getConnection().prepareCall(query);
+		cs.registerOutParameter(1, Types.INTEGER);
 		ResultSet rs;
-		stmt = this.connection.getConnection().prepareStatement(query);
-//		stmt.setString(1, tableName);
-		rs = stmt.executeQuery();	
+		rs = cs.executeQuery();	
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int count = rsmd.getColumnCount();
 		for(int i = 1; i <= count; i++) {
