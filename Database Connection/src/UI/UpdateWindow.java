@@ -82,13 +82,8 @@ public class UpdateWindow {
 		JButton addDriver = new JButton("Add Driver");
 		addDriver.setBounds(0, 140, 100, 25);
 		
-<<<<<<< HEAD
 		JLabel part = new JLabel("Participates");
 		part.setBounds(0, 180, 90, 16);
-=======
-		JLabel part = new JLabel("Part");
-		part.setBounds(0, 180, 68, 16);
->>>>>>> branch 'master' of https://github.com/liuj9/FormulaOneDatabase.git
 		frame.add(part);
 
 		JLabel driID = new JLabel("DID");

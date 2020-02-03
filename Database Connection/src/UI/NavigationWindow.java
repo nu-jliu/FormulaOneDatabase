@@ -142,11 +142,8 @@ public class NavigationWindow {
 		frame.getContentPane().add(Driver);
 		frame.getContentPane().add(Team);
 		frame.getContentPane().add(Race);
-<<<<<<< HEAD
 		frame.getContentPane().add(personal);
-=======
 		frame.getContentPane().add(Stats);
->>>>>>> branch 'master' of https://github.com/liuj9/FormulaOneDatabase.git
 		frame.setVisible(true);
 	}
 	
