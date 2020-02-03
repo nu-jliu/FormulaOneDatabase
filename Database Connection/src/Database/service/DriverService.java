@@ -27,7 +27,7 @@ private Connections dbService = null;
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();
 			int errorCode = cs.getInt(1);
-			if (errorCode == 1) {
+			if (errorCode == 2) {
 				JOptionPane.showMessageDialog(null, "Age range is invalid");
 				return false;
 			}
