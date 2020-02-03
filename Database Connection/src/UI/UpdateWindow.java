@@ -17,9 +17,11 @@ import Database.service.TeamService;
 public class UpdateWindow {
 	JFrame frame;
 	Connections dbservice;
+	private int UID;
 
-	public UpdateWindow(Connections dbservice) {
+	public UpdateWindow(Connections dbservice, int UID) {
 		this.dbservice = dbservice;
+		this.UID = UID;
 		frame = new JFrame("Formula1Tracker");
 		frame.setBounds(100, 100, 703, 543);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,14 +70,6 @@ public class UpdateWindow {
 		DriverName.setBounds(40, 110, 90, 25);
 		frame.add(DriverName);
 
-		JLabel Age = new JLabel("Age");
-		Age.setBounds(140, 113, 90, 16);
-		frame.add(Age);
-
-		JTextField age = new JTextField();
-		age.setBounds(170, 110, 90, 25);
-		frame.add(age);
-
 		JLabel DOB = new JLabel("DOB");
 		DOB.setBounds(320, 113, 90, 16);
 		frame.add(DOB);
@@ -88,7 +82,7 @@ public class UpdateWindow {
 		addDriver.setBounds(0, 140, 100, 25);
 		
 		JLabel part = new JLabel("Participates");
-		part.setBounds(0, 180, 68, 16);
+		part.setBounds(0, 180, 90, 16);
 		frame.add(part);
 
 		JLabel driID = new JLabel("DID");
@@ -141,7 +135,8 @@ public class UpdateWindow {
 				String dname = DriverName.getText();
 				int dage= 0;
 				try {
-				 dage = Integer.parseInt(age.getText());}
+					
+				}
 				catch(NumberFormatException e) {
 					
 				}
@@ -188,7 +183,7 @@ public class UpdateWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				closeFrame();
-				NavigationWindow nw = new NavigationWindow(dbservice);
+				NavigationWindow nw = new NavigationWindow(dbservice, UID);
 			}
 
 		};

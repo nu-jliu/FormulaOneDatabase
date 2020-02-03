@@ -2,7 +2,10 @@ package UI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.CallableStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Types;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,6 +24,7 @@ public class LoginWindow {
 	private JTextField username;
 	private JTextField password;
 	private JButton btnNewButton;
+	private int UID;
 
 	/**
 	 * Launch the application.
@@ -29,7 +33,7 @@ public class LoginWindow {
 	 * Create the application.
 	 */
 
-	public LoginWindow() {
+	public LoginWindow() throws SQLException{
 		frmLogin = new JFrame();
 		frmLogin.setTitle("Login");
 		frmLogin.setBounds(100, 100, 543, 443);
@@ -63,11 +67,21 @@ public class LoginWindow {
 			public void actionPerformed(ActionEvent arg0) {
 				String userName = username.getText();
 				String passWord = password.getText();
+				CallableStatement cs;
+				try {
+					cs = connection.getConnection().prepareCall("{? = call get_UID(?)}");
+					cs.registerOutParameter(1, Types.INTEGER);
+					cs.setString(2, userName);
+					cs.execute();
+					UID = cs.getInt(1);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 				try {
 					boolean successLogin = loginService.login(userName, passWord);
 					if (successLogin) {
 						closeFrame();
-						NavigationWindow nw = new NavigationWindow(connection);
+						NavigationWindow nw = new NavigationWindow(connection, UID);
 					} else {
 					}
 				} catch (SQLException e) {
