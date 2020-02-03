@@ -41,6 +41,33 @@ public class DriverService {
 		}
 
 	}
+	public boolean updateDriver(int age, String name, String date) {
+		try {
+			CallableStatement cs = this.dbService.getConnection().prepareCall("{? = call UpdateDriver(?,?,?)}");
+			cs.setInt(2, age);
+			cs.setString(3, name);
+			java.util.Date oldDate = new SimpleDateFormat("yyyy-mm-dd").parse(date);
+			cs.setDate(4, new java.sql.Date(oldDate.getTime()));
+			cs.registerOutParameter(1, Types.INTEGER);
+			cs.execute();
+			int errorCode = cs.getInt(1);
+			if (errorCode == 2) {
+				JOptionPane.showMessageDialog(null, "Please entry Date of Birth");
+				return false;
+			}
+			if (errorCode == 3) {
+				JOptionPane.showMessageDialog(null, "Please entry Name");
+				return false;
+			}
+			return true;
+		} catch (SQLException | ParseException e) {
+			
+				JOptionPane.showMessageDialog(null, "Failed to update a driver");
+			e.printStackTrace();
+			return false;
+		}
+
+	}
 
 	public ArrayList<String> getDriverNames() {
 		ArrayList<String> driverNames = new ArrayList<>();

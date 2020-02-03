@@ -78,6 +78,7 @@ public class UpdateWindow {
 		JLabel DOB = new JLabel("DOB");
 		DOB.setBounds(320, 113, 90, 16);
 		frame.add(DOB);
+		
 
 		JTextField dob = new JTextField();
 		dob.setBounds(350, 110, 90, 25);
@@ -85,6 +86,9 @@ public class UpdateWindow {
 
 		JButton addDriver = new JButton("Add Driver");
 		addDriver.setBounds(0, 140, 100, 25);
+		
+		JButton updateDriver = new JButton("Update Driver");
+		updateDriver.setBounds(250, 140, 150, 25);
 		
 		JLabel part = new JLabel("Participates");
 		part.setBounds(0, 180, 90, 16);
@@ -201,19 +205,29 @@ public class UpdateWindow {
 			public void actionPerformed(ActionEvent arg0) {
 
 				String dname = DriverName.getText();
-				int dage= 0;
-				try {
-					
-				}
-				catch(NumberFormatException e) {
-					
-				}
+				int dage= 20;
+				
 				String ddob = dob.getText();
 
 				driverService.addDriver(dage, dname, ddob);
 			}
 
 		};
+		ActionListener updatedriverListener = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				String dname = DriverName.getText();
+				int dage= 20;
+				
+				String ddob = dob.getText();
+
+				driverService.updateDriver(dage, dname, ddob);
+			}
+
+		};
+		
 		
 		ParticipatesService participatesService = new ParticipatesService(dbservice);
 		ActionListener addParticipatesListener = new ActionListener() {
@@ -263,6 +277,8 @@ public class UpdateWindow {
 
 		addDriver.addActionListener(adddriverListener);
 		frame.getContentPane().add(addDriver);
+		updateDriver.addActionListener(updatedriverListener);
+		frame.getContentPane().add(updateDriver);
 		
 		addPart.addActionListener(addParticipatesListener);
 		frame.getContentPane().add(addPart);
