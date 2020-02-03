@@ -31,7 +31,7 @@ public class NavigationWindow {
 		this.connection = connection;
 		this.UID = UID;
 		frame = new JFrame("Formula1Tracker");
-		frame.setBounds(100, 100, 543, 543);
+		frame.setBounds(100, 100, 700, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -126,7 +126,7 @@ public class NavigationWindow {
 			
 		};
 		JButton personal = new JButton("Personal");
-		personal.setBounds(190, 450, 110, 25);
+		personal.setBounds(190, 500, 110, 25);
 		ActionListener personalListener = new ActionListener() {
 
 		
@@ -137,6 +137,7 @@ public class NavigationWindow {
 			}
 			
 		};
+		personal.addActionListener(personalListener);
 		update.addActionListener(updateListener);
 		frame.getContentPane().add(update);
 		frame.getContentPane().add(Driver);

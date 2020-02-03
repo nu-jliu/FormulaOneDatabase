@@ -21,8 +21,10 @@ public class PersonalWindow {
 	JTable Table;
 	Connections connection;
 	DefaultTableModel model;
+	int UID;
 
 	public PersonalWindow(Connections connection, int UID) {
+		this.UID = UID;
 		this.connection = connection;
 		frame = new JFrame("Formula1Tracker");
 		frame.setBounds(100, 100, 543, 543);
@@ -43,7 +45,7 @@ public class PersonalWindow {
 				try {
 					model = new DefaultTableModel();
 					Table.setModel(model);
-//					queryData("Team");
+					queryData("Team");
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}				
@@ -61,7 +63,7 @@ public class PersonalWindow {
 				try {
 					model = new DefaultTableModel();
 					Table.setModel(model);
-//					queryData("Driver");
+					queryData("Driver");
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}				
@@ -80,7 +82,10 @@ public class PersonalWindow {
 			}
 			
 		};
-		
+		frame.getContentPane().add(update);
+		frame.getContentPane().add(Driver);
+		frame.getContentPane().add(Team);
+		frame.setVisible(true);
 	}
 	
 	public void closeFrame() {
@@ -90,13 +95,14 @@ public class PersonalWindow {
 	public void queryData(String tableName) throws Exception{
 		String query = "";
 		if(tableName.equals("Team")) {
-			query = "{? = call get_All_Teams}";
+			query = "{? = call get_Starred_Team (?)}";
 		}
-		else if(tableName.equals("Race")) {
-			query = "{? = call get_All_Races}";
+		else if(tableName.equals("Driver")) {
+			query = "{? = call get_Starred_Driver (?)}";
 		}
 		CallableStatement cs = this.connection.getConnection().prepareCall(query);
 		cs.registerOutParameter(1, Types.INTEGER);
+		cs.setInt(2, this.UID);
 		ResultSet rs;
 		rs = cs.executeQuery();	
 		ResultSetMetaData rsmd = rs.getMetaData();
