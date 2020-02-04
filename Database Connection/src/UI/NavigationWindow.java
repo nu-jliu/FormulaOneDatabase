@@ -25,11 +25,9 @@ public class NavigationWindow {
 	JTable Table;
 	Connections connection;
 	DefaultTableModel model;
-	private int UID;
 	
 	public NavigationWindow(Connections connection, int UID) {
 		this.connection = connection;
-		this.UID = UID;
 		this.frame = new JFrame("Formula1Tracker");
 		this.frame.setBounds(100, 100, 700, 700);
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -121,7 +119,7 @@ public class NavigationWindow {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				closeFrame();
-				UpdateWindow update = new UpdateWindow(connection, UID);
+				new UpdateWindow(connection, UID);
 			}
 			
 		};
@@ -133,7 +131,7 @@ public class NavigationWindow {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				closeFrame();
-				PersonalWindow personal = new PersonalWindow(connection, UID);
+				new PersonalWindow(connection, UID);
 			}
 			
 		};

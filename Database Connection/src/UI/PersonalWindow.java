@@ -25,25 +25,25 @@ public class PersonalWindow {
 	public PersonalWindow(Connections connection, int UID) {
 		this.UID = UID;
 		this.connection = connection;
-		frame = new JFrame("Formula1Tracker");
-		frame.setBounds(100, 100, 543, 543);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		this.frame = new JFrame("Formula1Tracker");
+		this.frame.setBounds(100, 100, 543, 543);
+		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.frame.getContentPane().setLayout(null);
 		
-		Table = new JTable();
-		model = new DefaultTableModel();
-		Table.setBounds(43, 33, 443, 200);
-		Table.setModel(model);
-		frame.getContentPane().add(Table);
+		this.Table = new JTable();
+		this.model = new DefaultTableModel();
+		this.Table.setBounds(43, 33, 443, 200);
+		this.Table.setModel(model);
+		this.frame.getContentPane().add(Table);
 
-		Team = new JButton("Team");
+		this.Team = new JButton("Team");
 		ActionListener TeamListener = new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					model = new DefaultTableModel();
-					Table.setModel(model);
+					PersonalWindow.this.model = new DefaultTableModel();
+					PersonalWindow.this.Table.setModel(PersonalWindow.this.model);
 					queryData("Team");
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -51,8 +51,8 @@ public class PersonalWindow {
 			}
 			
 		};
-		Team.addActionListener(TeamListener);
-		Team.setBounds(200, 350, 90, 25);
+		this.Team.addActionListener(TeamListener);
+		this.Team.setBounds(200, 350, 90, 25);
 		
 		Driver = new JButton("Driver");
 		ActionListener DriverListener = new ActionListener() {
@@ -60,8 +60,8 @@ public class PersonalWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					model = new DefaultTableModel();
-					Table.setModel(model);
+					PersonalWindow.this.model = new DefaultTableModel();
+					PersonalWindow.this.Table.setModel(PersonalWindow.this.model);
 					queryData("Driver");
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -69,27 +69,27 @@ public class PersonalWindow {
 			}
 			
 		};
-		Driver.addActionListener(DriverListener);
-		Driver.setBounds(200, 250, 90, 25);
+		this.Driver.addActionListener(DriverListener);
+		this.Driver.setBounds(200, 250, 90, 25);
 		JButton update = new JButton("Update");
 		update.setBounds(200, 400, 90, 25);
 		ActionListener updateListener = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				PersonalWindow.this.closeFrame();
-				UpdateWindow update = new UpdateWindow(connection, PersonalWindow.this.UID);
+				new UpdateWindow(connection, PersonalWindow.this.UID);
 			}
 			
 		};
 		update.addActionListener(updateListener);
-		frame.getContentPane().add(update);
-		frame.getContentPane().add(Driver);
-		frame.getContentPane().add(Team);
-		frame.setVisible(true);
+		this.frame.getContentPane().add(update);
+		this.frame.getContentPane().add(Driver);
+		this.frame.getContentPane().add(Team);
+		this.frame.setVisible(true);
 	}
 	
 	public void closeFrame() {
-		frame.dispose();
+		this.frame.dispose();
 	}
 	
 	public void queryData(String tableName) throws Exception{
@@ -115,7 +115,7 @@ public class PersonalWindow {
     		for(int i = 0; i < count; i++) {
     			row[i] = rs.getString(i + 1);
     		}
-    		model.addRow(row);
+    		this.model.addRow(row);
     	}
 	}
 }

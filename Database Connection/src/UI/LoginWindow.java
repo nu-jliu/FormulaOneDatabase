@@ -6,7 +6,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Types;
 
 import javax.swing.ImageIcon;
@@ -83,7 +82,7 @@ public class LoginWindow {
 					boolean successLogin = loginService.login(userName, passWord);
 					if (successLogin) {
 						closeFrame();
-						NavigationWindow nw = new NavigationWindow(connection, UID);
+						new NavigationWindow(connection, LoginWindow.this.UID);
 					} else {
 					}
 				} catch (SQLException e) {

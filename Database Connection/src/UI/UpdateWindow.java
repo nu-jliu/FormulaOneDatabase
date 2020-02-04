@@ -272,7 +272,6 @@ public class UpdateWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				UpdateWindow.this.closeFrame();
 				new LikesWindow(UpdateWindow.this.dbservice, UpdateWindow.this.UID);
 			}
@@ -305,7 +304,7 @@ public class UpdateWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				closeFrame();
-				NavigationWindow nw = new NavigationWindow(dbservice, UID);
+				new NavigationWindow(dbservice, UID);
 			}
 
 		};

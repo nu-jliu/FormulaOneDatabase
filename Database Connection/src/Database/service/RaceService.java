@@ -8,7 +8,6 @@ import java.sql.Types;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
@@ -25,7 +24,8 @@ public class RaceService {
 		try {
 			CallableStatement cs = this.dbconnection.getConnection().prepareCall("{? = call AddRace(?,?,?,?,?)}");
 			cs.setString(2, weather);
-			java.util.Date oldDate = null, oldTime = null;
+			java.util.Date oldDate = null;
+//					oldTime = null;
 			try {
 				oldDate = new SimpleDateFormat("yyyy-mm-dd").parse(date);
 //				oldTime = new SimpleDateFormat("hh:mm:ss").parse(laptime);
@@ -63,7 +63,6 @@ public class RaceService {
 				nameList.add(rs.getString("Race_Name"));
 			return nameList;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(null, "Failed to get name list");
 			e.printStackTrace();
 			return nameList;

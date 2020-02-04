@@ -45,7 +45,7 @@ public class LikesWindow {
 			teams.addItem(s);
 		newPanel.add(teams, BorderLayout.EAST);
 		
-		this.frame.getContentPane().add(newPanel, BorderLayout.NORTH);
+		this.frame.getContentPane().add(newPanel, BorderLayout.CENTER);
 		
 		JPanel buttonPanel = new JPanel();
 		
@@ -73,7 +73,20 @@ public class LikesWindow {
 		});
 		buttonPanel.add(likeTeam, BorderLayout.EAST);
 		
-		this.frame.add(buttonPanel, BorderLayout.SOUTH);
+		this.frame.add(buttonPanel, BorderLayout.NORTH);
+		
+		JButton back = new JButton("Return");
+		back.setBounds(200, 500, 100, 25);
+		back.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				LikesWindow.this.closeFrame();
+				new UpdateWindow(LikesWindow.this.dbService, LikesWindow.this.UID);
+			}
+			
+		});
+		this.frame.getContentPane().add(back, BorderLayout.SOUTH);
 		
 		this.frame.setVisible(true);
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
