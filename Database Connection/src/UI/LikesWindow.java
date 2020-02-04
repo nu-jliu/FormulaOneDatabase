@@ -99,6 +99,8 @@ public class LikesWindow {
 		}); 
 		
 		deleteLikedTeam.setBounds(200, 350, 100, 25);
+		
+		//TODO: Change the layout to insert those 2 buttons
 		this.frame.getContentPane().add(deleteLikedTeam, BorderLayout.SOUTH);
 		this.frame.getContentPane().add(deleteLikedDriver, BorderLayout.SOUTH);
 
