@@ -23,38 +23,38 @@ public class UpdateWindow {
 	public UpdateWindow(Connections dbservice, int UID) {
 		this.dbservice = dbservice;
 		this.UID = UID;
-		frame = new JFrame("Formula1Tracker");
-		frame.setBounds(100, 150, 703, 543);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		this.frame = new JFrame("Formula1Tracker");
+		this.frame.setBounds(100, 150, 703, 543);
+		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.frame.getContentPane().setLayout(null);
 
 		JLabel team = new JLabel("Team");
 		team.setBounds(0, 0, 68, 16);
-		frame.add(team);
+		this.frame.add(team);
 
 		JLabel teamname = new JLabel("Name");
 		teamname.setBounds(0, 23, 68, 16);
-		frame.add(teamname);
+		this.frame.add(teamname);
 
 		JTextField teamName = new JTextField();
 		teamName.setBounds(40, 20, 90, 25);
-		frame.add(teamName);
+		this.frame.add(teamName);
 
 		JLabel manf = new JLabel("Manufacture");
 		manf.setBounds(140, 23, 90, 16);
-		frame.add(manf);
+		this.frame.add(manf);
 
 		JTextField manfName = new JTextField();
 		manfName.setBounds(220, 20, 90, 25);
-		frame.add(manfName);
+		this.frame.add(manfName);
 
 		JLabel num = new JLabel("Model Number");
 		num.setBounds(320, 23, 90, 16);
-		frame.add(num);
+		this.frame.add(num);
 
 		JTextField modelNum = new JTextField();
 		modelNum.setBounds(410, 20, 90, 25);
-		frame.add(modelNum);
+		this.frame.add(modelNum);
 
 		JButton addTeam = new JButton("Add Team");
 		addTeam.setBounds(0, 50, 100, 25);
@@ -65,24 +65,24 @@ public class UpdateWindow {
 
 		JLabel Driver = new JLabel("Driver");
 		Driver.setBounds(0, 90, 68, 16);
-		frame.add(Driver);
+		this.frame.add(Driver);
 
 		JLabel drivername = new JLabel("Name");
 		drivername.setBounds(0, 113, 68, 16);
-		frame.add(drivername);
+		this.frame.add(drivername);
 
 		JTextField DriverName = new JTextField();
 		DriverName.setBounds(40, 110, 90, 25);
-		frame.add(DriverName);
+		this.frame.add(DriverName);
 
 		JLabel DOB = new JLabel("DOB");
 		DOB.setBounds(320, 113, 90, 16);
-		frame.add(DOB);
+		this.frame.add(DOB);
 		
 
 		JTextField dob = new JTextField();
 		dob.setBounds(350, 110, 90, 25);
-		frame.add(dob);
+		this.frame.add(dob);
 
 		JButton addDriver = new JButton("Add Driver");
 		addDriver.setBounds(0, 140, 100, 25);
@@ -92,83 +92,84 @@ public class UpdateWindow {
 		
 		JLabel part = new JLabel("Participates");
 		part.setBounds(0, 180, 90, 16);
-		frame.add(part);
+		this.frame.add(part);
 
 		JLabel driID = new JLabel("DID");
 		driID.setBounds(0, 203, 68, 16);
-		frame.add(driID);
+		this.frame.add(driID);
 
 		JTextField driverID = new JTextField();
 		driverID.setBounds(40, 200, 90, 25);
-		frame.add(driverID);
+		this.frame.add(driverID);
 
 		JLabel raID = new JLabel("RID");
 		raID.setBounds(140, 203, 90, 16);
-		frame.add(raID);
+		this.frame.add(raID);
 
 		JTextField raceID = new JTextField();
 		raceID.setBounds(170, 200, 90, 25);
-		frame.add(raceID);
+		this.frame.add(raceID);
 
 		JLabel RANK = new JLabel("Rank");
 		RANK.setBounds(320, 203, 90, 16);
-		frame.add(RANK);
+		this.frame.add(RANK);
 
 		JTextField rank = new JTextField();
 		rank.setBounds(350, 200, 90, 25);
-		frame.add(rank);
+		this.frame.add(rank);
 
 		JButton addPart = new JButton("Add Part");
 		addPart.setBounds(0, 230, 100, 25);
 
 		JLabel race = new JLabel("Race");
 		race.setBounds(0, 270, 68, 16);
-		frame.add(race);
+		this.frame.add(race);
 
 		JLabel weather = new JLabel("Weather");
 		weather.setBounds(0, 293, 68, 16);
-		frame.add(weather);
+		this.frame.add(weather);
 
 		JTextField raWeather = new JTextField();
 		raWeather.setBounds(70, 290, 90, 25);
-		frame.add(raWeather);
+		this.frame.add(raWeather);
 
 		JLabel date = new JLabel("Date");
 		date.setBounds(170, 293, 90, 16);
-		frame.add(date);
+		this.frame.add(date);
 
 		JTextField raDate = new JTextField();
 		raDate.setBounds(200, 290, 90, 25);
-		frame.add(raDate);
+		this.frame.add(raDate);
 
 		JLabel racename = new JLabel("Race Name");
 		racename.setBounds(320, 293, 90, 16);
-		frame.add(racename);
+		this.frame.add(racename);
 
 		JTextField raceName = new JTextField();
 		raceName.setBounds(350, 290, 90, 25);
-		frame.add(raceName);
+		this.frame.add(raceName);
 		
 		JLabel laTime = new JLabel("Laptime");
 		laTime.setBounds(450, 290, 90, 16);
-		frame.add(laTime);
+		this.frame.add(laTime);
 		
 		JTextField laptime = new JTextField();
 		laptime.setBounds(500, 293, 90, 25);
-		frame.add(laptime);
+		this.frame.add(laptime);
 		
 		JLabel id = new JLabel("DID");
 		id.setBounds(600, 290, 90, 16);
-		frame.add(id);
+		this.frame.add(id);
 		
 		JTextField newID = new JTextField();
 		newID.setBounds(650, 293, 90, 25);
-		frame.add(newID);
+		this.frame.add(newID);
 
 		JButton addRace = new JButton("Add Race");
 		addRace.setBounds(0, 320, 100, 25);
 		
-	
+		JButton star = new JButton("Likes");
+		star.setBounds(0, 400, 100, 25);
 		
 		TeamService teamService = new TeamService(dbservice);
 		ActionListener addteamListener = new ActionListener() {
@@ -218,11 +219,9 @@ public class UpdateWindow {
 			public void actionPerformed(ActionEvent arg0) {
 
 				String dname = DriverName.getText();
-				int dage= 20;
-				
 				String ddob = dob.getText();
 
-				driverService.updateDriver(dage, dname, ddob);
+				driverService.updateDriver(dname, ddob);
 			}
 
 		};
@@ -269,21 +268,35 @@ public class UpdateWindow {
 			
 		};
 		
+		ActionListener likesListener = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				UpdateWindow.this.closeFrame();
+				new LikesWindow(UpdateWindow.this.dbservice, UpdateWindow.this.UID);
+			}
+			
+		};
+		
 		addTeam.addActionListener(addteamListener);
 		updateTeam.addActionListener(updateteamListener);
-		frame.getContentPane().add(addTeam);
-		frame.getContentPane().add(updateTeam);
+		this.frame.getContentPane().add(addTeam);
+		this.frame.getContentPane().add(updateTeam);
 
 		addDriver.addActionListener(adddriverListener);
-		frame.getContentPane().add(addDriver);
 		updateDriver.addActionListener(updatedriverListener);
-		frame.getContentPane().add(updateDriver);
+		this.frame.getContentPane().add(addDriver);
+		this.frame.getContentPane().add(updateDriver);
 		
 		addPart.addActionListener(addParticipatesListener);
-		frame.getContentPane().add(addPart);
+		this.frame.getContentPane().add(addPart);
 		
 		addRace.addActionListener(addRaceListener);
-		frame.getContentPane().add(addRace);
+		this.frame.getContentPane().add(addRace);
+		
+		star.addActionListener(likesListener);
+		this.frame.getContentPane().add(star);
 
 		JButton goBack = new JButton("Go Back");
 		goBack.setBounds(200, 400, 90, 25);
@@ -297,12 +310,12 @@ public class UpdateWindow {
 
 		};
 		goBack.addActionListener(backListener);
-		frame.getContentPane().add(goBack);
-		frame.setVisible(true);
+		this.frame.getContentPane().add(goBack);
+		this.frame.setVisible(true);
 	}
 
 	public void closeFrame() {
-		frame.dispose();
+		this.frame.dispose();
 	}
 
 }

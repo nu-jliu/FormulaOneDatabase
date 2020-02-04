@@ -6,7 +6,6 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Types;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTable;
@@ -77,11 +76,12 @@ public class PersonalWindow {
 		ActionListener updateListener = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				closeFrame();
-//				UpdateWindow update = new UpdateWindow(connection);
+				PersonalWindow.this.closeFrame();
+				UpdateWindow update = new UpdateWindow(connection, PersonalWindow.this.UID);
 			}
 			
 		};
+		update.addActionListener(updateListener);
 		frame.getContentPane().add(update);
 		frame.getContentPane().add(Driver);
 		frame.getContentPane().add(Team);

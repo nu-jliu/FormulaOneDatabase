@@ -72,11 +72,11 @@ public class TeamService {
 	public ArrayList<String> getTeamNameList() {
 		ArrayList<String> teamNames = new ArrayList<>();
 		try {
-			CallableStatement cs = this.dbConnection.getConnection().prepareCall("{call SelectTeamName}");
+			CallableStatement cs = this.dbConnection.getConnection().prepareCall("{call SelectTeamNames}");
 			cs.execute();
 			ResultSet rs = cs.getResultSet();
 			while (rs.next())
-				teamNames.add(rs.getString("Team_Name"));
+				teamNames.add(rs.getString("Team_name"));
 			return teamNames;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to get the team name set");

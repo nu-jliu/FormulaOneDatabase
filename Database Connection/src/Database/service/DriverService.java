@@ -41,13 +41,12 @@ public class DriverService {
 		}
 
 	}
-	public boolean updateDriver(int age, String name, String date) {
+	public boolean updateDriver(String name, String date) {
 		try {
-			CallableStatement cs = this.dbService.getConnection().prepareCall("{? = call UpdateDriver(?,?,?)}");
-			cs.setInt(2, age);
-			cs.setString(3, name);
+			CallableStatement cs = this.dbService.getConnection().prepareCall("{? = call UpdateDriver(?,?)}");
+			cs.setString(2, name);
 			java.util.Date oldDate = new SimpleDateFormat("yyyy-mm-dd").parse(date);
-			cs.setDate(4, new java.sql.Date(oldDate.getTime()));
+			cs.setDate(3, new java.sql.Date(oldDate.getTime()));
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();
 			int errorCode = cs.getInt(1);
@@ -59,10 +58,10 @@ public class DriverService {
 				JOptionPane.showMessageDialog(null, "Please entry Name");
 				return false;
 			}
+			JOptionPane.showMessageDialog(null, "Successfully changed the driver info");
 			return true;
 		} catch (SQLException | ParseException e) {
-			
-				JOptionPane.showMessageDialog(null, "Failed to update a driver");
+			JOptionPane.showMessageDialog(null, "Failed to update a driver");
 			e.printStackTrace();
 			return false;
 		}
