@@ -37,6 +37,8 @@ public class TeamService {
 				JOptionPane.showMessageDialog(null, "Please Entry Model Number");
 				return false;
 			}
+JOptionPane.showMessageDialog(null, "Team has been add successfully");
+			
 			return true;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to add a team");
@@ -64,6 +66,8 @@ public class TeamService {
 				JOptionPane.showMessageDialog(null, "Not valid Team Name");
 				return false;
 			}
+			JOptionPane.showMessageDialog(null, "Team has been update successfully");
+			
 			return true;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to update a team");
