@@ -117,6 +117,10 @@ public class LikesWindow {
 				JOptionPane.showMessageDialog(null, "User or liked item not exist");
 				return;
 			}
+			else if (errorCode == 2) {
+				JOptionPane.showMessageDialog(null, "The item is already in your favorite list");
+				return;
+			}
 			return;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to like");
