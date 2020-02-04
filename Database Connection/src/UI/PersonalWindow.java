@@ -82,6 +82,19 @@ public class PersonalWindow {
 			
 		};
 		update.addActionListener(updateListener);
+		JButton goBack = new JButton("Go Back");
+		goBack.setBounds(200, 450, 90, 25);
+		ActionListener backListener = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				closeFrame();
+				new NavigationWindow(connection, UID);
+			}
+
+		};
+		goBack.addActionListener(backListener);
+		this.frame.getContentPane().add(goBack);
 		this.frame.getContentPane().add(update);
 		this.frame.getContentPane().add(Driver);
 		this.frame.getContentPane().add(Team);
