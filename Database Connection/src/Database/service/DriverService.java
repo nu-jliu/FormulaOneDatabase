@@ -29,6 +29,10 @@ public class DriverService {
 				JOptionPane.showMessageDialog(null, "Age range is invalid");
 				return false;
 			}
+			if (errorCode == 1) {
+				JOptionPane.showMessageDialog(null, "Please Entry Name");
+				return false;
+			}
 			JOptionPane.showMessageDialog(null, "Driver has been added successfully");
 			return true;
 		} catch (SQLException | ParseException e) {

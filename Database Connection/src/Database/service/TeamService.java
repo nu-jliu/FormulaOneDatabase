@@ -30,6 +30,12 @@ public class TeamService {
 			} else if (errorCode == 2) {
 				JOptionPane.showMessageDialog(null, "Tean name already exists");
 				return false;
+			}else if (errorCode == 3) {
+				JOptionPane.showMessageDialog(null, "Please Entry Manufacture");
+				return false;
+			}else if (errorCode == 4) {
+				JOptionPane.showMessageDialog(null, "Please Entry Model Number");
+				return false;
 			}
 			return true;
 		} catch (SQLException e) {
