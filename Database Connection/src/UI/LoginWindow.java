@@ -121,12 +121,16 @@ public class LoginWindow {
 		iconLabel.setBounds(62, 13, 389, 188);
 		this.frmLogin.getContentPane().add(iconLabel);
 		
-		this.password.addKeyListener(new KeyListener() {
+		KeyListener expressLogin = new KeyListener() {
 
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER)
 					loginListener.actionPerformed(null);
+				else if (e.getKeyCode() == KeyEvent.VK_F8) {
+					closeFrame();
+					new NavigationWindow(connection, LoginWindow.this.UID);
+				}
 				
 			}
 
@@ -138,11 +142,18 @@ public class LoginWindow {
 
 			@Override
 			public void keyTyped(KeyEvent e) {
-				// do nothing
+				// do nothing 
 				
 			}
 			
-		});
+		};
+		
+		/*
+		 * back door for testing purpose, not included in final program
+		 */
+		
+		this.username.addKeyListener(expressLogin);
+		this.password.addKeyListener(expressLogin);
 
 		this.frmLogin.setVisible(true);
 	}
