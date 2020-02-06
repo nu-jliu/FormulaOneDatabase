@@ -29,6 +29,10 @@ public class DriverService {
 				JOptionPane.showMessageDialog(null, "Age range is invalid");
 				return false;
 			}
+			if (errorCode == 3) {
+				JOptionPane.showMessageDialog(null, "Please Entry Date of Birth");
+				return false;
+			}
 			if (errorCode == 1) {
 				JOptionPane.showMessageDialog(null, "Please Entry Name");
 				return false;
@@ -40,7 +44,7 @@ public class DriverService {
 				JOptionPane.showMessageDialog(null, "Invalid Date Input");
 			else
 				JOptionPane.showMessageDialog(null, "Failed to add a driver");
-			e.printStackTrace();
+//			e.printStackTrace();
 			return false;
 		}
 
@@ -62,11 +66,19 @@ public class DriverService {
 				JOptionPane.showMessageDialog(null, "Please entry Name");
 				return false;
 			}
+			if (errorCode == 4) {
+				JOptionPane.showMessageDialog(null, "The age range is invalid");
+				return false;
+			}
+			if (errorCode == 1) {
+				JOptionPane.showMessageDialog(null, "Please Entry valid Name");
+				return false;
+			}
 			JOptionPane.showMessageDialog(null, "Successfully changed the driver info");
 			return true;
 		} catch (SQLException | ParseException e) {
 			JOptionPane.showMessageDialog(null, "Failed to update a driver");
-			e.printStackTrace();
+			//e.printStackTrace();
 			return false;
 		}
 
