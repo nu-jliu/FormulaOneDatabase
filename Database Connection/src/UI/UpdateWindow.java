@@ -14,6 +14,7 @@ import Database.service.DriverService;
 import Database.service.ParticipatesService;
 import Database.service.RaceService;
 import Database.service.TeamService;
+import Database.service.WorksForService;
 
 public class UpdateWindow {
 	JFrame frame;
@@ -24,7 +25,7 @@ public class UpdateWindow {
 		this.dbservice = dbservice;
 		this.UID = UID;
 		this.frame = new JFrame("Formula1Tracker");
-		this.frame.setBounds(100, 150, 703, 543);
+		this.frame.setBounds(100, 150, 800, 750);
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.getContentPane().setLayout(null);
 
@@ -169,7 +170,44 @@ public class UpdateWindow {
 		addRace.setBounds(0, 320, 100, 25);
 		
 		JButton star = new JButton("Likes");
-		star.setBounds(0, 400, 100, 25);
+		star.setBounds(0, 680, 100, 25);
+		JButton goBack = new JButton("Go Back");
+		goBack.setBounds(200, 680, 90, 25);
+		
+		//works for part
+		JLabel WF = new JLabel("Works For");
+		WF.setBounds(0, 350 , 90, 16);
+		this.frame.add(WF);
+		
+		JLabel DN = new JLabel("Driver Name");
+		DN.setBounds(0, 370 , 90, 16);
+		this.frame.add(DN);
+		
+		JTextField DNT = new JTextField();
+		DNT.setBounds(80, 370, 90, 25);
+		this.frame.add(DNT);
+		
+		JLabel TN = new JLabel("Team Name");
+		TN.setBounds(200, 370, 90, 16);
+		this.frame.add(TN);
+		
+		JTextField TNT = new JTextField();
+		TNT.setBounds(280, 370, 90, 25);
+		this.frame.add(TNT);
+		
+		JLabel SY = new JLabel("Year");
+		SY.setBounds(400, 370, 90, 16);
+		this.frame.add(SY);
+		
+		JTextField SYT = new JTextField();
+		SYT.setBounds(460, 370, 90, 25);
+		this.frame.add(SYT);
+		
+		JButton AdW = new JButton("Add Works For");
+		AdW.setBounds(0, 400, 100, 25);
+	
+		JButton UpW = new JButton("Update Works For");
+		UpW.setBounds(300, 400, 100, 25);
 		
 		TeamService teamService = new TeamService(dbservice);
 		ActionListener addteamListener = new ActionListener() {
@@ -268,6 +306,52 @@ public class UpdateWindow {
 			
 		};
 		
+		WorksForService WorksForService = new WorksForService(dbservice);
+		ActionListener addWorksForListener = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String Dname = DNT.getText();
+				String Tname = TNT.getText();
+				
+				int year;
+				try {
+					year = Integer.parseInt( SYT.getText());
+				} catch (NumberFormatException e) {
+					JOptionPane.showMessageDialog(null, "Invalid input year");
+					e.printStackTrace();
+					return;
+				}
+			
+				
+					
+				WorksForService.addWorksFor(Dname, Tname, year);
+			}
+			
+		};
+		
+		ActionListener updateWorksForListener = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String Dname = DNT.getText();
+				String Tname = TNT.getText();
+				
+				int year;
+				try {
+					year = Integer.parseInt( SYT.getText());
+				} catch (NumberFormatException e) {
+					JOptionPane.showMessageDialog(null, "Invalid input year");
+					e.printStackTrace();
+					return;
+				}
+			
+				
+					
+				WorksForService.updateWorksFor(Dname, Tname, year);
+			}
+			
+		};
 		ActionListener likesListener = new ActionListener() {
 
 			@Override
@@ -296,9 +380,13 @@ public class UpdateWindow {
 		
 		star.addActionListener(likesListener);
 		this.frame.getContentPane().add(star);
-
-		JButton goBack = new JButton("Go Back");
-		goBack.setBounds(200, 400, 90, 25);
+		
+		AdW.addActionListener(addWorksForListener);
+		this.frame.getContentPane().add(AdW);
+		
+		UpW.addActionListener(updateWorksForListener);
+		this.frame.getContentPane().add(UpW);
+	
 		ActionListener backListener = new ActionListener() {
 
 			@Override

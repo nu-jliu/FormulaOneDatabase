@@ -20,9 +20,11 @@ public class NavigationWindow {
 	JFrame frame;
 	JButton Team;
 	JButton Race;
+	JButton WorksFor;
 	JButton Driver;
 	JButton Stats;
 	JTable Table;
+	
 	Connections connection;
 	DefaultTableModel model;
 	
@@ -56,7 +58,25 @@ public class NavigationWindow {
 		};
 		this.Team.addActionListener(TeamListener);
 		this.Team.setBounds(200, 350, 90, 25);
+		
+		this.WorksFor = new JButton("WorksFor");
+		ActionListener WorksForListener = new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					model = new DefaultTableModel();
+					Table.setModel(model);
+					queryData("WorksFor");
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}				
+			}
+			
+		};
+		this.Team.addActionListener(WorksForListener);
+		this.Team.setBounds(200, 350, 90, 25);
+		
 		this.Race = new JButton("Race");
 		ActionListener RaceListener = new ActionListener() {
 
@@ -143,6 +163,7 @@ public class NavigationWindow {
 		this.frame.getContentPane().add(Race);
 		this.frame.getContentPane().add(personal);
 		this.frame.getContentPane().add(Stats);
+		this.frame.getContentPane().add(WorksFor);
 		this.frame.setVisible(true);
 	}
 	
