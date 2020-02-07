@@ -204,10 +204,10 @@ public class UpdateWindow {
 		this.frame.add(SYT);
 		
 		JButton AdW = new JButton("Add Works For");
-		AdW.setBounds(0, 400, 100, 50);
+		AdW.setBounds(0, 400, 130, 25);
 	
 		JButton UpW = new JButton("Update Works For");
-		UpW.setBounds(300, 400, 100, 50);
+		UpW.setBounds(300, 400, 150, 25);
 		
 		TeamService teamService = new TeamService(dbservice);
 		ActionListener addteamListener = new ActionListener() {
