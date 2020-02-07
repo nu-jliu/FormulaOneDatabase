@@ -74,8 +74,8 @@ public class NavigationWindow {
 			}
 			
 		};
-		this.Team.addActionListener(WorksForListener);
-		this.Team.setBounds(200, 350, 90, 25);
+		this.WorksFor.addActionListener(WorksForListener);
+		this.WorksFor.setBounds(200, 500, 90, 25);
 		
 		this.Race = new JButton("Race");
 		ActionListener RaceListener = new ActionListener() {
@@ -144,7 +144,7 @@ public class NavigationWindow {
 			
 		};
 		JButton personal = new JButton("Personal");
-		personal.setBounds(190, 500, 110, 25);
+		personal.setBounds(190, 600, 110, 25);
 		ActionListener personalListener = new ActionListener() {
 
 		
@@ -184,6 +184,8 @@ public class NavigationWindow {
 		}
 		else if (tableName.equals("Stats"))
 			query = "{? = call get_all_stats}";
+		else if(tableName.equals("WorksFor"))
+			query = "{? = call get_all_WorksFor}";
 		CallableStatement cs = this.connection.getConnection().prepareCall(query);
 		cs.registerOutParameter(1, Types.INTEGER);
 		ResultSet rs;
