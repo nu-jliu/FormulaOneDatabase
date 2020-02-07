@@ -63,23 +63,27 @@ public class WorksForService {
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();
 			int errorCode = cs.getInt(1);
-			if (errorCode == 2) {
+			if (errorCode == 3) {
 				JOptionPane.showMessageDialog(null, "Please Entry valid Team Name");
 				return false;
 			}
-			if (errorCode == 3) {
-				JOptionPane.showMessageDialog(null, "Please Entry valid  Year");
-				return false;
-			}
 			if (errorCode == 1) {
-				JOptionPane.showMessageDialog(null, "Please Entry valid Driver Name");
+				JOptionPane.showMessageDialog(null, "Invalid input");
 				return false;
 			}
 			if (errorCode == 4) {
-				JOptionPane.showMessageDialog(null, "record already exist");
+				JOptionPane.showMessageDialog(null, "Please Entry valid  Year");
+				return false;
+			}
+			if (errorCode == 2) {
+				JOptionPane.showMessageDialog(null, "Please Entry valid Driver Name");
 				return false;
 			}
 			if (errorCode == 5) {
+				JOptionPane.showMessageDialog(null, "record already exist");
+				return false;
+			}
+			if (errorCode == 6) {
 				JOptionPane.showMessageDialog(null, "no record found");
 				return false;
 			}
