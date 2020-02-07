@@ -48,8 +48,6 @@ public class WorksForService {
 			JOptionPane.showMessageDialog(null, "WorksFor record has been added successfully");
 			return true;
 		} catch (SQLException e) {
-			
-	
 				JOptionPane.showMessageDialog(null, "Failed to add a record");
 			e.printStackTrace();
 			return false;
