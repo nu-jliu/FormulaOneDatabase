@@ -158,12 +158,12 @@ public class UpdateWindow {
 		laptime.setBounds(500, 293, 90, 25);
 		this.frame.add(laptime);
 		
-		JLabel id = new JLabel("DID");
+		JLabel id = new JLabel("Driver Name");
 		id.setBounds(600, 290, 90, 16);
 		this.frame.add(id);
 		
 		JTextField newID = new JTextField();
-		newID.setBounds(650, 293, 90, 25);
+		newID.setBounds(670, 293, 90, 25);
 		this.frame.add(newID);
 
 		JButton addRace = new JButton("Add Race");

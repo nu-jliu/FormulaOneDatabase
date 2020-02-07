@@ -16,7 +16,7 @@ public class ParticipatesService {
 		this.dbconnection = connection;
 	}
 	
-	public boolean addParticipates(String name, String date, int rank) {
+	public boolean addParticipates(String date, String name, int rank) {
 		try {
 			CallableStatement cs = this.dbconnection.getConnection().prepareCall("{? = call AddParticipates(?, ?, ?)}");
 			cs.setString(2, name);
