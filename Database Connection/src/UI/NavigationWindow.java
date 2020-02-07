@@ -173,15 +173,12 @@ public class NavigationWindow {
 	
 	public void queryData(String tableName) throws Exception{
 		String query = "";
-		if(tableName.equals("Team")) {
+		if(tableName.equals("Team")) 
 			query = "{? = call get_All_Teams}";
-		}
-		else if(tableName.equals("Driver")) {
+		else if(tableName.equals("Driver")) 
 			query = "{? = call get_All_Drivers}";
-		}
-		else if(tableName.equals("Race")) {
+		else if(tableName.equals("Race")) 
 			query = "{? = call get_All_Races}";
-		}
 		else if (tableName.equals("Stats"))
 			query = "{? = call get_all_stats}";
 		else if(tableName.equals("WorksFor"))
@@ -196,10 +193,12 @@ public class NavigationWindow {
 			this.model.addColumn(rsmd.getColumnName(i));
 		}
     	String[] row = new String[count];
+    	for (int i = 0; i < count; i++)
+    		row[i] = rsmd.getColumnLabel(i + 1);
+    	this.model.addRow(row);
     	while(rs.next()) {
-    		for(int i = 0; i < count; i++) {
+    		for(int i = 0; i < count; i++) 
     			row[i] = rs.getString(i + 1);
-    		}
     		this.model.addRow(row);
     	}
 	}

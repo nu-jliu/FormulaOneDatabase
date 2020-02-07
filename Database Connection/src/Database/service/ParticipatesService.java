@@ -3,6 +3,8 @@ package Database.service;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JOptionPane;
 
@@ -14,11 +16,13 @@ public class ParticipatesService {
 		this.dbconnection = connection;
 	}
 	
-	public boolean addParticipates(String rid, String did, int rank) {
+	public boolean addParticipates(String name, String date, int rank) {
 		try {
 			CallableStatement cs = this.dbconnection.getConnection().prepareCall("{? = call AddParticipates(?, ?, ?)}");
-			cs.setString(2, rid);
-			cs.setString(3, did);
+			cs.setString(2, name);
+			java.util.Date oldDate;
+			oldDate = new SimpleDateFormat("yyyy-mm-dd").parse(date);
+			cs.setDate(3, new java.sql.Date(oldDate.getTime()));
 			cs.setInt(4, rank);
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();
@@ -28,7 +32,7 @@ public class ParticipatesService {
 				return false;
 			}
 			return true;
-		} catch (SQLException e) {
+		} catch (SQLException | ParseException e) {
 			JOptionPane.showMessageDialog(null, "Add Failed");
 			e.printStackTrace();
 			return false;

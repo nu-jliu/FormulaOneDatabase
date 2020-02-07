@@ -20,7 +20,7 @@ public class RaceService {
 		this.dbconnection = connection;
 	}
 
-	public boolean addRace(String weather, String date, String racename, String laptime, int did) {
+	public boolean addRace(String weather, String date, String racename, String laptime, String drivername) {
 		try {
 			CallableStatement cs = this.dbconnection.getConnection().prepareCall("{? = call AddRace(?,?,?,?,?)}");
 			cs.setString(2, weather);
@@ -37,12 +37,12 @@ public class RaceService {
 			cs.setDate(3, new java.sql.Date(oldDate.getTime()));
 			cs.setString(4, racename);
 			cs.setTime(5, null);//new Time(oldTime.getTime())
-			cs.setInt(6, did);
+			cs.setString(6, drivername);
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();
 			int errorCode = cs.getInt(1);
 			if (errorCode == 1) {
-				JOptionPane.showMessageDialog(null, "Driver ID not exist" + " " + did);
+				JOptionPane.showMessageDialog(null, "Invalid input");
 				return false;
 			}
 			return true;

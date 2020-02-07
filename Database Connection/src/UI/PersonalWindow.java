@@ -124,6 +124,9 @@ public class PersonalWindow {
 			model.addColumn(rsmd.getColumnName(i));
 		}
     	String[] row = new String[count];
+    	for (int i = 0; i < count; i++) 
+    		row[i] = rsmd.getColumnLabel(i + 1);
+    	this.model.addRow(row);
     	while(rs.next()) {
     		for(int i = 0; i < count; i++) {
     			row[i] = rs.getString(i + 1);

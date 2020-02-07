@@ -143,11 +143,11 @@ public class UpdateWindow {
 		this.frame.add(raDate);
 
 		JLabel racename = new JLabel("Race Name");
-		racename.setBounds(320, 293, 90, 16);
+		racename.setBounds(290, 293, 90, 16);
 		this.frame.add(racename);
 
 		JTextField raceName = new JTextField();
-		raceName.setBounds(350, 290, 90, 25);
+		raceName.setBounds(360, 290, 90, 25);
 		this.frame.add(raceName);
 		
 		JLabel laTime = new JLabel("Laptime");
@@ -270,7 +270,7 @@ public class UpdateWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				int  driverRank;
+				int  driverRank ;
 				String did= driverID.getText();
 				String rid=raceID.getText();
 				try {
@@ -279,6 +279,7 @@ public class UpdateWindow {
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, "Invalid Input");
 					e.printStackTrace();
+					return;
 				}
 				participatesService.addParticipates(rid, did, driverRank);
 			}
@@ -293,15 +294,8 @@ public class UpdateWindow {
 				String raceDate = raDate.getText();
 				String raName = raceName.getText();
 				String lapTime = laTime.getText();
-				int did;
-				try {
-					did = Integer.parseInt(newID.getText());
-				} catch (NumberFormatException e) {
-					JOptionPane.showMessageDialog(null, "Invalid input ID");
-					e.printStackTrace();
-					return;
-				}
-				raceService.addRace(weather, raceDate, raName, lapTime, did);
+				String Dname = newID.getText();
+				raceService.addRace(weather, raceDate, raName, lapTime, Dname);
 			}
 			
 		};
