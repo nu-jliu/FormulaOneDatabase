@@ -14,11 +14,11 @@ public class ParticipatesService {
 		this.dbconnection = connection;
 	}
 	
-	public boolean addParticipates(int rid, int did, int rank) {
+	public boolean addParticipates(String rid, String did, int rank) {
 		try {
 			CallableStatement cs = this.dbconnection.getConnection().prepareCall("{? = call AddParticipates(?, ?, ?)}");
-			cs.setInt(2, rid);
-			cs.setInt(3, did);
+			cs.setString(2, rid);
+			cs.setString(3, did);
 			cs.setInt(4, rank);
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();

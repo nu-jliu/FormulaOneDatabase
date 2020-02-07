@@ -79,7 +79,10 @@ public class WorksForService {
 				JOptionPane.showMessageDialog(null, "record already exist");
 				return false;
 			}
-			
+			if (errorCode == 5) {
+				JOptionPane.showMessageDialog(null, "no record found");
+				return false;
+			}
 			JOptionPane.showMessageDialog(null, "WorksFor record has been updated successfully");
 			return true;
 		} catch (SQLException e) {

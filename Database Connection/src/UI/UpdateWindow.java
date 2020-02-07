@@ -95,7 +95,7 @@ public class UpdateWindow {
 		part.setBounds(0, 180, 90, 16);
 		this.frame.add(part);
 
-		JLabel driID = new JLabel("DID");
+		JLabel driID = new JLabel("Driver");
 		driID.setBounds(0, 203, 68, 16);
 		this.frame.add(driID);
 
@@ -103,7 +103,7 @@ public class UpdateWindow {
 		driverID.setBounds(40, 200, 90, 25);
 		this.frame.add(driverID);
 
-		JLabel raID = new JLabel("RID");
+		JLabel raID = new JLabel("Race");
 		raID.setBounds(140, 203, 90, 16);
 		this.frame.add(raID);
 
@@ -270,17 +270,17 @@ public class UpdateWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				int did, rid, driverRank;
+				int  driverRank;
+				String did= driverID.getText();
+				String rid=raceID.getText();
 				try {
-					did = Integer.parseInt(driverID.getText());
-					rid = Integer.parseInt(raceID.getText());
 					driverRank = Integer.parseInt(rank.getText());
-					participatesService.addParticipates(rid, did, driverRank);
+					
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, "Invalid Input");
 					e.printStackTrace();
 				}
-				
+				participatesService.addParticipates(rid, did, driverRank);
 			}
 			
 		};
