@@ -14,6 +14,7 @@ import Database.service.DriverService;
 import Database.service.ParticipatesService;
 import Database.service.RaceService;
 import Database.service.TeamService;
+import Database.service.WatchService;
 import Database.service.WorksForService;
 
 public class UpdateWindow {
@@ -203,6 +204,22 @@ public class UpdateWindow {
 		SYT.setBounds(460, 370, 90, 25);
 		this.frame.add(SYT);
 		
+		JLabel W = new JLabel("Watch Race");
+		W.setBounds(0, 430, 90, 16);
+		this.frame.add(W);
+		
+		JLabel Race = new JLabel("Race");
+		Race.setBounds(0, 450, 90, 16);
+		this.frame.add(Race);
+		
+		JTextField RT = new JTextField();
+		RT.setBounds(50, 450, 90, 25);
+		this.frame.add(RT);
+		
+
+		JButton WBT = new JButton("Watch Race");
+		WBT.setBounds(0, 480, 130, 25);
+		
 		JButton AdW = new JButton("Add Works For");
 		AdW.setBounds(0, 400, 130, 25);
 	
@@ -223,7 +240,20 @@ public class UpdateWindow {
 
 		};
 		
-	
+		WatchService WatchService = new WatchService(dbservice, this.UID);
+		ActionListener WatchListener = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String Race = RT.getText();
+				
+				WatchService.addHistory(Race);
+			}
+			
+		};
+		
+		
+		
 		ActionListener updateteamListener = new ActionListener() {
 
 			@Override
@@ -377,6 +407,10 @@ public class UpdateWindow {
 		
 		AdW.addActionListener(addWorksForListener);
 		this.frame.getContentPane().add(AdW);
+		
+		WBT.addActionListener(WatchListener);
+		this.frame.getContentPane().add(WBT);
+		
 		
 		UpW.addActionListener(updateWorksForListener);
 		this.frame.getContentPane().add(UpW);
