@@ -23,6 +23,7 @@ public class WatchService {
 			cs.setString(2, race);
 			cs.setInt(3, uid);
 			cs.registerOutParameter(1, Types.INTEGER);
+			System.out.println(race + " " + this.uid);
 			cs.execute();
 			int errorCode = cs.getInt(1);
 			if (errorCode == 1) {
@@ -31,9 +32,14 @@ public class WatchService {
 			} else if (errorCode == 2) {
 				JOptionPane.showMessageDialog(null, "Not valid race name");
 				return false;
+			} else if (errorCode == 3 || errorCode == 4) {
+				JOptionPane.showMessageDialog(null, "Illegal User: " + this.uid);
+				return false;
+			} else if (errorCode == 5) {
+				JOptionPane.showMessageDialog(null, "Dupliaction Entry");
+				return false;
 			}
-JOptionPane.showMessageDialog(null, "Histroy has been added suscessfully");
-			
+			JOptionPane.showMessageDialog(null, "Histroy has been added suscessfully");
 			return true;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to add a history");
