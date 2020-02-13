@@ -23,7 +23,6 @@ public class WatchService {
 			cs.setString(2, race);
 			cs.setInt(3, uid);
 			cs.registerOutParameter(1, Types.INTEGER);
-			System.out.println(race + " " + this.uid);
 			cs.execute();
 			int errorCode = cs.getInt(1);
 			if (errorCode == 1) {
