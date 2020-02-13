@@ -2,6 +2,8 @@ package UI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
@@ -82,6 +84,33 @@ public class RegWindow {
 			}
 
 		};
+		
+		KeyListener register = new KeyListener() {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) 
+					loginListener.actionPerformed(null);
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// do nothing
+				
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// do nothing
+				
+			}
+			
+		};
+		
+		this.Username.addActionListener(loginListener);
+		this.Email.addActionListener(loginListener);
+		this.Password.addActionListener(loginListener);
+		
 		btnButton.addActionListener(loginListener);
 		this.frame.getContentPane().add(btnButton);
 
