@@ -107,9 +107,9 @@ public class RegWindow {
 			
 		};
 		
-		this.Username.addActionListener(loginListener);
-		this.Email.addActionListener(loginListener);
-		this.Password.addActionListener(loginListener);
+		this.Username.addKeyListener(register);
+		this.Email.addKeyListener(register);
+		this.Password.addKeyListener(register);
 		
 		btnButton.addActionListener(loginListener);
 		this.frame.getContentPane().add(btnButton);
