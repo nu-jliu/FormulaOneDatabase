@@ -181,6 +181,9 @@ public class UpdateWindow {
 		JButton addRace = new JButton("Add Race");
 		addRace.setBounds(0, 320, 100, 25);
 		
+		JButton updateRace = new JButton("Update Race");
+		updateRace.setBounds(250, 320, 125, 25);
+		
 		JButton star = new JButton("Likes");
 		star.setBounds(0, 680, 100, 25);
 		JButton goBack = new JButton("Go Back");
@@ -360,6 +363,19 @@ public class UpdateWindow {
 			}
 			
 		};
+		ActionListener updateRaceListener = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String weather = raWeather.getText();
+				String raceDate = raDate.getText();
+				String raName = raceName.getText();
+				String lapTime = laptime.getText();
+				String Dname = newID.getText();
+				raceService.updateRace(weather, raceDate, raName, lapTime, Dname);
+			}
+			
+		};
 		
 		WorksForService WorksForService = new WorksForService(dbservice);
 		ActionListener addWorksForListener = new ActionListener() {
@@ -427,7 +443,9 @@ public class UpdateWindow {
 		this.frame.getContentPane().add(updatePart);
 		
 		addRace.addActionListener(addRaceListener);
+		updateRace.addActionListener(updateRaceListener);
 		this.frame.getContentPane().add(addRace);
+		this.frame.getContentPane().add(updateRace);
 		
 		star.addActionListener(likesListener);
 		this.frame.getContentPane().add(star);

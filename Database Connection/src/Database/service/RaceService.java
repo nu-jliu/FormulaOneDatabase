@@ -27,7 +27,7 @@ public class RaceService {
 			java.util.Date oldDate = null;
 			java.util.Date oldTime = null;
 			try {
-				oldDate = new SimpleDateFormat("yyyy-mm-dd").parse(date);
+				oldDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 				oldTime = new SimpleDateFormat("mm:ss").parse(laptime);
 			} catch (ParseException e) {
 				JOptionPane.showMessageDialog(null, "Incorrect input format");
@@ -38,6 +38,41 @@ public class RaceService {
 			cs.setString(4, racename);
 			cs.setTime(5, new Time(oldTime.getTime()));
 			cs.setString(6, drivername);
+			cs.registerOutParameter(1, Types.INTEGER);
+			cs.execute();
+			int errorCode = cs.getInt(1);
+			if (errorCode == 1) {
+				JOptionPane.showMessageDialog(null, "Invalid input");
+				return false;
+			}
+			return true;
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Failed to add race");
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean updateRace(String weather, String date, String racename, String laptime, String drivername) {
+		try {
+			CallableStatement cs = this.dbconnection.getConnection().prepareCall("{? = call UpdateRace(?,?,?,?,?)}");
+			cs.setString(2, (weather.length() == 0) ? null : weather);
+			java.util.Date oldDate = null;
+			java.util.Date oldTime = null;
+			try {
+				if (date.length() != 0)
+					oldDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+				if (laptime.length() != 0)
+					oldTime = new SimpleDateFormat("mm:ss").parse(laptime);
+			} catch (ParseException e) {
+				JOptionPane.showMessageDialog(null, "Incorrect input format");
+				e.printStackTrace();
+				return false;
+			}
+			cs.setDate(3, (oldDate == null) ? null : new java.sql.Date(oldDate.getTime()));
+			cs.setString(4, (racename.length() == 0) ? null : racename);
+			cs.setTime(5, (oldTime == null) ? null : new Time(oldTime.getTime()));
+			cs.setString(6, (drivername.length() == 0) ? null : drivername);
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();
 			int errorCode = cs.getInt(1);
