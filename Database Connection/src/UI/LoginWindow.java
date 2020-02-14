@@ -36,7 +36,7 @@ public class LoginWindow {
 
 	public LoginWindow() throws SQLException{
 		this.frmLogin = new JFrame();
-		this.frmLogin.setTitle("Login");
+		this.frmLogin.setTitle("Login"); 
 		this.frmLogin.setBounds(100, 100, 543, 443);
 		this.frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frmLogin.getContentPane().setLayout(null);
