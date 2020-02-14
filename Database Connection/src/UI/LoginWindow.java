@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.Types;
@@ -26,15 +28,8 @@ public class LoginWindow {
 	private JTextField password;
 	private JButton btnNewButton;
 	private int UID;
-
-	/**
-	 * Launch the application.
-	 */
-	/**
-	 * Create the application.
-	 */
-
-	public LoginWindow() throws SQLException{
+	
+	public LoginWindow() throws SQLException, FileNotFoundException, IOException{
 		this.frmLogin = new JFrame();
 		this.frmLogin.setTitle("Login"); 
 		this.frmLogin.setBounds(100, 100, 543, 443);
