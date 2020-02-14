@@ -107,6 +107,14 @@ public class UpdateWindow {
 		JLabel raID = new JLabel("Race");
 		raID.setBounds(140, 203, 90, 16);
 		this.frame.add(raID);
+		
+		JLabel year = new JLabel("Year");
+		year.setBounds(470, 203, 90, 16);
+		this.frame.add(year);
+		
+		JTextField raceYear = new JTextField();
+		raceYear.setBounds(500, 203, 90, 25);
+		this.frame.add(raceYear);
 
 		JTextField raceID = new JTextField();
 		raceID.setBounds(170, 200, 90, 25);
@@ -120,8 +128,11 @@ public class UpdateWindow {
 		rank.setBounds(350, 200, 90, 25);
 		this.frame.add(rank);
 
-		JButton addPart = new JButton("Add Part");
-		addPart.setBounds(0, 230, 100, 25);
+		JButton addPart = new JButton("Add Participates");
+		addPart.setBounds(0, 230, 150, 25);
+		
+		JButton updatePart = new JButton("Update Participates");
+		updatePart.setBounds(250, 230, 150, 25);
 
 		JLabel race = new JLabel("Race");
 		race.setBounds(0, 270, 68, 16);
@@ -300,18 +311,38 @@ public class UpdateWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				int  driverRank ;
-				String did= driverID.getText();
-				String rid=raceID.getText();
+				int  driverRank, theYear;
+				String did = driverID.getText();
+				String rid = raceID.getText();
 				try {
 					driverRank = Integer.parseInt(rank.getText());
-					
+					theYear = Integer.parseInt(raceYear.getText());
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, "Invalid Input");
 					e.printStackTrace();
 					return;
 				}
-				participatesService.addParticipates(rid, did, driverRank);
+				participatesService.addParticipates(theYear, did, rid, driverRank);
+			}
+			
+		};
+		ActionListener updateParticipatesListener = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int  driverRank, theYear;
+				String did = driverID.getText();
+				String rid = raceID.getText();
+				try {
+					driverRank = Integer.parseInt(rank.getText());
+					theYear = Integer.parseInt(raceYear.getText());
+				} catch (NumberFormatException e) {
+					JOptionPane.showMessageDialog(null, "Invalid Input");
+					e.printStackTrace();
+					return;
+				}
+				participatesService.updateParticipates(theYear, did, rid, driverRank);
+				
 			}
 			
 		};
@@ -397,7 +428,9 @@ public class UpdateWindow {
 		this.frame.getContentPane().add(updateDriver);
 		
 		addPart.addActionListener(addParticipatesListener);
+		updatePart.addActionListener(updateParticipatesListener);
 		this.frame.getContentPane().add(addPart);
+		this.frame.getContentPane().add(updatePart);
 		
 		addRace.addActionListener(addRaceListener);
 		this.frame.getContentPane().add(addRace);
