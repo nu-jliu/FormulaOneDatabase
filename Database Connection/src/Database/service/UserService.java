@@ -93,6 +93,35 @@ public class UserService {
 			return true;
 		}
 	}
+	
+	public boolean changePassword(String username, String Email, String password) throws SQLException {
+		byte[] newSalt = getNewSalt();
+		String salt = getStringFromBytes(newSalt);
+		password = hashPassword(newSalt, password);
+		int returnValue;
+		try {
+			CallableStatement cs = this.dbService.getConnection()
+					.prepareCall("{? = call change_Password(?, ?, ?, ?)}");
+			cs.registerOutParameter(1, Types.INTEGER);
+			cs.setString(2, username);
+			cs.setString(3, Email);
+			cs.setString(4, salt);
+			cs.setString(5, password);
+			cs.execute();
+			returnValue = cs.getInt(1);
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "ERROR: Change Password Failed");
+			e.printStackTrace();
+			return false;
+		}
+		if (returnValue == 10) {
+			JOptionPane.showMessageDialog(null, "ERROR: Change Passwprd Failed - Invalid Input");
+			return false;
+		} else {
+			JOptionPane.showMessageDialog(null, "Password Changed successful");
+			return true;
+		}
+	}
 
 	public byte[] getNewSalt() {
 		byte[] salt = new byte[16];

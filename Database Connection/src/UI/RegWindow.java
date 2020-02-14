@@ -84,36 +84,58 @@ public class RegWindow {
 			}
 
 		};
-		
+
 		KeyListener register = new KeyListener() {
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) 
+				if (e.getKeyCode() == KeyEvent.VK_ENTER)
 					loginListener.actionPerformed(null);
 			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {
 				// do nothing
-				
+
 			}
 
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// do nothing
-				
+
 			}
-			
+
 		};
-		
+
 		this.Username.addKeyListener(register);
 		this.Email.addKeyListener(register);
 		this.Password.addKeyListener(register);
-		
+
 		btnButton.addActionListener(loginListener);
 		this.frame.getContentPane().add(btnButton);
 
+		JButton changePassword = new JButton("Change Password");
+		changePassword.setBounds(170, 365, 150, 25);
+		ActionListener changeListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String username = RegWindow.this.Username.getText();
+				String password = RegWindow.this.Password.getText();
+				String email = RegWindow.this.Email.getText();
+				try {
+					boolean successLogin = regService.changePassword(username, email, password);
+					if (successLogin) {
+						RegWindow.this.closeFrame();
+						new LoginWindow();
+					}
+				} catch (SQLException e) {
+
+				}
+			}
+
+		};
+		changePassword.addActionListener(changeListener);
+		this.frame.getContentPane().add(changePassword);
 		this.frame.setVisible(true);
 	}
 
