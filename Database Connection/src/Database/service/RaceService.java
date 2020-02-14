@@ -28,7 +28,7 @@ public class RaceService {
 			java.util.Date oldTime = null;
 			try {
 				oldDate = new SimpleDateFormat("yyyy-mm-dd").parse(date);
-				oldTime = new SimpleDateFormat("hh:mm:ss").parse(laptime);
+				oldTime = new SimpleDateFormat("mm:ss").parse(laptime);
 			} catch (ParseException e) {
 				JOptionPane.showMessageDialog(null, "Incorrect input format");
 				e.printStackTrace();
@@ -36,7 +36,7 @@ public class RaceService {
 			}
 			cs.setDate(3, new java.sql.Date(oldDate.getTime()));
 			cs.setString(4, racename);
-			cs.setTime(5, new Time(oldTime.getTime()));//new Time(oldTime.getTime())
+			cs.setTime(5, new Time(oldTime.getTime()));
 			cs.setString(6, drivername);
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();

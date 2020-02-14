@@ -376,10 +376,7 @@ public class UpdateWindow {
 					JOptionPane.showMessageDialog(null, "Invalid input year");
 					e.printStackTrace();
 					return;
-				}
-			
-				
-					
+				}	
 				WorksForService.addWorksFor(Dname, Tname, year);
 			}
 			
@@ -400,9 +397,6 @@ public class UpdateWindow {
 					e.printStackTrace();
 					return;
 				}
-			
-				
-					
 				WorksForService.updateWorksFor(Dname, Tname, year);
 			}
 			
