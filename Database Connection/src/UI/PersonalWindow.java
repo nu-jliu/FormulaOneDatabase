@@ -23,7 +23,7 @@ public class PersonalWindow {
 	Connections connection;
 	DefaultTableModel model;
 	int UID;
-	String Accessbility;
+	int Accessbility;
 
 	public PersonalWindow(Connections connection, int UID) {
 		this.UID = UID;
@@ -39,17 +39,17 @@ public class PersonalWindow {
 		this.Table.setModel(model);
 		this.frame.getContentPane().add(Table);
 	//FIXME: SQL exception
-//		CallableStatement cs1;
-//		try {
-//			cs1 = connection.getConnection().prepareCall("{? = get_Accessbility(?)}");
-//			cs1.setInt(2, UID);
-//			cs1.registerOutParameter(1, Types.VARCHAR);
-//			cs1.execute();
-//			this.Accessbility = cs1.getString(1);
-//		} catch (SQLException e) {
-//			JOptionPane.showMessageDialog(null, "SQL Exception -User Acessbility.");
-//			e.printStackTrace();
-//		}
+		CallableStatement cs;
+		try {
+			cs = connection.getConnection().prepareCall("{? = call get_Accessbility(?)}");
+			cs.setInt(2, UID);
+			cs.registerOutParameter(1, Types.INTEGER);
+			cs.execute();
+			this.Accessbility = cs.getInt(1);
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "SQL Exception -User Acessbility.");
+			e.printStackTrace();
+		}
 		System.out.println(Accessbility);
 		this.Team = new JButton("Team");
 		ActionListener TeamListener = new ActionListener() {
@@ -105,12 +105,12 @@ public class PersonalWindow {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				//FIXME:
-//				if (Accessbility.equals("Viewer")) {
-//					JOptionPane.showMessageDialog(null, "No Acessbility");
-//				} else {
+				if (Accessbility < 2) {
+					JOptionPane.showMessageDialog(null, "No Acessbility");
+				} else {
 					PersonalWindow.this.closeFrame();
 					new UpdateWindow(connection, PersonalWindow.this.UID);
-//				}
+				}
 			}
 
 		};
