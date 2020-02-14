@@ -354,7 +354,7 @@ public class UpdateWindow {
 				String weather = raWeather.getText();
 				String raceDate = raDate.getText();
 				String raName = raceName.getText();
-				String lapTime = laTime.getText();
+				String lapTime = laptime.getText();
 				String Dname = newID.getText();
 				raceService.addRace(weather, raceDate, raName, lapTime, Dname);
 			}

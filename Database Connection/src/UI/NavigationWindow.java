@@ -10,9 +10,12 @@ import java.sql.Types;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import Database.service.Connections;
+import Database.service.WatchService;
 
 
 
@@ -39,6 +42,23 @@ public class NavigationWindow {
 		this.model = new DefaultTableModel();
 		this.Table.setBounds(43, 33, 443, 200);
 		this.Table.setModel(model);
+		this.Table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
+			@Override
+			public void valueChanged(ListSelectionEvent arg0) {
+				// TODO Auto-generated method stub
+				JTable theTable = NavigationWindow.this.Table;
+				int row = theTable.getSelectedRow();
+				int column = theTable.getSelectedColumn();
+				if (theTable.getValueAt(0, 0).toString().equals("RID") && column == 3) {
+					WatchService watchservice = new WatchService(NavigationWindow.this.connection, UID);
+					String raceName = theTable.getValueAt(row, column).toString();
+					watchservice.addHistory(raceName);
+				}
+					
+			}
+			
+		});
 		this.frame.getContentPane().add(Table);
 		
 		this.Team = new JButton("Team");
