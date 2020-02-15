@@ -19,10 +19,6 @@ public class Connections {
 	public boolean connect() throws SQLException, FileNotFoundException, IOException {
 		Properties props = new Properties();
 		props.load(new FileInputStream("src/formulaOne.properties"));
-		String connectionUrl = "jdbc:sqlserver://golem.csse.rose-hulman.edu;" 
-				+ "databaseName=Formula1Database;"
-				+ "user=zhaoy10;" 
-				+ "password=Zyqsq20000103";
 		String url = this.SampleURL;
 		String serverName = props.getProperty("serverName");
 		String databaseName = props.getProperty("databaseName");
