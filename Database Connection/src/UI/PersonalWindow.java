@@ -10,6 +10,7 @@ import java.sql.Types;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,6 +21,7 @@ public class PersonalWindow {
 	JButton Team;
 	JButton Driver;
 	JTable Table;
+	JScrollPane scorllpane;
 	Connections connection;
 	DefaultTableModel model;
 	int UID;
@@ -34,10 +36,11 @@ public class PersonalWindow {
 		this.frame.getContentPane().setLayout(null);
 
 		this.Table = new JTable();
+		this.scorllpane = new JScrollPane(this.Table);
 		this.model = new DefaultTableModel();
-		this.Table.setBounds(43, 33, 443, 200);
-		this.Table.setModel(model);
-		this.frame.getContentPane().add(Table);
+		this.scorllpane.setBounds(43, 33, 443, 200);
+		this.Table.setModel(this.model);
+		this.frame.getContentPane().add(this.scorllpane);
 	//FIXME: SQL exception
 		CallableStatement cs;
 		try {
@@ -156,9 +159,9 @@ public class PersonalWindow {
 			model.addColumn(rsmd.getColumnName(i));
 		}
 		String[] row = new String[count];
-		for (int i = 0; i < count; i++)
-			row[i] = rsmd.getColumnLabel(i + 1);
-		this.model.addRow(row);
+//		for (int i = 0; i < count; i++)
+//			row[i] = rsmd.getColumnLabel(i + 1);
+//		this.model.addRow(row);
 		while (rs.next()) {
 			for (int i = 0; i < count; i++) {
 				row[i] = rs.getString(i + 1);

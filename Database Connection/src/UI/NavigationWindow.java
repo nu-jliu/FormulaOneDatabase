@@ -9,6 +9,7 @@ import java.sql.Types;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -27,6 +28,7 @@ public class NavigationWindow {
 	JButton Driver;
 	JButton Stats;
 	JTable Table;
+	JScrollPane scrollpane;
 	
 	Connections connection;
 	DefaultTableModel model;
@@ -39,8 +41,9 @@ public class NavigationWindow {
 		this.frame.getContentPane().setLayout(null);
 		
 		this.Table = new JTable();
+		this.scrollpane = new JScrollPane(this.Table);
 		this.model = new DefaultTableModel();
-		this.Table.setBounds(43, 33, 443, 200);
+		this.scrollpane.setBounds(43, 33, 443, 200);
 		this.Table.setModel(model);
 		this.Table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
@@ -59,7 +62,7 @@ public class NavigationWindow {
 			}
 			
 		});
-		this.frame.getContentPane().add(Table);
+		this.frame.getContentPane().add(this.scrollpane);
 		
 		this.Team = new JButton("Team");
 		ActionListener TeamListener = new ActionListener() {
@@ -213,9 +216,9 @@ public class NavigationWindow {
 			this.model.addColumn(rsmd.getColumnName(i));
 		}
     	String[] row = new String[count];
-    	for (int i = 0; i < count; i++)
-    		row[i] = rsmd.getColumnLabel(i + 1);
-    	this.model.addRow(row);
+//    	for (int i = 0; i < count; i++)
+//    		row[i] = rsmd.getColumnLabel(i + 1);
+//    	this.model.addRow(row);
     	while(rs.next()) {
     		for(int i = 0; i < count; i++) 
     			row[i] = rs.getString(i + 1);
