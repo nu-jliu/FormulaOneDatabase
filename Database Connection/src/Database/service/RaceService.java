@@ -28,7 +28,7 @@ public class RaceService {
 			java.util.Date oldTime = null;
 			try {
 				oldDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-				oldTime = new SimpleDateFormat("mm:ss").parse(laptime);
+				oldTime = new SimpleDateFormat("mm:ss.SSS").parse(laptime);
 			} catch (ParseException e) {
 				JOptionPane.showMessageDialog(null, "Incorrect input format");
 				e.printStackTrace();
@@ -63,7 +63,7 @@ public class RaceService {
 				if (date.length() != 0)
 					oldDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 				if (laptime.length() != 0)
-					oldTime = new SimpleDateFormat("mm:ss").parse(laptime);
+					oldTime = new SimpleDateFormat("mm:ss.SSS").parse(laptime);
 			} catch (ParseException e) {
 				JOptionPane.showMessageDialog(null, "Incorrect input format");
 				e.printStackTrace();

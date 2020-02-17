@@ -49,11 +49,10 @@ public class NavigationWindow {
 
 			@Override
 			public void valueChanged(ListSelectionEvent arg0) {
-				// TODO Auto-generated method stub
 				JTable theTable = NavigationWindow.this.Table;
 				int row = theTable.getSelectedRow();
 				int column = theTable.getSelectedColumn();
-				if (theTable.getValueAt(0, 0).toString().equals("RID") && column == 3) {
+				if (theTable.getRowCount() > 0 && theTable.getColumnCount() > 0 && theTable.getValueAt(0, 0).toString().equals("RID") && column == 3) {
 					WatchService watchservice = new WatchService(NavigationWindow.this.connection, UID);
 					String raceName = theTable.getValueAt(row, column).toString();
 					watchservice.addHistory(raceName);
@@ -216,9 +215,6 @@ public class NavigationWindow {
 			this.model.addColumn(rsmd.getColumnName(i));
 		}
     	String[] row = new String[count];
-//    	for (int i = 0; i < count; i++)
-//    		row[i] = rsmd.getColumnLabel(i + 1);
-//    	this.model.addRow(row);
     	while(rs.next()) {
     		for(int i = 0; i < count; i++) 
     			row[i] = rs.getString(i + 1);
