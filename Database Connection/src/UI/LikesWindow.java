@@ -115,7 +115,7 @@ public class LikesWindow {
 			}
 
 		});
-		this.frame.getContentPane().add(back, BorderLayout.SOUTH);
+		this.frame.add(back, BorderLayout.SOUTH);
 
 		this.frame.setVisible(true);
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
