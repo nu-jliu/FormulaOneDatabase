@@ -53,7 +53,7 @@ public class DriverService {
 		try {
 			CallableStatement cs = this.dbService.getConnection().prepareCall("{? = call UpdateDriver(?,?)}");
 			cs.setString(2, name);
-			java.util.Date oldDate = new SimpleDateFormat("yyyy-mm-dd").parse(date);
+			java.util.Date oldDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 			cs.setDate(3, new java.sql.Date(oldDate.getTime()));
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();
