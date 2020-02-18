@@ -59,10 +59,16 @@ public class UpdateWindow {
 			races2.addItem(s);
 		}
 		
-		drivers.setBounds(30, 195, 140, 25);
+		drivers.setBounds(30, 200, 140, 25);
+		drivers2.setBounds(670, 293, 90, 25);
+		drivers3.setBounds(80, 370, 90, 25);
+		races.setBounds(210, 200, 150, 25);
+		teams.setBounds(280, 370, 90, 25);
 		this.frame.getContentPane().add(drivers);
-		races.setBounds(210, 195, 150, 25);
+		this.frame.getContentPane().add(drivers2);
+		this.frame.getContentPane().add(drivers3);
 		this.frame.getContentPane().add(races);
+		this.frame.getContentPane().add(teams);
 		
 		JLabel team = new JLabel("Team");
 		team.setBounds(0, 0, 68, 16);
@@ -97,7 +103,6 @@ public class UpdateWindow {
 		
 		JButton updateTeam = new JButton("Update Team");
 		updateTeam.setBounds(200, 50, 200, 25);
-		
 
 		JLabel Driver = new JLabel("Driver");
 		Driver.setBounds(0, 90, 68, 16);
@@ -189,7 +194,7 @@ public class UpdateWindow {
 		this.frame.add(raceName);
 		
 		JLabel laTime = new JLabel("Laptime");
-		laTime.setBounds(450, 290, 90, 16);
+		laTime.setBounds(450, 293, 90, 16);
 		this.frame.add(laTime);
 		
 		JTextField laptime = new JTextField();
@@ -197,12 +202,12 @@ public class UpdateWindow {
 		this.frame.add(laptime);
 		
 		JLabel id = new JLabel("Driver Name");
-		id.setBounds(600, 290, 90, 16);
+		id.setBounds(600, 293, 90, 16);
 		this.frame.add(id);
 		
-		JTextField newID = new JTextField();
-		newID.setBounds(670, 293, 90, 25);
-		this.frame.add(newID);
+//		JTextField newID = new JTextField();
+//		newID.setBounds(670, 293, 90, 25);
+//		this.frame.add(newID);
 
 		JButton addRace = new JButton("Add Race");
 		addRace.setBounds(0, 320, 100, 25);
@@ -223,15 +228,15 @@ public class UpdateWindow {
 		
 		JTextField DNT = new JTextField();
 		DNT.setBounds(80, 370, 90, 25);
-		this.frame.add(DNT);
+//		this.frame.add(DNT);
 		
 		JLabel TN = new JLabel("Team Name");
 		TN.setBounds(200, 370, 90, 16);
 		this.frame.add(TN);
 		
-		JTextField TNT = new JTextField();
-		TNT.setBounds(280, 370, 90, 25);
-		this.frame.add(TNT);
+//		JTextField TNT = new JTextField();
+//		TNT.setBounds(280, 370, 90, 25);
+//		this.frame.add(TNT);
 		
 		JLabel SY = new JLabel("Year");
 		SY.setBounds(400, 370, 90, 16);
@@ -283,7 +288,6 @@ public class UpdateWindow {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String Race = RT.getText();
-				
 				WatchService.addHistory(Race);
 			}
 			
@@ -309,11 +313,8 @@ public class UpdateWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-
 				String dname = DriverName.getText();
-				
 				String ddob = dob.getText();
-
 				driverService.addDriver(dname, ddob);
 			}
 
@@ -322,10 +323,8 @@ public class UpdateWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-
 				String dname = DriverName.getText();
 				String ddob = dob.getText();
-
 				driverService.updateDriver(dname, ddob);
 			}
 
@@ -338,8 +337,8 @@ public class UpdateWindow {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				int  driverRank, theYear;
-				String did = drivers.getSelectedItem().toString();
-				String rid = races.getSelectedItem().toString();
+				String did = (String) drivers.getSelectedItem();
+				String rid = (String) races.getSelectedItem();
 				try {
 					driverRank = Integer.parseInt(rank.getText());
 					theYear = Integer.parseInt(raceYear.getText());
@@ -357,8 +356,8 @@ public class UpdateWindow {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				int  driverRank, theYear;
-				String did = drivers.getSelectedItem().toString();
-				String rid = races.getSelectedItem().toString();
+				String did = (String) drivers.getSelectedItem();
+				String rid = (String) races.getSelectedItem();
 				try {
 					driverRank = Integer.parseInt(rank.getText());
 					theYear = Integer.parseInt(raceYear.getText());
@@ -381,7 +380,7 @@ public class UpdateWindow {
 				String raceDate = raDate.getText();
 				String raName = raceName.getText();
 				String lapTime = laptime.getText();
-				String Dname = newID.getText();
+				String Dname = (String) drivers2.getSelectedItem();
 				raceService.addRace(weather, raceDate, raName, lapTime, Dname);
 			}
 			
@@ -394,7 +393,7 @@ public class UpdateWindow {
 				String raceDate = raDate.getText();
 				String raName = raceName.getText();
 				String lapTime = laptime.getText();
-				String Dname = newID.getText();
+				String Dname = (String) drivers2.getSelectedItem();
 				raceService.updateRace(weather, raceDate, raName, lapTime, Dname);
 			}
 			
@@ -405,9 +404,8 @@ public class UpdateWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String Dname = DNT.getText();
-				String Tname = TNT.getText();
-				
+				String Dname = (String) drivers3.getSelectedItem();
+				String Tname = (String) teams.getSelectedItem();
 				int year;
 				try {
 					year = Integer.parseInt( SYT.getText());
@@ -425,8 +423,8 @@ public class UpdateWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String Dname = DNT.getText();
-				String Tname = TNT.getText();
+				String Dname = (String) drivers3.getSelectedItem();
+				String Tname = (String) teams.getSelectedItem();
 				
 				int year;
 				try {
