@@ -9,7 +9,6 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Database.service.Connections;
@@ -51,13 +50,6 @@ public class UpdateWindow {
 		JComboBox<String> races = new JComboBox<>();
 		for (String s : raceNames)
 			races.addItem(s);
-		
-//		JPanel driverPanel = new JPanel();
-//		driverPanel.add(drivers);
-//		JPanel racePanel = new JPanel();
-//		racePanel.add(races);
-//		boxPanel.add(teams);
-//		boxPanel.add(races);
 		
 		drivers.setBounds(30, 195, 140, 25);
 		this.frame.getContentPane().add(drivers);
@@ -134,10 +126,6 @@ public class UpdateWindow {
 		driID.setBounds(0, 203, 68, 16);
 		this.frame.add(driID);
 
-//		JTextField driverID = new JTextField();
-//		driverID.setBounds(40, 200, 90, 25);
-//		this.frame.add(driverID);
-
 		JLabel raID = new JLabel("Race");
 		raID.setBounds(175, 203, 90, 16);
 		this.frame.add(raID);
@@ -149,10 +137,6 @@ public class UpdateWindow {
 		JTextField raceYear = new JTextField();
 		raceYear.setBounds(560, 200, 90, 25);
 		this.frame.add(raceYear);
-
-//		JTextField raceID = new JTextField();
-//		raceID.setBounds(205, 200, 90, 25);
-//		this.frame.add(raceID);
 
 		JLabel RANK = new JLabel("Rank");
 		RANK.setBounds(380, 203, 90, 16);
