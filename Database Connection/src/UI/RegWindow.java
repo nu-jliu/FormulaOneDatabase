@@ -66,7 +66,7 @@ public class RegWindow {
 		this.frame.getContentPane().add(lblEmail);
 
 		JButton btnButton = new JButton("Register");
-		btnButton.setBounds(200, 335, 90, 25);
+		btnButton.setBounds(200, 305, 90, 25);
 		ActionListener loginListener = new ActionListener() {
 
 			@Override
@@ -121,7 +121,10 @@ public class RegWindow {
 		this.frame.getContentPane().add(btnButton);
 
 		JButton changePassword = new JButton("Change Password");
-		changePassword.setBounds(170, 365, 150, 25);
+		changePassword.setBounds(170, 335, 150, 25);
+		
+		
+		
 		ActionListener changeListener = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -146,6 +149,28 @@ public class RegWindow {
 		};
 		changePassword.addActionListener(changeListener);
 		this.frame.getContentPane().add(changePassword);
+		
+		JButton backButton = new JButton("Go Back");
+		backButton.setBounds(170, 365, 150, 25);
+		
+		ActionListener backListener = new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				closeFrame();
+				try {
+					new LoginWindow();
+				} catch (FileNotFoundException e1) {
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}				
+			}
+		};
+		backButton.addActionListener(backListener);
+		this.frame.getContentPane().add(backButton);
 		this.frame.setVisible(true);
 	}
 

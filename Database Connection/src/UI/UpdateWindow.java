@@ -52,17 +52,17 @@ public class UpdateWindow {
 		for (String s : raceNames)
 			races.addItem(s);
 		
-		JPanel driverPanel = new JPanel();
-		driverPanel.add(drivers);
-		JPanel racePanel = new JPanel();
-		racePanel.add(races);
+//		JPanel driverPanel = new JPanel();
+//		driverPanel.add(drivers);
+//		JPanel racePanel = new JPanel();
+//		racePanel.add(races);
 //		boxPanel.add(teams);
 //		boxPanel.add(races);
 		
-		driverPanel.setBounds(30, 195, 140, 30);
-		this.frame.getContentPane().add(driverPanel);
-		racePanel.setBounds(210, 195, 150, 30);
-		this.frame.getContentPane().add(racePanel);
+		drivers.setBounds(30, 195, 140, 25);
+		this.frame.getContentPane().add(drivers);
+		races.setBounds(210, 195, 150, 25);
+		this.frame.getContentPane().add(races);
 		
 		JLabel team = new JLabel("Team");
 		team.setBounds(0, 0, 68, 16);
@@ -218,12 +218,9 @@ public class UpdateWindow {
 		JButton updateRace = new JButton("Update Race");
 		updateRace.setBounds(250, 320, 125, 25);
 		
-		JButton star = new JButton("Likes");
-		star.setBounds(0, 680, 100, 25);
 		JButton goBack = new JButton("Go Back");
-		goBack.setBounds(200, 680, 90, 25);
+		goBack.setBounds(200, 400, 90, 25);
 		
-		//works for part
 		JLabel WF = new JLabel("Works For");
 		WF.setBounds(0, 350 , 90, 16);
 		this.frame.add(WF);
@@ -480,9 +477,6 @@ public class UpdateWindow {
 		updateRace.addActionListener(updateRaceListener);
 		this.frame.getContentPane().add(addRace);
 		this.frame.getContentPane().add(updateRace);
-		
-		star.addActionListener(likesListener);
-		this.frame.getContentPane().add(star);
 		
 		AdW.addActionListener(addWorksForListener);
 		this.frame.getContentPane().add(AdW);
