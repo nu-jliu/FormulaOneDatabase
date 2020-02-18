@@ -91,7 +91,7 @@ public class RaceService {
 	public ArrayList<String> getRaceNameList() {
 		ArrayList<String> nameList = new ArrayList<>();
 		try {
-			CallableStatement cs = this.dbconnection.getConnection().prepareCall("{? = call SelectRaseName}");
+			CallableStatement cs = this.dbconnection.getConnection().prepareCall("{call SelectRaceName}");
 			cs.execute();
 			ResultSet rs = cs.getResultSet();
 			while (rs.next())

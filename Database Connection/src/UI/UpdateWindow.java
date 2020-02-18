@@ -2,11 +2,14 @@ package UI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Database.service.Connections;
@@ -29,7 +32,38 @@ public class UpdateWindow {
 		this.frame.setBounds(100, 150, 800, 750);
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.getContentPane().setLayout(null);
+		
+		DriverService driverService = new DriverService(this.dbservice);
+		TeamService teamService = new TeamService(this.dbservice);
+		RaceService raceService = new RaceService(this.dbservice);
 
+		ArrayList<String> driverNames = driverService.getDriverNames();
+		JComboBox<String> drivers = new JComboBox<>();
+		for (String s : driverNames)
+			drivers.addItem(s);
+		
+		ArrayList<String> teamNames = teamService.getTeamNameList();
+		JComboBox<String> teams = new JComboBox<>();
+		for (String s : teamNames)
+			teams.addItem(s);
+		
+		ArrayList<String> raceNames = raceService.getRaceNameList();
+		JComboBox<String> races = new JComboBox<>();
+		for (String s : raceNames)
+			races.addItem(s);
+		
+		JPanel driverPanel = new JPanel();
+		driverPanel.add(drivers);
+		JPanel racePanel = new JPanel();
+		racePanel.add(races);
+//		boxPanel.add(teams);
+//		boxPanel.add(races);
+		
+		driverPanel.setBounds(30, 195, 140, 30);
+		this.frame.getContentPane().add(driverPanel);
+		racePanel.setBounds(210, 195, 150, 30);
+		this.frame.getContentPane().add(racePanel);
+		
 		JLabel team = new JLabel("Team");
 		team.setBounds(0, 0, 68, 16);
 		this.frame.add(team);
@@ -100,32 +134,32 @@ public class UpdateWindow {
 		driID.setBounds(0, 203, 68, 16);
 		this.frame.add(driID);
 
-		JTextField driverID = new JTextField();
-		driverID.setBounds(40, 200, 90, 25);
-		this.frame.add(driverID);
+//		JTextField driverID = new JTextField();
+//		driverID.setBounds(40, 200, 90, 25);
+//		this.frame.add(driverID);
 
 		JLabel raID = new JLabel("Race");
-		raID.setBounds(140, 203, 90, 16);
+		raID.setBounds(175, 203, 90, 16);
 		this.frame.add(raID);
 		
 		JLabel year = new JLabel("Year");
-		year.setBounds(470, 203, 90, 16);
+		year.setBounds(530, 203, 90, 16);
 		this.frame.add(year);
 		
 		JTextField raceYear = new JTextField();
-		raceYear.setBounds(500, 203, 90, 25);
+		raceYear.setBounds(560, 200, 90, 25);
 		this.frame.add(raceYear);
 
-		JTextField raceID = new JTextField();
-		raceID.setBounds(170, 200, 90, 25);
-		this.frame.add(raceID);
+//		JTextField raceID = new JTextField();
+//		raceID.setBounds(205, 200, 90, 25);
+//		this.frame.add(raceID);
 
 		JLabel RANK = new JLabel("Rank");
-		RANK.setBounds(320, 203, 90, 16);
+		RANK.setBounds(380, 203, 90, 16);
 		this.frame.add(RANK);
 
 		JTextField rank = new JTextField();
-		rank.setBounds(350, 200, 90, 25);
+		rank.setBounds(410, 200, 90, 25);
 		this.frame.add(rank);
 
 		JButton addPart = new JButton("Add Participates");
@@ -240,7 +274,7 @@ public class UpdateWindow {
 		JButton UpW = new JButton("Update Works For");
 		UpW.setBounds(300, 400, 150, 25);
 		
-		TeamService teamService = new TeamService(dbservice);
+//		TeamService teamService = new TeamService(dbservice);
 		ActionListener addteamListener = new ActionListener() {
 
 			@Override
@@ -281,7 +315,7 @@ public class UpdateWindow {
 
 		};
 
-		DriverService driverService = new DriverService(dbservice);
+//		DriverService driverService = new DriverService(dbservice);
 		ActionListener adddriverListener = new ActionListener() {
 
 			@Override
@@ -315,8 +349,8 @@ public class UpdateWindow {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				int  driverRank, theYear;
-				String did = driverID.getText();
-				String rid = raceID.getText();
+				String did = drivers.getSelectedItem().toString();
+				String rid = races.getSelectedItem().toString();
 				try {
 					driverRank = Integer.parseInt(rank.getText());
 					theYear = Integer.parseInt(raceYear.getText());
@@ -334,8 +368,8 @@ public class UpdateWindow {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				int  driverRank, theYear;
-				String did = driverID.getText();
-				String rid = raceID.getText();
+				String did = drivers.getSelectedItem().toString();
+				String rid = races.getSelectedItem().toString();
 				try {
 					driverRank = Integer.parseInt(rank.getText());
 					theYear = Integer.parseInt(raceYear.getText());
@@ -349,7 +383,7 @@ public class UpdateWindow {
 			}
 			
 		};
-		RaceService raceService = new RaceService(dbservice);
+//		RaceService raceService = new RaceService(dbservice);
 		ActionListener addRaceListener = new ActionListener() {
 
 			@Override
@@ -471,6 +505,8 @@ public class UpdateWindow {
 		};
 		goBack.addActionListener(backListener);
 		this.frame.getContentPane().add(goBack);
+		
+		
 		this.frame.setVisible(true);
 	}
 

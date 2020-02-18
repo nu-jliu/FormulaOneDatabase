@@ -106,6 +106,9 @@ public class LikesWindow {
 
 		JButton back = new JButton("Return");
 		back.setBounds(200, 500, 100, 25);
+		JPanel backPanel = new JPanel();
+		backPanel.add(back);
+		backPanel.setBounds(200, 500, 100, 25);
 		back.addActionListener(new ActionListener() {
 
 			@Override
@@ -115,7 +118,7 @@ public class LikesWindow {
 			}
 
 		});
-		this.frame.add(back, BorderLayout.SOUTH);
+		this.frame.add(backPanel, BorderLayout.SOUTH);
 
 		this.frame.setVisible(true);
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
