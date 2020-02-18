@@ -43,7 +43,7 @@ public class NavigationWindow {
 		this.Table = new JTable();
 		this.scrollpane = new JScrollPane(this.Table);
 		this.model = new DefaultTableModel();
-		this.scrollpane.setBounds(43, 33, 443, 200);
+		this.scrollpane.setBounds(43, 33, 597, 200);
 		this.Table.setModel(model);
 		this.Table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
@@ -79,7 +79,7 @@ public class NavigationWindow {
 			
 		};
 		this.Team.addActionListener(TeamListener);
-		this.Team.setBounds(200, 350, 90, 25);
+		this.Team.setBounds(550, 244, 90, 25);
 		
 		this.WorksFor = new JButton("WorksFor");
 		ActionListener WorksForListener = new ActionListener() {
@@ -97,7 +97,7 @@ public class NavigationWindow {
 			
 		};
 		this.WorksFor.addActionListener(WorksForListener);
-		this.WorksFor.setBounds(200, 500, 90, 25);
+		this.WorksFor.setBounds(143, 385, 90, 25);
 		
 		this.Race = new JButton("Race");
 		ActionListener RaceListener = new ActionListener() {
@@ -115,7 +115,7 @@ public class NavigationWindow {
 			
 		};
 		this.Race.addActionListener(RaceListener);
-		this.Race.setBounds(200, 300, 90, 25);
+		this.Race.setBounds(298, 244, 90, 25);
 
 		this.Driver = new JButton("Driver");
 		ActionListener DriverListener = new ActionListener() {
@@ -133,7 +133,7 @@ public class NavigationWindow {
 			
 		};
 		this.Driver.addActionListener(DriverListener);
-		this.Driver.setBounds(200, 250, 90, 25);
+		this.Driver.setBounds(43, 244, 90, 25);
 		
 		this.Stats = new JButton("Stats");
 		ActionListener StatsListener = new ActionListener() {
@@ -151,10 +151,10 @@ public class NavigationWindow {
 			
 		};
 		this.Stats.addActionListener(StatsListener);
-		this.Stats.setBounds(200, 400, 90, 25);
+		this.Stats.setBounds(43, 316, 90, 25);
 		
 		JButton update = new JButton("Update");
-		update.setBounds(200, 450, 90, 25);
+		update.setBounds(43, 385, 90, 25);
 		ActionListener updateListener = new ActionListener() {
 
 		
@@ -166,7 +166,7 @@ public class NavigationWindow {
 			
 		};
 		JButton personal = new JButton("Personal");
-		personal.setBounds(190, 600, 110, 25);
+		personal.setBounds(550, 385, 90, 25);
 		ActionListener personalListener = new ActionListener() {
 
 		

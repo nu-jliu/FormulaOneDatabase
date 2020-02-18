@@ -41,7 +41,6 @@ public class PersonalWindow {
 		this.scorllpane.setBounds(43, 33, 443, 200);
 		this.Table.setModel(this.model);
 		this.frame.getContentPane().add(this.scorllpane);
-	//FIXME: SQL exception
 		CallableStatement cs;
 		try {
 			cs = connection.getConnection().prepareCall("{? = call get_Accessbility(?)}");
@@ -53,7 +52,6 @@ public class PersonalWindow {
 			JOptionPane.showMessageDialog(null, "SQL Exception -User Acessbility.");
 			e.printStackTrace();
 		}
-		System.out.println(Accessbility);
 		this.Team = new JButton("Team");
 		ActionListener TeamListener = new ActionListener() {
 

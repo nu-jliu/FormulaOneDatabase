@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -29,25 +30,21 @@ public class LikesWindow {
 		this.frame = new JFrame("Formula1Tracker");
 		this.frame.setBounds(100, 150, 750, 543);
 
-		JPanel newPanel = new JPanel();
-
 		DriverService driverService = new DriverService(this.dbService);
 		ArrayList<String> driverNames = driverService.getDriverNames();
 		JComboBox<String> drivers = new JComboBox<>();
+		drivers.setBounds(210, 87, 90, 25);
 		for (String s : driverNames)
 			drivers.addItem(s);
-		newPanel.add(drivers, BorderLayout.WEST);
+		this.frame.getContentPane().add(drivers);
 
 		TeamService teamService = new TeamService(this.dbService);
 		ArrayList<String> teamNames = teamService.getTeamNameList();
 		JComboBox<String> teams = new JComboBox<>();
+		teams.setBounds(210, 145, 90, 25);
 		for (String s : teamNames)
 			teams.addItem(s);
-		newPanel.add(teams, BorderLayout.EAST);
-
-		this.frame.getContentPane().add(newPanel, BorderLayout.CENTER);
-
-		JPanel buttonPanel = new JPanel();
+		this.frame.getContentPane().add(teams);
 
 		JButton likeDriver = new JButton("Like Driver");
 		likeDriver.addActionListener(new ActionListener() {
@@ -59,9 +56,12 @@ public class LikesWindow {
 			}
 
 		});
-		buttonPanel.add(likeDriver, BorderLayout.WEST);
+		likeDriver.setBounds(200, 278, 100, 25);
+		this.frame.getContentPane().add(likeDriver);
 
 		JButton likeTeam = new JButton("Like Team");
+		likeTeam.setSize(100, 25);
+		likeTeam.setLocation(200, 314);
 		likeTeam.addActionListener(new ActionListener() {
 
 			@Override
@@ -71,9 +71,7 @@ public class LikesWindow {
 			}
 
 		});
-		buttonPanel.add(likeTeam, BorderLayout.EAST);
-
-		this.frame.add(buttonPanel, BorderLayout.NORTH);
+		this.frame.getContentPane().add(likeTeam);
 
 		JButton deleteLikedDriver = new JButton("Delete Driver");
 		deleteLikedDriver.addActionListener(new ActionListener() {
@@ -85,7 +83,7 @@ public class LikesWindow {
 			}
 
 		}); 
-		deleteLikedDriver.setBounds(200, 300, 100, 25);
+		deleteLikedDriver.setBounds(200, 386, 100, 25);
 		
 		JButton deleteLikedTeam = new JButton("Delete Team");
 		deleteLikedTeam.addActionListener(new ActionListener() {
@@ -97,15 +95,15 @@ public class LikesWindow {
 			}
 
 		}); 
+		frame.getContentPane().setLayout(null);
 		
 		deleteLikedTeam.setBounds(200, 350, 100, 25);
 		
-		//TODO: Change the layout to insert those 2 buttons
-		this.frame.getContentPane().add(deleteLikedTeam, BorderLayout.SOUTH);
-		this.frame.getContentPane().add(deleteLikedDriver, BorderLayout.SOUTH);
+		this.frame.getContentPane().add(deleteLikedTeam);
+		this.frame.getContentPane().add(deleteLikedDriver);
 
 		JButton back = new JButton("Return");
-		back.setBounds(200, 500, 100, 25);
+		back.setBounds(200, 422, 100, 25);
 		back.addActionListener(new ActionListener() {
 
 			@Override
@@ -115,7 +113,15 @@ public class LikesWindow {
 			}
 
 		});
-		this.frame.add(back, BorderLayout.SOUTH);
+		this.frame.getContentPane().add(back);
+		
+		JLabel lblNewLabel = new JLabel("Driver");
+		lblNewLabel.setBounds(71, 92, 66, 14);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Team");
+		lblNewLabel_1.setBounds(71, 150, 46, 14);
+		frame.getContentPane().add(lblNewLabel_1);
 
 		this.frame.setVisible(true);
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
