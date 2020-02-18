@@ -38,8 +38,13 @@ public class UpdateWindow {
 
 		ArrayList<String> driverNames = driverService.getDriverNames();
 		JComboBox<String> drivers = new JComboBox<>();
-		for (String s : driverNames)
+		JComboBox<String> drivers2 = new JComboBox<>();
+		JComboBox<String> drivers3 = new JComboBox<>();
+		for (String s : driverNames) {
 			drivers.addItem(s);
+			drivers2.addItem(s);
+			drivers3.addItem(s);
+		}
 		
 		ArrayList<String> teamNames = teamService.getTeamNameList();
 		JComboBox<String> teams = new JComboBox<>();
@@ -48,8 +53,11 @@ public class UpdateWindow {
 		
 		ArrayList<String> raceNames = raceService.getRaceNameList();
 		JComboBox<String> races = new JComboBox<>();
-		for (String s : raceNames)
+		JComboBox<String> races2 = new JComboBox<>();
+		for (String s : raceNames) {
 			races.addItem(s);
+			races2.addItem(s);
+		}
 		
 		drivers.setBounds(30, 195, 140, 25);
 		this.frame.getContentPane().add(drivers);
@@ -432,15 +440,15 @@ public class UpdateWindow {
 			}
 			
 		};
-		ActionListener likesListener = new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				UpdateWindow.this.closeFrame();
-				new LikesWindow(UpdateWindow.this.dbservice, UpdateWindow.this.UID);
-			}
-			
-		};
+//		ActionListener likesListener = new ActionListener() {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				UpdateWindow.this.closeFrame();
+//				new LikesWindow(UpdateWindow.this.dbservice, UpdateWindow.this.UID);
+//			}
+//			
+//		};
 		
 		addTeam.addActionListener(addteamListener);
 		updateTeam.addActionListener(updateteamListener);
