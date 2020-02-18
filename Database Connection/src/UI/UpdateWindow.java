@@ -184,12 +184,9 @@ public class UpdateWindow {
 		JButton updateRace = new JButton("Update Race");
 		updateRace.setBounds(250, 320, 125, 25);
 		
-		JButton star = new JButton("Likes");
-		star.setBounds(0, 680, 100, 25);
 		JButton goBack = new JButton("Go Back");
-		goBack.setBounds(200, 680, 90, 25);
+		goBack.setBounds(200, 400, 90, 25);
 		
-		//works for part
 		JLabel WF = new JLabel("Works For");
 		WF.setBounds(0, 350 , 90, 16);
 		this.frame.add(WF);
@@ -446,9 +443,6 @@ public class UpdateWindow {
 		updateRace.addActionListener(updateRaceListener);
 		this.frame.getContentPane().add(addRace);
 		this.frame.getContentPane().add(updateRace);
-		
-		star.addActionListener(likesListener);
-		this.frame.getContentPane().add(star);
 		
 		AdW.addActionListener(addWorksForListener);
 		this.frame.getContentPane().add(AdW);
