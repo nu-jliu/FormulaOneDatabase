@@ -105,7 +105,6 @@ public class PersonalWindow {
 		ActionListener updateListener = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//FIXME:
 				if (Accessbility < 2) {
 					JOptionPane.showMessageDialog(null, "No Acessbility");
 				} else {
