@@ -40,6 +40,7 @@ public class PersonalWindow {
 		this.model = new DefaultTableModel();
 		this.scorllpane.setBounds(43, 33, 443, 200);
 		this.Table.setModel(this.model);
+//		this.Table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		this.frame.getContentPane().add(this.scorllpane);
 		CallableStatement cs;
 		try {

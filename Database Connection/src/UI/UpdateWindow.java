@@ -226,8 +226,8 @@ public class UpdateWindow {
 		DN.setBounds(0, 370 , 90, 16);
 		this.frame.add(DN);
 		
-		JTextField DNT = new JTextField();
-		DNT.setBounds(80, 370, 90, 25);
+//		JTextField DNT = new JTextField();
+//		DNT.setBounds(80, 370, 90, 25);
 //		this.frame.add(DNT);
 		
 		JLabel TN = new JLabel("Team Name");
@@ -351,6 +351,7 @@ public class UpdateWindow {
 			}
 			
 		};
+		
 		ActionListener updateParticipatesListener = new ActionListener() {
 
 			@Override
@@ -385,6 +386,7 @@ public class UpdateWindow {
 			}
 			
 		};
+		
 		ActionListener updateRaceListener = new ActionListener() {
 
 			@Override

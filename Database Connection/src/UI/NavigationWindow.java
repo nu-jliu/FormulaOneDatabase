@@ -1,5 +1,6 @@
 package UI;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.CallableStatement;
@@ -17,6 +18,8 @@ import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 
 import Database.service.Connections;
 import Database.service.DriverService;
@@ -50,6 +53,7 @@ public class NavigationWindow {
 		this.model = new DefaultTableModel();
 		this.scrollpane.setBounds(43, 33, 597, 200);
 		this.Table.setModel(model);
+//		this.Table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		this.Table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
 			@Override
@@ -219,11 +223,51 @@ public class NavigationWindow {
 		for(int i = 1; i <= count; i++) {
 			this.model.addColumn(rsmd.getColumnName(i));
 		}
-    	String[] row = new String[count];
+    	String[] rowData = new String[count];
     	while(rs.next()) {
     		for(int i = 0; i < count; i++) 
-    			row[i] = rs.getString(i + 1);
-    		this.model.addRow(row);
+    			rowData[i] = rs.getString(i + 1);
+    		this.model.addRow(rowData);
     	}
+    	this.Table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+    	int totalWidth = 0; 
+    	for (int c = 0; c < this.Table.getColumnCount(); c++)
+    	{
+    	    TableColumn tableColumn = this.Table.getColumnModel().getColumn(c);
+    	    int preferredWidth = tableColumn.getMinWidth();
+    	    int maxWidth = tableColumn.getMaxWidth();
+    	 
+    	    for (int r = 0; r < this.Table.getRowCount(); r++)
+    	    {
+    	        TableCellRenderer cellRenderer = this.Table.getCellRenderer(r, c);
+    	        Component comp = this.Table.prepareRenderer(cellRenderer, r, c);
+    	        int width = comp.getPreferredSize().width + this.Table.getIntercellSpacing().width;
+    	        preferredWidth = Math.max(preferredWidth, width);
+    	        if (preferredWidth >= maxWidth)
+    	        {
+    	            preferredWidth = maxWidth;
+    	            break;
+    	        }
+    	    }
+    	 
+    	    tableColumn.setPreferredWidth( preferredWidth );
+    	    totalWidth += preferredWidth;
+    	}
+    	if (totalWidth < this.Table.getWidth()) {
+    		int totalOffset = this.Table.getWidth() - totalWidth;
+    		int offset = totalOffset / this.Table.getColumnCount();
+    		for (int c = 0; c < this.Table.getColumnCount(); c++) {
+    			TableColumn column = this.Table.getColumnModel().getColumn(c);
+    			int width = column.getPreferredWidth();
+    			width += offset;
+    			totalOffset -= offset;
+    			column.setPreferredWidth(width);
+    		}
+    		TableColumn column = this.Table.getColumnModel().getColumn(0);
+    		int width = column.getPreferredWidth();
+    		width += totalOffset;
+    		column.setPreferredWidth(width);
+    	}
+    	
 	}
 }
