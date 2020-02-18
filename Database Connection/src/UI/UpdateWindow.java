@@ -204,10 +204,6 @@ public class UpdateWindow {
 		JLabel id = new JLabel("Driver Name");
 		id.setBounds(600, 293, 90, 16);
 		this.frame.add(id);
-		
-//		JTextField newID = new JTextField();
-//		newID.setBounds(670, 293, 90, 25);
-//		this.frame.add(newID);
 
 		JButton addRace = new JButton("Add Race");
 		addRace.setBounds(0, 320, 100, 25);
@@ -224,19 +220,11 @@ public class UpdateWindow {
 		
 		JLabel DN = new JLabel("Driver Name");
 		DN.setBounds(0, 370 , 90, 16);
-		this.frame.add(DN);
-		
-//		JTextField DNT = new JTextField();
-//		DNT.setBounds(80, 370, 90, 25);
-//		this.frame.add(DNT);
+		this.frame.add(DN);		
 		
 		JLabel TN = new JLabel("Team Name");
 		TN.setBounds(200, 370, 90, 16);
 		this.frame.add(TN);
-		
-//		JTextField TNT = new JTextField();
-//		TNT.setBounds(280, 370, 90, 25);
-//		this.frame.add(TNT);
 		
 		JLabel SY = new JLabel("Year");
 		SY.setBounds(400, 370, 90, 16);
@@ -268,7 +256,6 @@ public class UpdateWindow {
 		JButton UpW = new JButton("Update Works For");
 		UpW.setBounds(300, 400, 150, 25);
 		
-//		TeamService teamService = new TeamService(dbservice);
 		ActionListener addteamListener = new ActionListener() {
 
 			@Override

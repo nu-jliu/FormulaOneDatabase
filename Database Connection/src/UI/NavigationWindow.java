@@ -7,12 +7,8 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Types;
-import java.util.ArrayList;
-
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
@@ -22,8 +18,6 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
 import Database.service.Connections;
-import Database.service.DriverService;
-import Database.service.TeamService;
 import Database.service.WatchService;
 
 
@@ -233,14 +227,13 @@ public class NavigationWindow {
     	int totalWidth = 0; 
     	for (int c = 0; c < this.Table.getColumnCount(); c++)
     	{
-    	    TableColumn tableColumn = this.Table.getColumnModel().getColumn(c);
-    	    int preferredWidth = tableColumn.getMinWidth();
-    	    int maxWidth = tableColumn.getMaxWidth();
-    	 
+    	    TableColumn column = this.Table.getColumnModel().getColumn(c);
+    	    int preferredWidth = column.getMinWidth();
+    	    int maxWidth = column.getMaxWidth();
     	    for (int r = 0; r < this.Table.getRowCount(); r++)
     	    {
-    	        TableCellRenderer cellRenderer = this.Table.getCellRenderer(r, c);
-    	        Component comp = this.Table.prepareRenderer(cellRenderer, r, c);
+    	        TableCellRenderer rend = this.Table.getCellRenderer(r, c);
+    	        Component comp = this.Table.prepareRenderer(rend, r, c);
     	        int width = comp.getPreferredSize().width + this.Table.getIntercellSpacing().width;
     	        preferredWidth = Math.max(preferredWidth, width);
     	        if (preferredWidth >= maxWidth)
@@ -249,8 +242,7 @@ public class NavigationWindow {
     	            break;
     	        }
     	    }
-    	 
-    	    tableColumn.setPreferredWidth( preferredWidth );
+    	    column.setPreferredWidth( preferredWidth );
     	    totalWidth += preferredWidth;
     	}
     	if (totalWidth < this.Table.getWidth()) {
