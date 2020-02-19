@@ -98,4 +98,19 @@ public class DriverService {
 			return driverNames;
 		}
 	}
+	
+	public ArrayList<String> getStatsYear() {
+		ArrayList<String> driverNames = new ArrayList<>();
+		try {
+			CallableStatement cs = this.dbService.getConnection().prepareCall("{call get_Stats_Years}");
+			ResultSet rs = cs.executeQuery();
+			while (rs.next())
+				driverNames.add(rs.getString("Year"));
+			return driverNames;
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Failed to get years");
+			e.printStackTrace();
+			return driverNames;
+		}
+	}
 }
