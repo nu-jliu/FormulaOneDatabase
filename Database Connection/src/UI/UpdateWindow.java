@@ -28,7 +28,7 @@ public class UpdateWindow {
 		this.dbservice = dbservice;
 		this.UID = UID;
 		this.frame = new JFrame("Formula1Tracker");
-		this.frame.setBounds(100, 150, 800, 750);
+		this.frame.setBounds(100, 150, 820, 750);
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.getContentPane().setLayout(null);
 		
@@ -60,8 +60,8 @@ public class UpdateWindow {
 		}
 		
 		drivers.setBounds(30, 200, 140, 25);
-		drivers2.setBounds(670, 293, 90, 25);
-		drivers3.setBounds(80, 370, 90, 25);
+		drivers2.setBounds(670, 293, 130, 25);
+		drivers3.setBounds(80, 370, 130, 25);
 		races.setBounds(210, 200, 150, 25);
 		teams.setBounds(280, 370, 90, 25);
 		this.frame.getContentPane().add(drivers);
@@ -223,7 +223,7 @@ public class UpdateWindow {
 		this.frame.add(DN);		
 		
 		JLabel TN = new JLabel("Team Name");
-		TN.setBounds(200, 370, 90, 16);
+		TN.setBounds(210, 370, 90, 16);
 		this.frame.add(TN);
 		
 		JLabel SY = new JLabel("Year");
@@ -295,7 +295,6 @@ public class UpdateWindow {
 
 		};
 
-//		DriverService driverService = new DriverService(dbservice);
 		ActionListener adddriverListener = new ActionListener() {
 
 			@Override
@@ -359,7 +358,7 @@ public class UpdateWindow {
 			}
 			
 		};
-//		RaceService raceService = new RaceService(dbservice);
+		
 		ActionListener addRaceListener = new ActionListener() {
 
 			@Override
@@ -389,6 +388,7 @@ public class UpdateWindow {
 		};
 		
 		WorksForService WorksForService = new WorksForService(dbservice);
+		
 		ActionListener addWorksForListener = new ActionListener() {
 
 			@Override
