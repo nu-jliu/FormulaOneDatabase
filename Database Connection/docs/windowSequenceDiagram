@@ -1,0 +1,63 @@
+@startuml
+
+actor user
+
+user -> Main
+
+Main -> LoginWindow
+
+LoginWindow -> RegWindow
+
+activate RegWindow
+
+RegWindow -> RegWindow : Register New User
+
+RegWindow -> LoginWindow
+
+deactivate RegWindow
+
+activate LoginWindow
+
+LoginWindow -> LoginWindow : Build the connection and Login
+
+LoginWindow -> NavigationWindow : Pass the connection and the UID
+
+deactivate LoginWindow
+
+activate NavigationWindow
+
+NavigationWindow -> NavigationWindow : Operations
+
+NavigationWindow -> user : display the data
+
+NavigationWindow -> PersonalWindow : Pass the connection and the UID
+
+deactivate NavigationWindow
+
+activate PersonalWindow
+
+PersonalWindow -> PersonalWindow : Operations
+
+PersonalWindow -> user : display the data
+
+PersonalWindow -> LikesWindow : Pass the connection and the UID
+
+deactivate PersonalWindow
+
+activate LikesWindow
+
+LikesWindow -> LikesWindow : Operations
+
+LikesWindow -> PersonalWindow
+
+deactivate LikesWindow
+
+activate PersonalWindow
+
+PersonalWindow -> PersonalWindow : Operations
+
+PersonalWindow -> user : display the data
+
+deactivate PersonalWindow
+
+@enduml
