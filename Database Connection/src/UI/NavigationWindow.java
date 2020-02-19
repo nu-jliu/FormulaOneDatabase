@@ -34,6 +34,7 @@ public class NavigationWindow {
 	JButton WorksFor;
 	JButton Driver;
 	JButton Stats;
+	JButton teamStats;
 	JTable Table;
 	JScrollPane scrollpane;
 	
@@ -159,18 +160,37 @@ public class NavigationWindow {
 				try {
 					model = new DefaultTableModel();
 					Table.setModel(model); 
-					queryStats((int) yearbox.getSelectedItem());
+					queryStats((int) yearbox.getSelectedItem(), false);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}				
 			}
 			
 		};
+		
 		this.Stats.addActionListener(StatsListener);
 		this.Stats.setBounds(443, 244, 90, 25);
 		
+		this.teamStats = new JButton("StatTeam");
+		this.teamStats.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					model = new DefaultTableModel();
+					Table.setModel(model); 
+					queryStats((int) yearbox.getSelectedItem(), true);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+			
+		});
+		
+		this.teamStats.setBounds(443, 272, 90, 25);
+		
 		JButton update = new JButton("Update");
-		update.setBounds(143, 300, 90, 25);
+		update.setBounds(143, 320, 90, 25);
 		ActionListener updateListener = new ActionListener() {
 
 		
@@ -182,7 +202,7 @@ public class NavigationWindow {
 			
 		};
 		JButton personal = new JButton("Personal");
-		personal.setBounds(432, 300, 90, 25);
+		personal.setBounds(432, 320, 90, 25);
 		ActionListener personalListener = new ActionListener() {
 
 		
@@ -196,12 +216,13 @@ public class NavigationWindow {
 		personal.addActionListener(personalListener);
 		update.addActionListener(updateListener);
 		this.frame.getContentPane().add(update);
-		this.frame.getContentPane().add(Driver);
-		this.frame.getContentPane().add(Team);
-		this.frame.getContentPane().add(Race);
+		this.frame.getContentPane().add(this.Driver);
+		this.frame.getContentPane().add(this.Team);
+		this.frame.getContentPane().add(this.Race);
 		this.frame.getContentPane().add(personal);
-		this.frame.getContentPane().add(Stats);
-		this.frame.getContentPane().add(WorksFor);
+		this.frame.getContentPane().add(this.Stats);
+		this.frame.getContentPane().add(this.teamStats);
+		this.frame.getContentPane().add(this.WorksFor);
 		
 		this.frame.setVisible(true);
 	}
@@ -275,8 +296,8 @@ public class NavigationWindow {
     	
 	}
 	
-	public void queryStats(int year) {
-		String query = "{? = call get_Stats(?)}";
+	public void queryStats(int year, boolean isTeam) {
+		String query = (isTeam) ? "{? = call get_Team_Stats(?)}" : "{? = call get_Stats(?)}";
 		
 		try {
 			CallableStatement cs;
