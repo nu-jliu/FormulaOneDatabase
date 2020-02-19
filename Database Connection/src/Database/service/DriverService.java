@@ -99,18 +99,18 @@ public class DriverService {
 		}
 	}
 	
-	public ArrayList<String> getStatsYear() {
-		ArrayList<String> driverNames = new ArrayList<>();
+	public ArrayList<Integer> getStatsYear() {
+		ArrayList<Integer> years  = new ArrayList<>();
 		try {
 			CallableStatement cs = this.dbService.getConnection().prepareCall("{call get_Stats_Years}");
 			ResultSet rs = cs.executeQuery();
 			while (rs.next())
-				driverNames.add(rs.getString("Year"));
-			return driverNames;
+				years.add(rs.getInt("Year"));
+			return years;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to get years");
 			e.printStackTrace();
-			return driverNames;
+			return years;
 		}
 	}
 }
