@@ -28,7 +28,7 @@ public class UpdateWindow {
 		this.dbservice = dbservice;
 		this.UID = UID;
 		this.frame = new JFrame("Formula1Tracker");
-		this.frame.setBounds(100, 150, 820, 750);
+		this.frame.setBounds(100, 150, 820, 650);
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.getContentPane().setLayout(null);
 		
@@ -212,7 +212,7 @@ public class UpdateWindow {
 		updateRace.setBounds(250, 320, 125, 25);
 		
 		JButton goBack = new JButton("Go Back");
-		goBack.setBounds(200, 400, 90, 25);
+		goBack.setBounds(200, 500, 90, 25);
 		
 		JLabel WF = new JLabel("Works For");
 		WF.setBounds(0, 350 , 90, 16);
