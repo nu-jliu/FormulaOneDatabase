@@ -1,0 +1,89 @@
+@startuml
+class ParticipatesService [[java:Database.service.ParticipatesService]] {
+	+ParticipatesService(Connections connection)
+	+boolean addParticipates(int year, String drivername, String racename, int rank)
+	+boolean updateParticipates(int year, String drivername, String racename, int rank)
+}
+class Connections [[java:Database.service.Connections]] {
+}
+ParticipatesService --> "1" Connections : dbconnection
+class RaceService [[java:Database.service.RaceService]] {
+	+RaceService(Connections connection)
+	+boolean addRace(String weather, String date, String racename, String laptime, String drivername)
+	+boolean updateRace(String weather, String date, String racename, String laptime, String drivername)
+	+ArrayList<String> getRaceNameList()
+	+ArrayList<RaceInfo> getRaceInfo(Date time, String racename)
+	+ArrayList<Integer> getRaceYear()
+}
+class Connections [[java:Database.service.Connections]] {
+}
+RaceService --> "1" Connections : dbconnection
+class UserService [[java:Database.service.UserService]] {
+	-{static}Random RANDOM
+	-{static}Base64.Encoder enc
+	-{static}Base64.Decoder dec
+	+UserService(Connections dbService)
+	+boolean useApplicationLogins()
+	+boolean login(String username, String password)
+	+boolean register(String username, String Email, String password)
+	+boolean changePassword(String username, String Email, String password)
+	+byte[] getNewSalt()
+	+String getStringFromBytes(byte[] data)
+	+String hashPassword(byte[] salt, String password)
+}
+class Connections [[java:Database.service.Connections]] {
+}
+UserService --> "1" Connections : dbService
+class TeamService [[java:Database.service.TeamService]] {
+	+TeamService(Connections connection)
+	+boolean addTeam(String name, String manf, String model_num)
+	+boolean updateTeam(String name, String manfname, String number)
+	+ArrayList<String> getTeamNameList()
+	+ArrayList<TeamInfo> getTeamInfo(String name)
+}
+class Connections [[java:Database.service.Connections]] {
+}
+TeamService --> "1" Connections : dbConnection
+class WatchService [[java:Database.service.WatchService]] {
+	-int uid
+	+WatchService(Connections connection, int UID)
+	+boolean addHistory(String race, int year)
+	+ArrayList<String> getTeamNameList()
+	+ArrayList<TeamInfo> getTeamInfo(String name)
+}
+class Connections [[java:Database.service.Connections]] {
+}
+WatchService --> "1" Connections : dbConnection
+class Connections [[java:Database.service.Connections]] {
+	-Connection connection
+	-String SampleURL
+	+boolean connect()
+	+Connection getConnection()
+	+void closeConnection()
+}
+class WorksForService [[java:Database.service.WorksForService]] {
+	+WorksForService(Connections dbService)
+	+boolean addWorksFor(String Dname, String Tname, int year)
+	+boolean updateWorksFor(String Dname, String Tname, int year)
+}
+class Connections [[java:Database.service.Connections]] {
+}
+WorksForService --> "1" Connections : dbService
+class DriverService [[java:Database.service.DriverService]] {
+	+DriverService(Connections dbService)
+	+boolean addDriver(String name, String date)
+	+boolean updateDriver(String name, String date)
+	+ArrayList<String> getDriverNames()
+	+ArrayList<Integer> getStatsYear()
+}
+class Connections [[java:Database.service.Connections]] {
+}
+DriverService --> "1" Connections : dbService
+class Engage_INservice [[java:Database.service.Engage_INservice]] {
+	+Engage_INservice(Connections connection)
+	+boolean addEngage_IN(int rid, int tid)
+}
+class Connections [[java:Database.service.Connections]] {
+}
+Engage_INservice --> "1" Connections : dbconnection
+@enduml

@@ -1,0 +1,234 @@
+@startuml
+
+class Main  {
+	+{static}void main(String[] args)
+}
+
+package UI {
+
+	class LoginWindow {
+	-JFrame frmLogin
+	-JTextField username
+	-JTextField password
+	-JButton btnNewButton
+	-int UID
+	+LoginWindow()
+	+void closeFrame()
+}
+	
+	class NavigationWindow {
+	~JFrame frame
+	~JButton Team
+	~JButton Race
+	~JButton WorksFor
+	~JButton Driver
+	~JButton Stats
+	~JTable Table
+	~JScrollPane scrollpane
+	~Connections connection
+	~DefaultTableModel model
+	+NavigationWindow(Connections connection, int UID)
+	+void closeFrame()
+	+void queryData(String tableName)
+	+void queryStats(int year)
+	}
+	
+	class PersonalWindow {
+	~JFrame frame
+	~JButton Team
+	~JButton Driver
+	~JTable Table
+	~JScrollPane scorllpane
+	~Connections connection
+	~DefaultTableModel model
+	~int UID
+	~int Accessbility
+	+PersonalWindow(Connections connection, int UID)
+	+void closeFrame()
+	+void queryData(String tableName)
+	}
+	
+	class RegWindow {
+	~JFrame frame
+	~JButton regButton
+	~JTextField Username
+	~JTextField Password
+	~JTextField Email
+	~UserService regService
+	+RegWindow(UserService regService)
+	+void closeFrame()
+	}
+	
+	class UpdateWindow {
+	~JFrame frame
+	~Connections dbservice
+	-int UID
+	+UpdateWindow(Connections dbservice, int UID)
+	+void closeFrame()
+	}
+	
+	class LikesWindow {
+	-JFrame frame
+	-Connections dbService
+	-int UID
+	+LikesWindow(Connections dbservice, int UID)
+	+void closeFrame()
+	+void likeQuery(String item, String name)
+	+void deleteQuery(String item, String name)
+	}
+}
+
+package service {
+
+	class Connections {
+	-Connection connection
+	-String SampleURL
+	+boolean connect()
+	+Connection getConnection()
+	+void closeConnection()
+	}
+	
+	
+	class DriverService {
+	-Connections dbService
+	+DriverService(Connections dbService)
+	+boolean addDriver(String name, String date)
+	+boolean updateDriver(String name, String date)
+	+ArrayList<String> getDriverNames()
+	+ArrayList<Integer> getStatsYear()
+	}
+	
+	class Engage_INservice {
+	-Connections dbconnection
+	+Engage_INservice(Connections connection)
+	+boolean addEngage_IN(int rid, int tid)
+	}
+	
+	class ParticipatesService {
+	-Connections dbconnection
+	+ParticipatesService(Connections connection)
+	+boolean addParticipates(int year, String drivername, String racename, int rank)
+	+boolean updateParticipates(int year, String drivername, String racename, int rank)
+	}
+	
+	class RaceService {
+	-Connections dbconnection
+	+RaceService(Connections connection)
+	+boolean addRace(String weather, String date, String racename, String laptime, String drivername)
+	+boolean updateRace(String weather, String date, String racename, String laptime, String drivername)
+	+ArrayList<String> getRaceNameList()
+	+ArrayList<RaceInfo> getRaceInfo(Date time, String racename)
+	+ArrayList<Integer> getRaceYear()
+	}
+	
+	class TeamService {
+	-Connections dbConnection
+	+TeamService(Connections connection)
+	+boolean addTeam(String name, String manf, String model_num)
+	+boolean updateTeam(String name, String manfname, String number)
+	+ArrayList<String> getTeamNameList()
+	+ArrayList<TeamInfo> getTeamInfo(String name)
+	}
+	
+	class UserService {
+	-{static}Random RANDOM
+	-{static}Base64.Encoder enc
+	-{static}Base64.Decoder dec
+	-Connections dbService
+	+UserService(Connections dbService)
+	+boolean useApplicationLogins()
+	+boolean login(String username, String password)
+	+boolean register(String username, String Email, String password)
+	+boolean changePassword(String username, String Email, String password)
+	+byte[] getNewSalt()
+	+String getStringFromBytes(byte[] data)
+	+String hashPassword(byte[] salt, String password)
+	}
+	
+	class WatchService {
+	-Connections dbConnection
+	-int uid
+	+WatchService(Connections connection, int UID)
+	+boolean addHistory(String race, int year)
+	+ArrayList<String> getTeamNameList()
+	+ArrayList<TeamInfo> getTeamInfo(String name)
+	}
+	
+	class WorksForService {
+	-Connections dbService
+	+WorksForService(Connections dbService)
+	+boolean addWorksFor(String Dname, String Tname, int year)
+	+boolean updateWorksFor(String Dname, String Tname, int year)
+	}
+}
+
+Main -> LoginWindow
+
+LoginWindow -> RegWindow
+
+LoginWindow -> UserService
+
+RegWindow -> LoginWindow
+
+RegWindow -> UserService
+
+LoginWindow -> NavigationWindow
+
+NavigationWindow -> UpdateWindow
+
+NavigationWindow -> DriverService
+
+NavigationWindow -> TeamService
+
+NavigationWindow -> RaceService
+
+NavigationWindow -> WorksForService
+
+NavigationWindow -> PersonalWindow
+
+UpdateWindow -> NavigationWindow
+
+UpdateWindow -> DriverService
+
+UpdateWindow -> TeamService
+
+UpdateWindow -> RaceService
+
+UpdateWindow -> WorksForService
+
+UpdateWindow -> PersonalWindow
+
+UpdateWindow -> ParticipatesService
+
+UpdateWindow -> Engage_INservice
+
+PersonalWindow -> NavigationWindow
+
+PersonalWindow -> TeamService
+
+PersonalWindow -> DriverService
+
+PersonalWindow -> LikesWindow
+
+LikesWindow -> PersonalWindow
+
+LikesWindow -> TeamService
+
+LikesWindow -> DriverService
+
+Engage_INservice --> "1" Connections : dbconnection
+
+DriverService --> "1" Connections : dbconnection
+
+ParticipatesService --> "1" Connections : dbconnection
+
+RaceService --> "1" Connections : dbconnection
+
+TeamService --> "1" Connections : dbconnection
+
+UserService --> "1" Connections : dbconnection
+
+WatchService --> "1" Connections : dbconnection
+
+WorksForService --> "1" Connections : dbconnection
+@enduml
