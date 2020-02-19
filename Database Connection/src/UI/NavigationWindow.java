@@ -43,7 +43,7 @@ public class NavigationWindow {
 	public NavigationWindow(Connections connection, int UID) {
 		this.connection = connection;
 		this.frame = new JFrame("Formula1Tracker");
-		this.frame.setBounds(100, 100, 700, 700);
+		this.frame.setBounds(100, 100, 700, 400);
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.getContentPane().setLayout(null);
 		
@@ -171,7 +171,7 @@ public class NavigationWindow {
 		this.Stats.setBounds(443, 244, 90, 25);
 		
 		JButton update = new JButton("Update");
-		update.setBounds(143, 474, 90, 25);
+		update.setBounds(143, 300, 90, 25);
 		ActionListener updateListener = new ActionListener() {
 
 		
@@ -183,7 +183,7 @@ public class NavigationWindow {
 			
 		};
 		JButton personal = new JButton("Personal");
-		personal.setBounds(432, 474, 90, 25);
+		personal.setBounds(432, 300, 90, 25);
 		ActionListener personalListener = new ActionListener() {
 
 		
@@ -277,7 +277,7 @@ public class NavigationWindow {
 	}
 	
 	public void queryStats(int year) {
-		String query = "? = call get_Stats(?)";
+		String query = "{? = call get_Stats(?)}";
 		
 		try {
 			CallableStatement cs;

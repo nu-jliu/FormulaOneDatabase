@@ -321,21 +321,14 @@ public class UpdateWindow {
 		ActionListener addParticipatesListener = new ActionListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) throws NumberFormatException {
 				int  driverRank, theYear;
 				String did = (String) drivers.getSelectedItem();
 				String rid = (String) races.getSelectedItem();
-				try {
-					driverRank = Integer.parseInt(rank.getText());
-					theYear = Integer.parseInt(raceYear.getText());
-				} catch (NumberFormatException e) {
-					JOptionPane.showMessageDialog(null, "Invalid Input");
-					e.printStackTrace();
-					return;
-				}
+				driverRank = Integer.parseInt(rank.getText());
+				theYear = Integer.parseInt(raceYear.getText());
 				participatesService.addParticipates(theYear, did, rid, driverRank);
 			}
-			
 		};
 		
 		ActionListener updateParticipatesListener = new ActionListener() {
@@ -427,15 +420,6 @@ public class UpdateWindow {
 			}
 			
 		};
-//		ActionListener likesListener = new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				UpdateWindow.this.closeFrame();
-//				new LikesWindow(UpdateWindow.this.dbservice, UpdateWindow.this.UID);
-//			}
-//			
-//		};
 		
 		addTeam.addActionListener(addteamListener);
 		updateTeam.addActionListener(updateteamListener);
