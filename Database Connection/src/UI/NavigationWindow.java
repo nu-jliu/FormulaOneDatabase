@@ -67,11 +67,11 @@ public class NavigationWindow {
 			public void valueChanged(ListSelectionEvent arg0) {
 				JTable theTable = NavigationWindow.this.Table;
 				int row = theTable.getSelectedRow();
-				int column = theTable.getSelectedColumn();
-				if (theTable.getRowCount() > 0 && theTable.getColumnCount() > 0 && theTable.getColumnName(0).equals("Race Name") && column == 0) {
+				if (theTable.getRowCount() > 0 && theTable.getColumnCount() > 0 && theTable.getColumnName(0).equals("Race Name")) {
 					WatchService watchservice = new WatchService(NavigationWindow.this.connection, UID);
-					String raceName = theTable.getValueAt(row, column).toString();
-					watchservice.addHistory(raceName);
+					String raceName = (String) theTable.getValueAt(row, 0);
+					int year = Integer.parseInt(((String) theTable.getValueAt(row, 1)).substring(0, 4));
+					watchservice.addHistory(raceName, year);
 				}
 					
 			}

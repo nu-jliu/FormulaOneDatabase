@@ -17,11 +17,12 @@ public class WatchService {
 		this.uid=UID;
 	}
 
-	public boolean addHistory(String race) {
+	public boolean addHistory(String race, int year) {
 		try {
-			CallableStatement cs = this.dbConnection.getConnection().prepareCall("{? = call AddHistory(?,?)}");
+			CallableStatement cs = this.dbConnection.getConnection().prepareCall("{? = call AddHistory(?,?,?)}");
 			cs.setString(2, race);
 			cs.setInt(3, uid);
+			cs.setInt(4, year);
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();
 			int errorCode = cs.getInt(1);
@@ -29,13 +30,16 @@ public class WatchService {
 				JOptionPane.showMessageDialog(null, "Race Name cannot be empty");
 				return false;
 			} else if (errorCode == 2) {
-				JOptionPane.showMessageDialog(null, "Not valid race name");
+				JOptionPane.showMessageDialog(null, "Invalid Year");
 				return false;
-			} else if (errorCode == 3 || errorCode == 4) {
+			} else if (errorCode == 3) {
+				JOptionPane.showMessageDialog(null, "No Race Found");
+				return false;
+			} else if (errorCode == 4 || errorCode == 5) {
 				JOptionPane.showMessageDialog(null, "Illegal User: " + this.uid);
 				return false;
-			} else if (errorCode == 5) {
-				JOptionPane.showMessageDialog(null, "Dupliaction Entry");
+			} else if (errorCode == 6) {
+				JOptionPane.showMessageDialog(null, "Duplication Entry");
 				return false;
 			}
 			JOptionPane.showMessageDialog(null, "Histroy has been added suscessfully");

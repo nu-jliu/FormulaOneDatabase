@@ -130,6 +130,20 @@ public class RaceService {
 		}
 
 	}
+	
+	public ArrayList<Integer> getRaceYear() {
+		ArrayList<Integer> allYears = new ArrayList<>();
+		try {
+			CallableStatement cs = this.dbconnection.getConnection().prepareCall("{call get_race_years}");
+			ResultSet rs = cs.executeQuery();
+			while(rs.next()) 
+				allYears.add(rs.getInt(1));
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Failed to get all years");
+			e.printStackTrace();
+		}
+		return allYears;
+	}
 
 	public class RaceInfo {
 
