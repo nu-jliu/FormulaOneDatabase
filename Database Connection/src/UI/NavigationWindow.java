@@ -52,7 +52,6 @@ public class NavigationWindow {
 		this.model = new DefaultTableModel();
 		this.scrollpane.setBounds(43, 33, 597, 200);
 		this.Table.setModel(model);
-//		this.Table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		
 		JComboBox<Integer> yearbox = new JComboBox<Integer>();
 		DriverService driverService = new DriverService(this.connection);
@@ -69,7 +68,7 @@ public class NavigationWindow {
 				JTable theTable = NavigationWindow.this.Table;
 				int row = theTable.getSelectedRow();
 				int column = theTable.getSelectedColumn();
-				if (theTable.getRowCount() > 0 && theTable.getColumnCount() > 0 && theTable.getValueAt(0, 0).toString().equals("RID") && column == 3) {
+				if (theTable.getRowCount() > 0 && theTable.getColumnCount() > 0 && theTable.getColumnName(0).equals("Race Name") && column == 0) {
 					WatchService watchservice = new WatchService(NavigationWindow.this.connection, UID);
 					String raceName = theTable.getValueAt(row, column).toString();
 					watchservice.addHistory(raceName);

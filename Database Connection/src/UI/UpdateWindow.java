@@ -62,7 +62,8 @@ public class UpdateWindow {
 		drivers.setBounds(30, 200, 140, 25);
 		drivers2.setBounds(670, 293, 130, 25);
 		drivers3.setBounds(80, 370, 130, 25);
-		races.setBounds(210, 200, 150, 25);
+		races.setBounds(210, 200, 250, 25);
+		races2.setBounds(50, 450, 250, 25);
 		teams.setBounds(280, 370, 90, 25);
 		this.frame.getContentPane().add(drivers);
 		this.frame.getContentPane().add(drivers2);
@@ -144,19 +145,19 @@ public class UpdateWindow {
 		this.frame.add(raID);
 		
 		JLabel year = new JLabel("Year");
-		year.setBounds(530, 203, 90, 16);
+		year.setBounds(630, 203, 90, 16);
 		this.frame.add(year);
 		
 		JTextField raceYear = new JTextField();
-		raceYear.setBounds(560, 200, 90, 25);
+		raceYear.setBounds(660, 200, 90, 25);
 		this.frame.add(raceYear);
 
 		JLabel RANK = new JLabel("Rank");
-		RANK.setBounds(380, 203, 90, 16);
+		RANK.setBounds(480, 203, 90, 16);
 		this.frame.add(RANK);
 
 		JTextField rank = new JTextField();
-		rank.setBounds(410, 200, 90, 25);
+		rank.setBounds(510, 200, 90, 25);
 		this.frame.add(rank);
 
 		JButton addPart = new JButton("Add Participates");
@@ -242,9 +243,9 @@ public class UpdateWindow {
 		Race.setBounds(0, 450, 90, 16);
 		this.frame.add(Race);
 		
-		JTextField RT = new JTextField();
-		RT.setBounds(50, 450, 90, 25);
-		this.frame.add(RT);
+//		JTextField RT = new JTextField();
+//		RT.setBounds(50, 450, 90, 25);
+//		this.frame.add(RT);
 		
 
 		JButton WBT = new JButton("Watch Race");
@@ -274,7 +275,7 @@ public class UpdateWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String Race = RT.getText();
+				String Race = (String) races2.getSelectedItem();
 				WatchService.addHistory(Race);
 			}
 			
