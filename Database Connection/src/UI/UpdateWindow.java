@@ -255,11 +255,6 @@ public class UpdateWindow {
 		theYear.setBounds(400, 450, 90, 16);
 		this.frame.add(theYear);
 		
-//		JTextField RT = new JTextField();
-//		RT.setBounds(50, 450, 90, 25);
-//		this.frame.add(RT);
-		
-
 		JButton WBT = new JButton("Watch Race");
 		WBT.setBounds(0, 480, 130, 25);
 		

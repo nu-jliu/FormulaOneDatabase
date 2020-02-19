@@ -233,13 +233,13 @@ public class NavigationWindow {
 	
 	public void queryData(String tableName) throws Exception{
 		String query = "";
-		if(tableName.equals("Team")) 
+		if (tableName.equals("Team")) 
 			query = "{? = call get_All_Teams}";
-		else if(tableName.equals("Driver")) 
+		else if (tableName.equals("Driver")) 
 			query = "{? = call get_All_Drivers}";
-		else if(tableName.equals("Race")) 
+		else if (tableName.equals("Race")) 
 			query = "{? = call get_All_Races}";
-		else if(tableName.equals("WorksFor"))
+		else if (tableName.equals("WorksFor"))
 			query = "{? = call get_all_WorksFor}";
 		CallableStatement cs = this.connection.getConnection().prepareCall(query);
 		cs.registerOutParameter(1, Types.INTEGER);
@@ -251,7 +251,7 @@ public class NavigationWindow {
 			this.model.addColumn(rsmd.getColumnName(i));
 		}
     	String[] rowData = new String[count];
-    	while(rs.next()) {
+    	while (rs.next()) {
     		for(int i = 0; i < count; i++) 
     			rowData[i] = rs.getString(i + 1);
     		this.model.addRow(rowData);
@@ -297,8 +297,9 @@ public class NavigationWindow {
 	}
 	
 	public void queryStats(int year, boolean isTeam) {
-		String query = (isTeam) ? "{? = call get_Team_Stats(?)}" : "{? = call get_Stats(?)}";
-		
+		String query = (isTeam) ? "{? = call get_Team_Stats(?)}" 
+				: "{? = call get_Stats(?)}";
+
 		try {
 			CallableStatement cs;
 			cs = this.connection.getConnection().prepareCall(query);
