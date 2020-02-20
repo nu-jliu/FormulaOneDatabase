@@ -2,6 +2,7 @@ package UI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -18,6 +19,7 @@ import Database.service.RaceService;
 import Database.service.TeamService;
 import Database.service.WatchService;
 import Database.service.WorksForService;
+import Input.inputFromFile;
 
 public class UpdateWindow {
 	JFrame frame;
@@ -486,6 +488,24 @@ public class UpdateWindow {
 		JButton btnNewButton = new JButton("Load File");
 		btnNewButton.setBounds(670, 231, 89, 23);
 		frame.getContentPane().add(btnNewButton);
+		
+		ActionListener fileActionListener = new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String filePath = fileName.getText();
+				String racename = (String) races.getSelectedItem();
+				String yearString = raceYear.getText();
+				int y = Integer.parseInt(yearString);
+				inputFromFile inputFromFile = new inputFromFile(filePath, dbservice);
+				try {
+					inputFromFile.fileReader(racename, y);
+				} catch (IOException e1) {
+					JOptionPane.showMessageDialog(null, "Errors Detected in Loading");
+					e1.printStackTrace();
+				}
+			}
+		};
 		
 		
 		this.frame.setVisible(true);
