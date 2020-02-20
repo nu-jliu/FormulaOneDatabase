@@ -189,9 +189,9 @@ public class NavigationWindow {
 		
 		this.teamStats.setBounds(443, 272, 90, 25);
 		
-		JButton update = new JButton("Update");
-		update.setBounds(143, 320, 90, 25);
-		ActionListener updateListener = new ActionListener() {
+	//	JButton update = new JButton("Update");
+	//	update.setBounds(143, 320, 90, 25);
+		/*ActionListener updateListener = new ActionListener() {
 
 		
 			@Override
@@ -200,7 +200,7 @@ public class NavigationWindow {
 				new UpdateWindow(connection, UID);
 			}
 			
-		};
+		};*/
 		JButton personal = new JButton("Personal");
 		personal.setBounds(432, 320, 90, 25);
 		ActionListener personalListener = new ActionListener() {
@@ -214,8 +214,8 @@ public class NavigationWindow {
 			
 		};
 		personal.addActionListener(personalListener);
-		update.addActionListener(updateListener);
-		this.frame.getContentPane().add(update);
+		//update.addActionListener(updateListener);
+		//this.frame.getContentPane().add(update);
 		this.frame.getContentPane().add(this.Driver);
 		this.frame.getContentPane().add(this.Team);
 		this.frame.getContentPane().add(this.Race);

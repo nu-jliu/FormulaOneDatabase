@@ -106,7 +106,7 @@ public class LikesWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				LikesWindow.this.closeFrame();
-				new UpdateWindow(LikesWindow.this.dbService, LikesWindow.this.UID);
+				new PersonalWindow(LikesWindow.this.dbService, LikesWindow.this.UID);
 			}
 
 		});
