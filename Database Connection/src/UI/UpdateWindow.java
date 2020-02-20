@@ -34,7 +34,7 @@ public class UpdateWindow {
 		this.frame.setBounds(100, 150, 820, 650);
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.getContentPane().setLayout(null);
-		
+
 		DriverService driverService = new DriverService(this.dbservice);
 		TeamService teamService = new TeamService(this.dbservice);
 		RaceService raceService = new RaceService(this.dbservice);
@@ -48,12 +48,12 @@ public class UpdateWindow {
 			drivers2.addItem(s);
 			drivers3.addItem(s);
 		}
-		
+
 		ArrayList<String> teamNames = teamService.getTeamNameList();
 		JComboBox<String> teams = new JComboBox<>();
 		for (String s : teamNames)
 			teams.addItem(s);
-		
+
 		ArrayList<String> raceNames = raceService.getRaceNameList();
 		JComboBox<String> races = new JComboBox<>();
 		JComboBox<String> races2 = new JComboBox<>();
@@ -61,12 +61,12 @@ public class UpdateWindow {
 			races.addItem(s);
 			races2.addItem(s);
 		}
-		
+
 		ArrayList<Integer> allYears = raceService.getRaceYear();
 		JComboBox<Integer> years = new JComboBox<>();
 		for (int y : allYears)
 			years.addItem(y);
-		
+
 		drivers.setBounds(30, 200, 140, 25);
 		drivers2.setBounds(664, 289, 130, 25);
 		drivers3.setBounds(80, 370, 130, 25);
@@ -81,7 +81,7 @@ public class UpdateWindow {
 		this.frame.getContentPane().add(races2);
 		this.frame.getContentPane().add(teams);
 		this.frame.getContentPane().add(years);
-		
+
 		JLabel team = new JLabel("Team");
 		team.setBounds(0, 0, 68, 16);
 		this.frame.getContentPane().add(team);
@@ -112,7 +112,7 @@ public class UpdateWindow {
 
 		JButton addTeam = new JButton("Add Team");
 		addTeam.setBounds(0, 50, 100, 25);
-		
+
 		JButton updateTeam = new JButton("Update Team");
 		updateTeam.setBounds(200, 50, 200, 25);
 
@@ -131,7 +131,6 @@ public class UpdateWindow {
 		JLabel DOB = new JLabel("DOB");
 		DOB.setBounds(320, 113, 90, 16);
 		this.frame.getContentPane().add(DOB);
-		
 
 		JTextField dob = new JTextField();
 		dob.setBounds(350, 110, 90, 25);
@@ -139,10 +138,10 @@ public class UpdateWindow {
 
 		JButton addDriver = new JButton("Add Driver");
 		addDriver.setBounds(0, 140, 100, 25);
-		
+
 		JButton updateDriver = new JButton("Update Driver");
 		updateDriver.setBounds(250, 140, 150, 25);
-		
+
 		JLabel part = new JLabel("Participates");
 		part.setBounds(0, 180, 90, 16);
 		this.frame.getContentPane().add(part);
@@ -154,11 +153,11 @@ public class UpdateWindow {
 		JLabel raID = new JLabel("Race");
 		raID.setBounds(175, 203, 90, 16);
 		this.frame.getContentPane().add(raID);
-		
+
 		JLabel year = new JLabel("Year");
 		year.setBounds(630, 203, 90, 16);
 		this.frame.getContentPane().add(year);
-		
+
 		JTextField raceYear = new JTextField();
 		raceYear.setBounds(660, 200, 90, 25);
 		this.frame.getContentPane().add(raceYear);
@@ -173,7 +172,7 @@ public class UpdateWindow {
 
 		JButton addPart = new JButton("Add Participates");
 		addPart.setBounds(0, 230, 150, 25);
-		
+
 		JButton updatePart = new JButton("Update Participates");
 		updatePart.setBounds(250, 230, 130, 25);
 
@@ -204,69 +203,69 @@ public class UpdateWindow {
 		JTextField raceName = new JTextField();
 		raceName.setBounds(360, 290, 90, 25);
 		this.frame.getContentPane().add(raceName);
-		
+
 		JLabel laTime = new JLabel("Laptime");
 		laTime.setBounds(460, 293, 90, 16);
 		this.frame.getContentPane().add(laTime);
-		
+
 		JTextField laptime = new JTextField();
 		laptime.setBounds(510, 293, 90, 25);
 		this.frame.getContentPane().add(laptime);
-		
+
 		JLabel id = new JLabel("Driver Name");
 		id.setBounds(600, 297, 90, 16);
 		this.frame.getContentPane().add(id);
 
 		JButton addRace = new JButton("Add Race");
 		addRace.setBounds(0, 320, 100, 25);
-		
+
 		JButton updateRace = new JButton("Update Race");
 		updateRace.setBounds(250, 320, 125, 25);
-		
+
 		JButton goBack = new JButton("Go Back");
 		goBack.setBounds(280, 540, 90, 25);
-		
+
 		JLabel WF = new JLabel("Works For");
-		WF.setBounds(0, 350 , 90, 16);
+		WF.setBounds(0, 350, 90, 16);
 		this.frame.getContentPane().add(WF);
-		
+
 		JLabel DN = new JLabel("Driver Name");
-		DN.setBounds(0, 370 , 90, 16);
-		this.frame.getContentPane().add(DN);		
-		
+		DN.setBounds(0, 370, 90, 16);
+		this.frame.getContentPane().add(DN);
+
 		JLabel TN = new JLabel("Team Name");
 		TN.setBounds(210, 370, 90, 16);
 		this.frame.getContentPane().add(TN);
-		
+
 		JLabel SY = new JLabel("Year");
 		SY.setBounds(400, 370, 90, 16);
 		this.frame.getContentPane().add(SY);
-		
+
 		JTextField SYT = new JTextField();
 		SYT.setBounds(460, 370, 90, 25);
 		this.frame.getContentPane().add(SYT);
-		
+
 		JLabel W = new JLabel("Watch Race");
 		W.setBounds(0, 430, 90, 16);
 		this.frame.getContentPane().add(W);
-		
+
 		JLabel Race = new JLabel("Race");
 		Race.setBounds(0, 450, 90, 16);
 		this.frame.getContentPane().add(Race);
-		
+
 		JLabel theYear = new JLabel("Year");
 		theYear.setBounds(400, 450, 90, 16);
 		this.frame.getContentPane().add(theYear);
-		
+
 		JButton WBT = new JButton("Watch Race");
 		WBT.setBounds(0, 480, 130, 25);
-		
+
 		JButton AdW = new JButton("Add Works For");
 		AdW.setBounds(0, 400, 130, 25);
-	
+
 		JButton UpW = new JButton("Update Works For");
 		UpW.setBounds(300, 400, 150, 25);
-		
+
 		ActionListener addteamListener = new ActionListener() {
 
 			@Override
@@ -279,7 +278,7 @@ public class UpdateWindow {
 			}
 
 		};
-		
+
 		WatchService WatchService = new WatchService(dbservice, this.UID);
 		ActionListener WatchListener = new ActionListener() {
 
@@ -289,11 +288,9 @@ public class UpdateWindow {
 				int year = (int) years.getSelectedItem();
 				WatchService.addHistory(Race, year);
 			}
-			
+
 		};
-		
-		
-		
+
 		ActionListener updateteamListener = new ActionListener() {
 
 			@Override
@@ -327,14 +324,13 @@ public class UpdateWindow {
 			}
 
 		};
-		
-		
+
 		ParticipatesService participatesService = new ParticipatesService(dbservice);
 		ActionListener addParticipatesListener = new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) throws NumberFormatException {
-				int  driverRank, theYear;
+				int driverRank, theYear;
 				String did = (String) drivers.getSelectedItem();
 				String rid = (String) races.getSelectedItem();
 				driverRank = Integer.parseInt(rank.getText());
@@ -342,12 +338,12 @@ public class UpdateWindow {
 				participatesService.addParticipates(theYear, did, rid, driverRank);
 			}
 		};
-		
+
 		ActionListener updateParticipatesListener = new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				int  driverRank, theYear;
+				int driverRank, theYear;
 				String did = (String) drivers.getSelectedItem();
 				String rid = (String) races.getSelectedItem();
 				try {
@@ -359,11 +355,11 @@ public class UpdateWindow {
 					return;
 				}
 				participatesService.updateParticipates(theYear, did, rid, driverRank);
-				
+
 			}
-			
+
 		};
-		
+
 		ActionListener addRaceListener = new ActionListener() {
 
 			@Override
@@ -375,9 +371,9 @@ public class UpdateWindow {
 				String Dname = (String) drivers2.getSelectedItem();
 				raceService.addRace(weather, raceDate, raName, lapTime, Dname);
 			}
-			
+
 		};
-		
+
 		ActionListener updateRaceListener = new ActionListener() {
 
 			@Override
@@ -389,11 +385,11 @@ public class UpdateWindow {
 				String Dname = (String) drivers2.getSelectedItem();
 				raceService.updateRace(weather, raceDate, raName, lapTime, Dname);
 			}
-			
+
 		};
-		
+
 		WorksForService WorksForService = new WorksForService(dbservice);
-		
+
 		ActionListener addWorksForListener = new ActionListener() {
 
 			@Override
@@ -402,27 +398,27 @@ public class UpdateWindow {
 				String Tname = (String) teams.getSelectedItem();
 				int year;
 				try {
-					year = Integer.parseInt( SYT.getText());
+					year = Integer.parseInt(SYT.getText());
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, "Invalid input year");
 					e.printStackTrace();
 					return;
-				}	
+				}
 				WorksForService.addWorksFor(Dname, Tname, year);
 			}
-			
+
 		};
-		
+
 		ActionListener updateWorksForListener = new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String Dname = (String) drivers3.getSelectedItem();
 				String Tname = (String) teams.getSelectedItem();
-				
+
 				int year;
 				try {
-					year = Integer.parseInt( SYT.getText());
+					year = Integer.parseInt(SYT.getText());
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, "Invalid input year");
 					e.printStackTrace();
@@ -430,9 +426,9 @@ public class UpdateWindow {
 				}
 				WorksForService.updateWorksFor(Dname, Tname, year);
 			}
-			
+
 		};
-		
+
 		addTeam.addActionListener(addteamListener);
 		updateTeam.addActionListener(updateteamListener);
 		this.frame.getContentPane().add(addTeam);
@@ -442,27 +438,26 @@ public class UpdateWindow {
 		updateDriver.addActionListener(updatedriverListener);
 		this.frame.getContentPane().add(addDriver);
 		this.frame.getContentPane().add(updateDriver);
-		
+
 		addPart.addActionListener(addParticipatesListener);
 		updatePart.addActionListener(updateParticipatesListener);
 		this.frame.getContentPane().add(addPart);
 		this.frame.getContentPane().add(updatePart);
-		
+
 		addRace.addActionListener(addRaceListener);
 		updateRace.addActionListener(updateRaceListener);
 		this.frame.getContentPane().add(addRace);
 		this.frame.getContentPane().add(updateRace);
-		
+
 		AdW.addActionListener(addWorksForListener);
 		this.frame.getContentPane().add(AdW);
-		
+
 		WBT.addActionListener(WatchListener);
 		this.frame.getContentPane().add(WBT);
-		
-		
+
 		UpW.addActionListener(updateWorksForListener);
 		this.frame.getContentPane().add(UpW);
-	
+
 		ActionListener backListener = new ActionListener() {
 
 			@Override
@@ -474,23 +469,21 @@ public class UpdateWindow {
 		};
 		goBack.addActionListener(backListener);
 		this.frame.getContentPane().add(goBack);
-		
+
 		fileName = new JTextField();
 		fileName.setBounds(460, 230, 203, 25);
 		frame.getContentPane().add(fileName);
 		fileName.setColumns(10);
-		
+
 		JLabel fileNameLabel = new JLabel("File Path");
 		fileNameLabel.setEnabled(false);
 		fileNameLabel.setBounds(410, 235, 46, 14);
 		frame.getContentPane().add(fileNameLabel);
-		
+
 		JButton btnNewButton = new JButton("Load File");
 		btnNewButton.setBounds(670, 231, 89, 23);
-		frame.getContentPane().add(btnNewButton);
-		
 		ActionListener fileActionListener = new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String filePath = fileName.getText();
@@ -506,8 +499,9 @@ public class UpdateWindow {
 				}
 			}
 		};
-		
-		
+		btnNewButton.addActionListener(fileActionListener);
+		frame.getContentPane().add(btnNewButton);
+
 		this.frame.setVisible(true);
 	}
 
