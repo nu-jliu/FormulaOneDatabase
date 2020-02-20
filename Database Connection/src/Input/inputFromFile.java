@@ -2,16 +2,15 @@ package Input;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import Database.service.Connections;
 import Database.service.ParticipatesService;
@@ -38,12 +37,12 @@ public class inputFromFile {
 			return;
 		}
 		String[] split = excel.getName().split("\\.");
-		if (!".xls".equals(split[1])) {
+		if (!"xlsx".equals(split[1])) {
 			JOptionPane.showMessageDialog(null, "Wrong File Type Detected");
 			return;
 		}
 		FileInputStream fis = new FileInputStream(excel);
-		Workbook wb = new HSSFWorkbook(fis);
+		Workbook wb = new XSSFWorkbook(fis);
 		Sheet sheet = wb.getSheetAt(0);
 		int firstRowIndex = sheet.getFirstRowNum() + 1;
 		int lastRowIndex = sheet.getLastRowNum();
