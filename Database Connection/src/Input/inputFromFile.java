@@ -374,11 +374,7 @@ public class inputFromFile {
 			if (row != null) {
 				int lastCellIndex = row.getLastCellNum();
 				int UID = 0;
-				String user = null;
-				String email = null;
-				String hash = null;
-				String salt = null;
-				int access = 1;
+				int RID = 0;
 				for (int c = 1; c < lastCellIndex; c++) {
 					Cell cell = row.getCell(c);
 					switch (c) {
@@ -387,29 +383,151 @@ public class inputFromFile {
 						break;
 
 					case 1:
-						user = cell.toString();
-						break;
-						
-					case 2:
-						email = cell.toString();
-						break;
-						
-					case 3:
-						hash = cell.toString();
-						break;
-						
-					case 4:
-						salt = cell.toString();
-						break;
-					
-					case 5:
-						access = Double.valueOf(cell.toString()).intValue();
+						RID = Double.valueOf(cell.toString()).intValue();
 						break;
 						
 					default:
 						break;
 					}
-					recoverservice.recoverUsers(UID, user, email, hash, salt, access);
+					recoverservice.recoverHistory(UID, RID);
+				}
+			}
+		}
+	}
+	
+	public void recoverStarTeam() throws IOException {
+		this.recoverservice = new RecoverService(this.dbconnection);
+		File excel = new File(filePath);
+		if (excel.isFile() && excel.exists()) {
+
+		} else {
+			JOptionPane.showMessageDialog(null, "The File is Not Existed");
+			return;
+		}
+		String[] split = excel.getName().split("\\.");
+		if (!"xls".equals(split[1])) {
+			JOptionPane.showMessageDialog(null, "Wrong File Type Detected");
+			return;
+		}
+		FileInputStream fis = new FileInputStream(excel);
+		Workbook wb = new HSSFWorkbook(fis);
+		Sheet sheet = wb.getSheetAt(0);
+		int lastRowIndex = sheet.getLastRowNum();
+		for (int r = 1; r <= lastRowIndex; r++) {
+			Row row = sheet.getRow(r);
+			if (row != null) {
+				int lastCellIndex = row.getLastCellNum();
+				int UID = 0;
+				int TID = 0;
+				for (int c = 1; c < lastCellIndex; c++) {
+					Cell cell = row.getCell(c);
+					switch (c) {
+					case 0:
+						UID = Double.valueOf(cell.toString()).intValue();
+						break;
+
+					case 1:
+						TID = Double.valueOf(cell.toString()).intValue();
+						break;
+						
+					default:
+						break;
+					}
+					recoverservice.recoverStarTeam(UID, TID);
+				}
+			}
+		}
+	}
+	
+	public void recoverStarDriver() throws IOException {
+		this.recoverservice = new RecoverService(this.dbconnection);
+		File excel = new File(filePath);
+		if (excel.isFile() && excel.exists()) {
+
+		} else {
+			JOptionPane.showMessageDialog(null, "The File is Not Existed");
+			return;
+		}
+		String[] split = excel.getName().split("\\.");
+		if (!"xls".equals(split[1])) {
+			JOptionPane.showMessageDialog(null, "Wrong File Type Detected");
+			return;
+		}
+		FileInputStream fis = new FileInputStream(excel);
+		Workbook wb = new HSSFWorkbook(fis);
+		Sheet sheet = wb.getSheetAt(0);
+		int lastRowIndex = sheet.getLastRowNum();
+		for (int r = 1; r <= lastRowIndex; r++) {
+			Row row = sheet.getRow(r);
+			if (row != null) {
+				int lastCellIndex = row.getLastCellNum();
+				int UID = 0;
+				int DID = 0;
+				for (int c = 1; c < lastCellIndex; c++) {
+					Cell cell = row.getCell(c);
+					switch (c) {
+					case 0:
+						UID = Double.valueOf(cell.toString()).intValue();
+						break;
+
+					case 1:
+						DID = Double.valueOf(cell.toString()).intValue();
+						break;
+						
+					default:
+						break;
+					}
+					recoverservice.recoverStarDriver(UID, DID);
+				}
+			}
+		}
+	}
+	
+	
+	public void recoverStats() throws IOException {
+		this.recoverservice = new RecoverService(this.dbconnection);
+		File excel = new File(filePath);
+		if (excel.isFile() && excel.exists()) {
+
+		} else {
+			JOptionPane.showMessageDialog(null, "The File is Not Existed");
+			return;
+		}
+		String[] split = excel.getName().split("\\.");
+		if (!"xls".equals(split[1])) {
+			JOptionPane.showMessageDialog(null, "Wrong File Type Detected");
+			return;
+		}
+		FileInputStream fis = new FileInputStream(excel);
+		Workbook wb = new HSSFWorkbook(fis);
+		Sheet sheet = wb.getSheetAt(0);
+		int lastRowIndex = sheet.getLastRowNum();
+		for (int r = 1; r <= lastRowIndex; r++) {
+			Row row = sheet.getRow(r);
+			if (row != null) {
+				int lastCellIndex = row.getLastCellNum();
+				int year = 0;
+				int DID = 0;
+				int point = 0;
+				for (int c = 1; c < lastCellIndex; c++) {
+					Cell cell = row.getCell(c);
+					switch (c) {
+					case 0:
+						year = Double.valueOf(cell.toString()).intValue();
+						break;
+
+					case 1:
+						DID = Double.valueOf(cell.toString()).intValue();
+						break;
+						
+					case 2:
+						point = Double.valueOf(cell.toString()).intValue();
+						break;
+						
+					default:
+						break;
+					}
+					recoverservice.recoverStats(year, DID, point);
 				}
 			}
 		}
