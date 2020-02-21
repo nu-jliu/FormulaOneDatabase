@@ -20,14 +20,16 @@ public class RecoverService {
 	public void recoverDrivers(int DID, String Name, String DOB, int Number) {
 		try {
 			CallableStatement cs = this.dbconnection.getConnection().prepareCall("{? = call Pupulate_Driver(?,?,?,?)}");
+			System.out.println(DID + ":DID");
 			cs.setInt(2, DID);
+			System.out.println(Name + ":name");
 			cs.setString(3, Name);
+			System.out.println(DOB + ":DOB");
 			java.util.Date oldDate = new SimpleDateFormat("yyyy-MM-dd").parse(DOB);
 			cs.setDate(4, new java.sql.Date(oldDate.getTime()));
 			cs.setInt(5, Number);
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();
-			JOptionPane.showMessageDialog(null, "Driver has been added successfully");
 		} catch (SQLException | ParseException e) {
 			if (e instanceof ParseException)
 				JOptionPane.showMessageDialog(null, "Invalid Date Input");
@@ -67,7 +69,6 @@ public class RecoverService {
 			cs.setInt(4, Rank);
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();
-			JOptionPane.showMessageDialog(null, "Participates has been added successfully");
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to recover participates");
 		}
@@ -83,7 +84,6 @@ public class RecoverService {
 			cs.setString(5, model);
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();
-			JOptionPane.showMessageDialog(null, "team have been added successfully");
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to recover team");
 		}
@@ -127,7 +127,6 @@ public class RecoverService {
 			cs.setInt(3, RID);
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();
-			JOptionPane.showMessageDialog(null, "Watched History has been added successfully");
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to recover watched History");
 		}
@@ -140,7 +139,6 @@ public class RecoverService {
 			cs.setInt(3, TID);
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();
-			JOptionPane.showMessageDialog(null, "Star Team has been added successfully");
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to recover star team");
 		}
@@ -154,7 +152,6 @@ public class RecoverService {
 			cs.setInt(3, DID);
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();
-			JOptionPane.showMessageDialog(null, "Star Driver has been added successfully");
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to recover star driver");
 		}
@@ -163,13 +160,12 @@ public class RecoverService {
 	public void recoverStats(int year, int DID, int point) {
 		try {
 			CallableStatement cs = this.dbconnection.getConnection()
-					.prepareCall("{? = call [Recover_Stats_by_Year](?,?)}");
+					.prepareCall("{? = call [Recover_Stats_by_Year](?,?,?)}");
 			cs.setInt(2, year);
 			cs.setInt(3, DID);
 			cs.setInt(4, point);
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();
-			JOptionPane.showMessageDialog(null, "stats have been added successfully");
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to recover stats");
 		}
@@ -178,13 +174,12 @@ public class RecoverService {
 	public void recoverWorksFor(int DID, int TID, int year) {
 		try {
 			CallableStatement cs = this.dbconnection.getConnection()
-					.prepareCall("{? = call [Recover_Stats_by_Year](?,?)}");
+					.prepareCall("{? = call [Recover_Works_For](?,?,?)}");
 			cs.setInt(2, DID);
 			cs.setInt(3, TID);
 			cs.setInt(4, year);
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();
-			JOptionPane.showMessageDialog(null, "works_for have been added successfully");
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to recover works_for");
 		}

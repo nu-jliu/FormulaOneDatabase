@@ -9,16 +9,17 @@ import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
 public class ParticipatesService {
-	
+
 	private Connections dbconnection = null;
-	
+
 	public ParticipatesService(Connections connection) {
 		this.dbconnection = connection;
 	}
-	
+
 	public boolean addParticipates(int year, String drivername, String racename, int rank) {
 		try {
-			CallableStatement cs = this.dbconnection.getConnection().prepareCall("{? = call AddParticipates(?, ?, ?, ?)}");
+			CallableStatement cs = this.dbconnection.getConnection()
+					.prepareCall("{? = call AddParticipates(?, ?, ?, ?)}");
 			cs.setString(2, drivername);
 			cs.setInt(3, year);
 			cs.setString(4, racename);
@@ -27,21 +28,36 @@ public class ParticipatesService {
 			cs.execute();
 			int errorCode = cs.getInt(1);
 			if (errorCode == 10) {
-				JOptionPane.showMessageDialog(null, "Invalid input");
+				cs = this.dbconnection.getConnection().prepareCall("{? = call UpdateParticipates(?, ?, ?, ?)}");
+				cs.setString(2, drivername);
+				cs.setInt(3, year);
+				cs.setString(4, racename);
+				cs.setInt(5, rank);
+				cs.registerOutParameter(1, Types.INTEGER);
+				cs.execute();
+				errorCode = cs.getInt(1);
+				if (errorCode == 10) {
+					JOptionPane.showMessageDialog(null, "Add Failed - Update :" + drivername + "+" + racename + "+" + rank);
+					return false;
+				}
+			}
+			else if(errorCode == 15){
+				JOptionPane.showMessageDialog(null, "Add Failed - Add :" + drivername + "+" + racename + "+" + rank);
 				return false;
 			}
 			return true;
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Add Failed");
+			JOptionPane.showMessageDialog(null, "Add Failed - SQL Exception");
 			e.printStackTrace();
 			return false;
 		}
-		
+
 	}
-	
+
 	public boolean updateParticipates(int year, String drivername, String racename, int rank) {
 		try {
-			CallableStatement cs = this.dbconnection.getConnection().prepareCall("{? = call UpdateParticipates(?, ?, ?, ?)}");
+			CallableStatement cs = this.dbconnection.getConnection()
+					.prepareCall("{? = call UpdateParticipates(?, ?, ?, ?)}");
 			cs.setString(2, drivername);
 			cs.setInt(3, year);
 			cs.setString(4, racename);

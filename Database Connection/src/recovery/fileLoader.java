@@ -37,15 +37,14 @@ public class fileLoader extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	
-	public fileLoader(Connections connection) {
-		this.connection = connection;
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public fileLoader() {
+	public fileLoader(Connections connection) {
+		this.connection = connection;
+
 		setTitle("DatabaseRecovery");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 650, 500);
@@ -353,7 +352,6 @@ public class fileLoader extends JFrame {
 		HistoryBtn.setBounds(452, 106, 113, 23);
 		HistoryBtn.addActionListener(historyListener);
 		contentPane.add(HistoryBtn);
-		
-		
+		this.setVisible(true);
 	}
 }
