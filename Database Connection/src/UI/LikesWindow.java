@@ -49,7 +49,7 @@ public class LikesWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String name = (String) drivers.getSelectedItem();
-				LikesWindow.this.likeQuery("Drive", name);
+				LikesWindow.this.likeQuery("Driver", name);
 			}
 
 		});
@@ -152,6 +152,7 @@ public class LikesWindow {
 				JOptionPane.showMessageDialog(null, "The item is already in your favorite list");
 				return;
 			}
+			JOptionPane.showMessageDialog(null, "successfully update");
 			return;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to like");
@@ -185,7 +186,9 @@ public class LikesWindow {
 				JOptionPane.showMessageDialog(null, "The item is not in your favorite list");
 				return;
 			}
+			JOptionPane.showMessageDialog(null, "successfully update");
 			return;
+			
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to delete");
 			e.printStackTrace();
