@@ -491,7 +491,7 @@ public class UpdateWindow {
 				int theYear = Integer.parseInt(raceYear.getText());
 				inputFromFile inputFromFile = new inputFromFile(filePath, dbservice);
 				try {
-					inputFromFile.fileReader(racename, theYear);
+					inputFromFile.readParticipates(racename, theYear);
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null, "Errors Detected in Loading");
 					e1.printStackTrace();
