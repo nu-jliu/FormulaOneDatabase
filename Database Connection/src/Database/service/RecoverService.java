@@ -174,5 +174,20 @@ public class RecoverService {
 			JOptionPane.showMessageDialog(null, "Failed to recover stats");
 		}
 	}
+	
+	public void recoverWorksFor(int DID, int TID, int year) {
+		try {
+			CallableStatement cs = this.dbconnection.getConnection()
+					.prepareCall("{? = call [Recover_Stats_by_Year](?,?)}");
+			cs.setInt(2, DID);
+			cs.setInt(3, TID);
+			cs.setInt(4, year);
+			cs.registerOutParameter(1, Types.INTEGER);
+			cs.execute();
+			JOptionPane.showMessageDialog(null, "works_for have been added successfully");
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Failed to recover works_for");
+		}
+	}
 
 }

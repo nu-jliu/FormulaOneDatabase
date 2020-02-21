@@ -533,5 +533,54 @@ public class inputFromFile {
 		}
 	}
 	
+	public void recoverWorksFor() throws IOException {
+		this.recoverservice = new RecoverService(this.dbconnection);
+		File excel = new File(filePath);
+		if (excel.isFile() && excel.exists()) {
+
+		} else {
+			JOptionPane.showMessageDialog(null, "The File is Not Existed");
+			return;
+		}
+		String[] split = excel.getName().split("\\.");
+		if (!"xls".equals(split[1])) {
+			JOptionPane.showMessageDialog(null, "Wrong File Type Detected");
+			return;
+		}
+		FileInputStream fis = new FileInputStream(excel);
+		Workbook wb = new HSSFWorkbook(fis);
+		Sheet sheet = wb.getSheetAt(0);
+		int lastRowIndex = sheet.getLastRowNum();
+		for (int r = 1; r <= lastRowIndex; r++) {
+			Row row = sheet.getRow(r);
+			if (row != null) {
+				int lastCellIndex = row.getLastCellNum();
+				int DID = 0;
+				int TID = 0;
+				int year = 0;
+				for (int c = 1; c < lastCellIndex; c++) {
+					Cell cell = row.getCell(c);
+					switch (c) {
+					case 0:
+						DID = Double.valueOf(cell.toString()).intValue();
+						break;
+
+					case 1:
+						TID = Double.valueOf(cell.toString()).intValue();
+						break;
+						
+					case 2:
+						year = Double.valueOf(cell.toString()).intValue();
+						break;
+						
+					default:
+						break;
+					}
+					recoverservice.recoverWorksFor(DID, TID, year);
+				}
+			}
+		}
+	}
+	
 	
 }
