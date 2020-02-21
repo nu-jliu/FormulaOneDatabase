@@ -30,15 +30,15 @@ public class TeamService {
 			} else if (errorCode == 2) {
 				JOptionPane.showMessageDialog(null, "Tean name already exists");
 				return false;
-			}else if (errorCode == 3) {
+			} else if (errorCode == 3) {
 				JOptionPane.showMessageDialog(null, "Please Entry Manufacture");
 				return false;
-			}else if (errorCode == 4) {
+			} else if (errorCode == 4) {
 				JOptionPane.showMessageDialog(null, "Please Entry Model Number");
 				return false;
 			}
-JOptionPane.showMessageDialog(null, "Team has been add successfully");
-			
+			JOptionPane.showMessageDialog(null, "Team has been add successfully");
+
 			return true;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to add a team");
@@ -46,6 +46,7 @@ JOptionPane.showMessageDialog(null, "Team has been add successfully");
 			return false;
 		}
 	}
+
 	public boolean updateTeam(String name, String manfname, String number) {
 		try {
 			CallableStatement cs = this.dbConnection.getConnection().prepareCall("{? = call UpdateTeam(?,?,?)}");
@@ -61,20 +62,19 @@ JOptionPane.showMessageDialog(null, "Team has been add successfully");
 			} else if (errorCode == 3) {
 				JOptionPane.showMessageDialog(null, "No entry detected");
 				return false;
-			}else if(errorCode == 4) 
-			{
+			} else if (errorCode == 4) {
 				JOptionPane.showMessageDialog(null, "Not valid Team Name");
 				return false;
 			}
 			JOptionPane.showMessageDialog(null, "Team has been update successfully");
-			
+
 			return true;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to update a team");
 			e.printStackTrace();
 			return false;
 		}
-		
+
 	}
 
 	public ArrayList<String> getTeamNameList() {
@@ -131,6 +131,5 @@ JOptionPane.showMessageDialog(null, "Team has been add successfully");
 			this.num = nu;
 		}
 	}
-
 
 }

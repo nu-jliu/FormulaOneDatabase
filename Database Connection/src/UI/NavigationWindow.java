@@ -297,8 +297,7 @@ public class NavigationWindow {
 	}
 	
 	public void queryStats(int year, boolean isTeam) {
-		String query = (isTeam) ? "{? = call get_Team_Stats(?)}" 
-				: "{? = call get_Stats(?)}";
+		String query = (isTeam) ? "{? = call get_Team_Stats(?)}" : "{? = call get_Stats(?)}";
 
 		try {
 			CallableStatement cs;
@@ -308,52 +307,49 @@ public class NavigationWindow {
 			ResultSet rs = cs.executeQuery();
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int count = rsmd.getColumnCount();
-			for(int i = 1; i <= count; i++) {
+			for (int i = 1; i <= count; i++) {
 				this.model.addColumn(rsmd.getColumnName(i));
 			}
-	    	String[] rowData = new String[count];
-	    	while(rs.next()) {
-	    		for(int i = 0; i < count; i++) 
-	    			rowData[i] = rs.getString(i + 1);
-	    		this.model.addRow(rowData);
-	    	}
-	    	this.Table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
-	    	int totalWidth = 0; 
-	    	for (int c = 0; c < this.Table.getColumnCount(); c++)
-	    	{
-	    	    TableColumn column = this.Table.getColumnModel().getColumn(c);
-	    	    int preferredWidth = column.getMinWidth();
-	    	    int maxWidth = column.getMaxWidth();
-	    	    for (int r = 0; r < this.Table.getRowCount(); r++)
-	    	    {
-	    	        TableCellRenderer rend = this.Table.getCellRenderer(r, c);
-	    	        Component comp = this.Table.prepareRenderer(rend, r, c);
-	    	        int width = comp.getPreferredSize().width + this.Table.getIntercellSpacing().width;
-	    	        preferredWidth = Math.max(preferredWidth, width);
-	    	        if (preferredWidth >= maxWidth)
-	    	        {
-	    	            preferredWidth = maxWidth;
-	    	            break;
-	    	        }
-	    	    }
-	    	    column.setPreferredWidth( preferredWidth );
-	    	    totalWidth += preferredWidth;
-	    	}
-	    	if (totalWidth < this.Table.getWidth()) {
-	    		int totalOffset = this.Table.getWidth() - totalWidth;
-	    		int offset = totalOffset / this.Table.getColumnCount();
-	    		for (int c = 0; c < this.Table.getColumnCount(); c++) {
-	    			TableColumn column = this.Table.getColumnModel().getColumn(c);
-	    			int width = column.getPreferredWidth();
-	    			width += offset;
-	    			totalOffset -= offset;
-	    			column.setPreferredWidth(width);
-	    		}
-	    		TableColumn column = this.Table.getColumnModel().getColumn(0);
-	    		int width = column.getPreferredWidth();
-	    		width += totalOffset;
-	    		column.setPreferredWidth(width);
-	    	}
+			String[] rowData = new String[count];
+			while (rs.next()) {
+				for (int i = 0; i < count; i++)
+					rowData[i] = rs.getString(i + 1);
+				this.model.addRow(rowData);
+			}
+			this.Table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+			int totalWidth = 0;
+			for (int c = 0; c < this.Table.getColumnCount(); c++) {
+				TableColumn column = this.Table.getColumnModel().getColumn(c);
+				int preferredWidth = column.getMinWidth();
+				int maxWidth = column.getMaxWidth();
+				for (int r = 0; r < this.Table.getRowCount(); r++) {
+					TableCellRenderer rend = this.Table.getCellRenderer(r, c);
+					Component comp = this.Table.prepareRenderer(rend, r, c);
+					int width = comp.getPreferredSize().width + this.Table.getIntercellSpacing().width;
+					preferredWidth = Math.max(preferredWidth, width);
+					if (preferredWidth >= maxWidth) {
+						preferredWidth = maxWidth;
+						break;
+					}
+				}
+				column.setPreferredWidth(preferredWidth);
+				totalWidth += preferredWidth;
+			}
+			if (totalWidth < this.Table.getWidth()) {
+				int totalOffset = this.Table.getWidth() - totalWidth;
+				int offset = totalOffset / this.Table.getColumnCount();
+				for (int c = 0; c < this.Table.getColumnCount(); c++) {
+					TableColumn column = this.Table.getColumnModel().getColumn(c);
+					int width = column.getPreferredWidth();
+					width += offset;
+					totalOffset -= offset;
+					column.setPreferredWidth(width);
+				}
+				TableColumn column = this.Table.getColumnModel().getColumn(0);
+				int width = column.getPreferredWidth();
+				width += totalOffset;
+				column.setPreferredWidth(width);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
