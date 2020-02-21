@@ -3,8 +3,11 @@ package Database.service;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.Date;
+
 import javax.swing.JOptionPane;
 
 public class WatchService {
@@ -94,16 +97,49 @@ public class WatchService {
 		}
 
 	}
+	
+	public ArrayList<RaceInfo> getUnviewedRace(int UID, int year) {
+		ArrayList<RaceInfo> race = new ArrayList<>();
+		try {
+			CallableStatement cs = this.dbConnection.getConnection().prepareCall("{? = call get_not_watched_race(?,?)}");
+			cs.setInt(2, UID);
+			cs.setInt(3, year);
+			cs.registerOutParameter(1, Types.INTEGER);
+			ResultSet rs = cs.executeQuery();
+			int errorCode = cs.getInt(1);
+			if (errorCode == 10) {
+				JOptionPane.showMessageDialog(null, "Please select a valid year");
+				return race;
+			}
+			while (rs.next()) {
+				RaceInfo ri = new RaceInfo(rs.getString("Race Name"), rs.getDate("Date"), rs.getString("Weather"), 
+						rs.getTime("Fastest Lap Time"), rs.getString("Fastest Driver"), rs.getString("Champion"));
+				race.add(ri);
+			}
+			return race;
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Failed to get Race info");
+			e.printStackTrace();
+			return race;
+		}
 
-	public class TeamInfo {
+	}
+
+	public class RaceInfo {
 		String name;
-		String manf;
-		String num;
-
-		public TeamInfo(String n, String m, String nu) {
+		Date date;
+		String weather;
+		Time laptime;
+		String drivername;
+		String champion;
+		
+		public RaceInfo(String n, Date d, String w, Time l, String dr, String c) {
 			this.name = n;
-			this.manf = m;
-			this.num = nu;
+			this.date = d;
+			this.weather = w;
+			this.laptime = l;
+			this.drivername = dr;
+			this.champion = c;
 		}
 	}
 
