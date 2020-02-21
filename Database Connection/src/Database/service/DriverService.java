@@ -16,12 +16,17 @@ public class DriverService {
 		this.dbService = dbService;
 	}
 
-	public boolean addDriver(String name, String date) {
+	public boolean addDriver(String name, String date, int no) throws SQLException {
+		System.out.println(name);
+		System.out.println(date);
+		System.out.println(no);
+
 		try {
-			CallableStatement cs = this.dbService.getConnection().prepareCall("{? = call AddDriver(?,?)}");
+			CallableStatement cs = this.dbService.getConnection().prepareCall("{? = call AddDriver(?,?,?)}");
 			cs.setString(2, name);
 			java.util.Date oldDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 			cs.setDate(3, new java.sql.Date(oldDate.getTime()));
+			cs.setInt(4, no);
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();
 			int errorCode = cs.getInt(1);
@@ -39,22 +44,22 @@ public class DriverService {
 			}
 			JOptionPane.showMessageDialog(null, "Driver has been added successfully");
 			return true;
-		} catch (SQLException | ParseException e) {
+		} catch (ParseException e) {
 			if (e instanceof ParseException)
 				JOptionPane.showMessageDialog(null, "Invalid Date Input");
 			else
 				JOptionPane.showMessageDialog(null, "Failed to add a driver");
-//			e.printStackTrace();
 			return false;
 		}
 
 	}
-	public boolean updateDriver(String name, String date) {
+	public boolean updateDriver(String name, String date, int no) {
 		try {
-			CallableStatement cs = this.dbService.getConnection().prepareCall("{? = call UpdateDriver(?,?)}");
+			CallableStatement cs = this.dbService.getConnection().prepareCall("{? = call UpdateDriver(?,?,?)}");
 			cs.setString(2, name);
 			java.util.Date oldDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 			cs.setDate(3, new java.sql.Date(oldDate.getTime()));
+			cs.setInt(4, no);
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.execute();
 			int errorCode = cs.getInt(1);

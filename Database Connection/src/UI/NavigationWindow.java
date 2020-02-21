@@ -37,7 +37,7 @@ public class NavigationWindow {
 	JButton teamStats;
 	JTable Table;
 	JScrollPane scrollpane;
-	
+	JComboBox<Integer> yearbox;
 	Connections connection;
 	DefaultTableModel model;
 	
@@ -54,7 +54,7 @@ public class NavigationWindow {
 		this.scrollpane.setBounds(43, 33, 597, 200);
 		this.Table.setModel(model);
 		
-		JComboBox<Integer> yearbox = new JComboBox<Integer>();
+		this.yearbox = new JComboBox<Integer>();
 		DriverService driverService = new DriverService(this.connection);
 		ArrayList<Integer> yearsArrayList = driverService.getStatsYear();
 		for(int s : yearsArrayList)
@@ -222,7 +222,7 @@ public class NavigationWindow {
 		if (tableName.equals("Team")) 
 			query = "{? = call get_All_Teams}";
 		else if (tableName.equals("Driver")) 
-			query = "{? = call get_All_Drivers}";
+			query = "{? = call get_All_Drivers(" + (int) yearbox.getSelectedItem() +")}";
 		else if (tableName.equals("Race")) 
 			query = "{? = call get_All_Races}";
 		else if (tableName.equals("WorksFor"))

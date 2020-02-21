@@ -3,6 +3,7 @@ package UI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -26,6 +27,7 @@ public class UpdateWindow {
 	Connections dbservice;
 	private int UID;
 	private JTextField fileName;
+	private JTextField driverNum;
 
 	public UpdateWindow(Connections dbservice, int UID) {
 		this.dbservice = dbservice;
@@ -38,6 +40,11 @@ public class UpdateWindow {
 		DriverService driverService = new DriverService(this.dbservice);
 		TeamService teamService = new TeamService(this.dbservice);
 		RaceService raceService = new RaceService(this.dbservice);
+		
+		driverNum = new JTextField();
+		driverNum.setBounds(193, 111, 86, 20);
+		frame.getContentPane().add(driverNum);
+		driverNum.setColumns(10);
 
 		ArrayList<String> driverNames = driverService.getDriverNames();
 		JComboBox<String> drivers = new JComboBox<>();
@@ -310,7 +317,13 @@ public class UpdateWindow {
 			public void actionPerformed(ActionEvent arg0) {
 				String dname = DriverName.getText();
 				String ddob = dob.getText();
-				driverService.addDriver(dname, ddob);
+				int no = Integer.parseInt(driverNum.getText());
+				try {
+					driverService.addDriver(dname, ddob, no);
+				} catch (SQLException e) {
+					JOptionPane.showMessageDialog(null, "SQL exception");
+					e.printStackTrace();
+				}
 			}
 
 		};
@@ -320,7 +333,8 @@ public class UpdateWindow {
 			public void actionPerformed(ActionEvent arg0) {
 				String dname = DriverName.getText();
 				String ddob = dob.getText();
-				driverService.updateDriver(dname, ddob);
+				int no = Integer.parseInt(driverNum.getText());
+				driverService.updateDriver(dname, ddob, no);
 			}
 
 		};
@@ -500,7 +514,11 @@ public class UpdateWindow {
 		};
 		btnNewButton.addActionListener(fileActionListener);
 		frame.getContentPane().add(btnNewButton);
-
+		
+		JLabel driverNoLB = new JLabel("Number");
+		driverNoLB.setBounds(140, 114, 46, 14);
+		frame.getContentPane().add(driverNoLB);
+		
 		this.frame.setVisible(true);
 	}
 
