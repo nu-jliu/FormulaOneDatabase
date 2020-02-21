@@ -164,22 +164,13 @@ public class LikesWindow {
 
 	public void deleteQuery(String item, String name) {
 		try {
-			CallableStatement cs1 = this.dbService.getConnection().prepareCall("{? = call get_" + item + "ID(?)}");
-			cs1.setString(2, name);
-			cs1.registerOutParameter(1, Types.INTEGER);
-			cs1.execute();
-			int id = cs1.getInt(1);
-			if (id == -1) {
-				JOptionPane.showMessageDialog(null, "Invalid Name Input");
-				return;
-			}
 			CallableStatement cs2 = this.dbService.getConnection().prepareCall("{? = call delete_Star_" + item + "(?, ?)}");
 			cs2.setInt(2, this.UID);
-			cs2.setInt(3, id);
+			cs2.setString(3, name);
 			cs2.registerOutParameter(1, Types.INTEGER);
 			cs2.execute();
 			int errorCode = cs2.getInt(1);
-			if (errorCode == 1) {
+			if (errorCode == -1) {
 				JOptionPane.showMessageDialog(null, "User or liked item not exist");
 				return;
 			} else if (errorCode == 2) {
