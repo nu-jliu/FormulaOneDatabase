@@ -56,7 +56,7 @@ public class RecoverService {
 			}
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to recover a user");
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 	}
 
@@ -102,7 +102,7 @@ public class RecoverService {
 				oldTime = new SimpleDateFormat("mm:ss.SSS").parse(laptime);
 			} catch (ParseException e) {
 				JOptionPane.showMessageDialog(null, "Incorrect input format");
-				e.printStackTrace();
+//				e.printStackTrace();
 			}
 			cs.setDate(4, new java.sql.Date(oldDate.getTime()));
 			cs.setString(5, racename);
@@ -116,7 +116,7 @@ public class RecoverService {
 			}
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to recover race");
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 	}
 

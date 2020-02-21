@@ -63,7 +63,7 @@ public class PersonalWindow {
 			this.Accessbility = cs.getInt(1);
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "SQL Exception -User Acessbility.");
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		this.Team = new JButton("Team");
 		ActionListener TeamListener = new ActionListener() {
@@ -75,7 +75,8 @@ public class PersonalWindow {
 					PersonalWindow.this.Table.setModel(PersonalWindow.this.model);
 					queryData("Team");
 				} catch (Exception e1) {
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "SQL Exception");
+//					e1.printStackTrace();
 				}
 			}
 
@@ -93,7 +94,7 @@ public class PersonalWindow {
 					PersonalWindow.this.Table.setModel(PersonalWindow.this.model);
 					queryData("Driver");
 				} catch (Exception e1) {
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "SQL Exception");
 				}
 			}
 
@@ -278,7 +279,7 @@ public class PersonalWindow {
 				column.setPreferredWidth(width);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "SQL Exception");
 		}
 	}
 

@@ -42,7 +42,7 @@ public class TeamService {
 			return true;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to add a team");
-			e.printStackTrace();
+//			e.printStackTrace();
 			return false;
 		}
 	}
@@ -71,7 +71,7 @@ public class TeamService {
 			return true;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to update a team");
-			e.printStackTrace();
+//			e.printStackTrace();
 			return false;
 		}
 
@@ -88,7 +88,7 @@ public class TeamService {
 			return teamNames;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to get the team name set");
-			e.printStackTrace();
+//			e.printStackTrace();
 			return teamNames;
 		}
 
@@ -114,7 +114,7 @@ public class TeamService {
 			return info;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to get Team info");
-			e.printStackTrace();
+//			e.printStackTrace();
 			return info;
 		}
 

@@ -41,7 +41,7 @@ public class LoginWindow {
 			connection.connect();
 		} catch (SQLException e1) {
 			JOptionPane.showMessageDialog(null, "Failed to connect to the server");
-			e1.printStackTrace();
+//			e1.printStackTrace();
 		}
 		UserService loginService = new UserService(connection);
 
@@ -71,7 +71,7 @@ public class LoginWindow {
 					cs.execute();
 					LoginWindow.this.UID = cs.getInt(1);
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+//					e1.printStackTrace();
 				}
 				try {
 					boolean successLogin = loginService.login(userName, passWord);

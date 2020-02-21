@@ -322,7 +322,7 @@ public class UpdateWindow {
 					driverService.addDriver(dname, ddob, no);
 				} catch (SQLException e) {
 					JOptionPane.showMessageDialog(null, "SQL exception");
-					e.printStackTrace();
+//					e.printStackTrace();
 				}
 			}
 
@@ -365,7 +365,7 @@ public class UpdateWindow {
 					theYear = Integer.parseInt(raceYear.getText());
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, "Invalid Input");
-					e.printStackTrace();
+//					e.printStackTrace();
 					return;
 				}
 				participatesService.updateParticipates(theYear, did, rid, driverRank);
@@ -415,7 +415,6 @@ public class UpdateWindow {
 					year = Integer.parseInt(SYT.getText());
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, "Invalid input year");
-					e.printStackTrace();
 					return;
 				}
 				WorksForService.addWorksFor(Dname, Tname, year);
@@ -435,7 +434,6 @@ public class UpdateWindow {
 					year = Integer.parseInt(SYT.getText());
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, "Invalid input year");
-					e.printStackTrace();
 					return;
 				}
 				WorksForService.updateWorksFor(Dname, Tname, year);
@@ -508,7 +506,7 @@ public class UpdateWindow {
 					inputFromFile.readParticipates(racename, theYear);
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null, "Errors Detected in Loading");
-					e1.printStackTrace();
+//					e1.printStackTrace();
 				}
 			}
 		};

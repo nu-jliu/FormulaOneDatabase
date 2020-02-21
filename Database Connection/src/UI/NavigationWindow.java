@@ -90,7 +90,7 @@ public class NavigationWindow {
 					Table.setModel(model);
 					queryData("Team");
 				} catch (Exception e1) {
-					e1.printStackTrace();
+//					e1.printStackTrace();
 				}				
 			}
 			
@@ -108,7 +108,7 @@ public class NavigationWindow {
 					Table.setModel(model);
 					queryData("WorksFor");
 				} catch (Exception e1) {
-					e1.printStackTrace();
+//					e1.printStackTrace();
 				}				
 			}
 			
@@ -126,7 +126,7 @@ public class NavigationWindow {
 					Table.setModel(model);
 					queryData("Race");
 				} catch (Exception e1) {
-					e1.printStackTrace();
+//					e1.printStackTrace();
 				}
 			}
 			
@@ -144,7 +144,7 @@ public class NavigationWindow {
 					Table.setModel(model);
 					queryData("Driver");
 				} catch (Exception e1) {
-					e1.printStackTrace();
+//					e1.printStackTrace();
 				}				
 			}
 			
@@ -162,7 +162,7 @@ public class NavigationWindow {
 					Table.setModel(model); 
 					queryStats((int) yearbox.getSelectedItem(), false);
 				} catch (Exception e1) {
-					e1.printStackTrace();
+//					e1.printStackTrace();
 				}				
 			}
 			
@@ -181,7 +181,7 @@ public class NavigationWindow {
 					Table.setModel(model); 
 					queryStats((int) yearbox.getSelectedItem(), true);
 				} catch (Exception e1) {
-					e1.printStackTrace();
+//					e1.printStackTrace();
 				}
 			}
 			
@@ -337,7 +337,7 @@ public class NavigationWindow {
 				column.setPreferredWidth(width);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 	}
 }

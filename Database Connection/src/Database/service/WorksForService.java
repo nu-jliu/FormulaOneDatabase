@@ -49,7 +49,7 @@ public class WorksForService {
 			return true;
 		} catch (SQLException e) {
 				JOptionPane.showMessageDialog(null, "Failed to add a record");
-			e.printStackTrace();
+//			e.printStackTrace();
 			return false;
 		}
 
@@ -93,7 +93,7 @@ public class WorksForService {
 			
 	
 				JOptionPane.showMessageDialog(null, "Failed to update a record");
-			e.printStackTrace();
+//			e.printStackTrace();
 			return false;
 		}
 

@@ -48,7 +48,7 @@ public class ParticipatesService {
 			return true;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Add Failed - SQL Exception");
-			e.printStackTrace();
+//			e.printStackTrace();
 			return false;
 		}
 
@@ -72,7 +72,7 @@ public class ParticipatesService {
 			return true;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Update Failed");
-			e.printStackTrace();
+//			e.printStackTrace();
 			return false;
 		}
 	}

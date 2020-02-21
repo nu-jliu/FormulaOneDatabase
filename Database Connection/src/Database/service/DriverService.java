@@ -83,7 +83,6 @@ public class DriverService {
 			return true;
 		} catch (SQLException | ParseException e) {
 			JOptionPane.showMessageDialog(null, "Failed to update a driver");
-			//e.printStackTrace();
 			return false;
 		}
 
@@ -99,7 +98,6 @@ public class DriverService {
 			return driverNames;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to add driver");
-			e.printStackTrace();
 			return driverNames;
 		}
 	}
@@ -114,7 +112,6 @@ public class DriverService {
 			return years;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to get years");
-			e.printStackTrace();
 			return years;
 		}
 	}

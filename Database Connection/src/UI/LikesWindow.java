@@ -156,7 +156,6 @@ public class LikesWindow {
 			return;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to like");
-			e.printStackTrace();
 			return;
 		}
 
@@ -181,7 +180,6 @@ public class LikesWindow {
 			
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to delete");
-			e.printStackTrace();
 			return;
 		}
 	}

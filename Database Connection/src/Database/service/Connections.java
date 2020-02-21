@@ -53,7 +53,7 @@ public class Connections {
 			connection.close();
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to close the connection");
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 	}
 }

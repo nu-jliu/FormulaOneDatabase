@@ -82,7 +82,7 @@ public class UserService {
 			returnValue = cs.getInt(1);
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "ERROR: Register Failed");
-			e.printStackTrace();
+//			e.printStackTrace();
 			return false;
 		}
 		if (returnValue == 10) {
@@ -111,7 +111,7 @@ public class UserService {
 			returnValue = cs.getInt(1);
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "ERROR: Change Password Failed");
-			e.printStackTrace();
+//			e.printStackTrace();
 			return false;
 		}
 		if (returnValue == 10) {
@@ -143,10 +143,10 @@ public class UserService {
 			hash = f.generateSecret(spec).getEncoded();
 		} catch (NoSuchAlgorithmException e) {
 			JOptionPane.showMessageDialog(null, "An error occurred during password hashing. See stack trace.");
-			e.printStackTrace();
+//			e.printStackTrace();
 		} catch (InvalidKeySpecException e) {
 			JOptionPane.showMessageDialog(null, "An error occurred during password hashing. See stack trace.");
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		return getStringFromBytes(hash);
 	}

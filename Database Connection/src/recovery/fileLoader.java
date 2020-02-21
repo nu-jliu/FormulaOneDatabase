@@ -63,7 +63,6 @@ public class fileLoader extends JFrame {
 					inputFromFile.recoverDriver();
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null, "Errors Detected in Loading");
-					e1.printStackTrace();
 				}
 			}
 			
@@ -79,7 +78,6 @@ public class fileLoader extends JFrame {
 					inputFromFile.recoverTeam();
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null, "Errors Detected in Loading");
-					e1.printStackTrace();
 				}
 			}
 			
@@ -95,7 +93,6 @@ public class fileLoader extends JFrame {
 					inputFromFile.recoverRace();
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null, "Errors Detected in Loading");
-					e1.printStackTrace();
 				}
 			}
 			
@@ -111,7 +108,6 @@ public class fileLoader extends JFrame {
 					inputFromFile.recoverParticipates();
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null, "Errors Detected in Loading");
-					e1.printStackTrace();
 				}
 			}
 			
@@ -127,7 +123,6 @@ public class fileLoader extends JFrame {
 					inputFromFile.recoverWorksFor();
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null, "Errors Detected in Loading");
-					e1.printStackTrace();
 				}
 			}
 			
@@ -143,7 +138,6 @@ public class fileLoader extends JFrame {
 					inputFromFile.recoverUser();
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null, "Errors Detected in Loading");
-					e1.printStackTrace();
 				}
 			}
 			
@@ -159,7 +153,6 @@ public class fileLoader extends JFrame {
 					inputFromFile.recoverHistory();
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null, "Errors Detected in Loading");
-					e1.printStackTrace();
 				}
 			}
 			
@@ -175,7 +168,6 @@ public class fileLoader extends JFrame {
 					inputFromFile.recoverStarTeam();
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null, "Errors Detected in Loading");
-					e1.printStackTrace();
 				}
 			}
 			
@@ -191,7 +183,6 @@ public class fileLoader extends JFrame {
 					inputFromFile.recoverStarDriver();
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null, "Errors Detected in Loading");
-					e1.printStackTrace();
 				}
 			}
 			
@@ -207,7 +198,6 @@ public class fileLoader extends JFrame {
 					inputFromFile.recoverStats();
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null, "Errors Detected in Loading");
-					e1.printStackTrace();
 				}
 			}
 			

@@ -31,7 +31,7 @@ public class RaceService {
 				oldTime = new SimpleDateFormat("mm:ss.SSS").parse(laptime);
 			} catch (ParseException e) {
 				JOptionPane.showMessageDialog(null, "Incorrect input format");
-				e.printStackTrace();
+//				e.printStackTrace();
 				return false;
 			}
 			cs.setDate(3, new java.sql.Date(oldDate.getTime()));
@@ -48,7 +48,7 @@ public class RaceService {
 			return true;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to add race");
-			e.printStackTrace();
+//			e.printStackTrace();
 			return false;
 		}
 	}
@@ -66,7 +66,7 @@ public class RaceService {
 					oldTime = new SimpleDateFormat("mm:ss.SSS").parse(laptime);
 			} catch (ParseException e) {
 				JOptionPane.showMessageDialog(null, "Incorrect input format");
-				e.printStackTrace();
+//				e.printStackTrace();
 				return false;
 			}
 			cs.setDate(3, (oldDate == null) ? null : new java.sql.Date(oldDate.getTime()));
@@ -83,7 +83,7 @@ public class RaceService {
 			return true;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to add race");
-			e.printStackTrace();
+//			e.printStackTrace();
 			return false;
 		}
 	}
@@ -99,7 +99,7 @@ public class RaceService {
 			return nameList;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to get name list");
-			e.printStackTrace();
+//			e.printStackTrace();
 			return nameList;
 		}
 	}
@@ -125,7 +125,7 @@ public class RaceService {
 			return info;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to get race info");
-			e.printStackTrace();
+//			e.printStackTrace();
 			return info;
 		}
 
@@ -140,7 +140,7 @@ public class RaceService {
 				allYears.add(rs.getInt(1));
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to get all years");
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		return allYears;
 	}

@@ -49,7 +49,7 @@ public class WatchService {
 			return true;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to add a history");
-			e.printStackTrace();
+//			e.printStackTrace();
 			return false;
 		}
 	}
@@ -65,7 +65,7 @@ public class WatchService {
 			return teamNames;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to get the team name set");
-			e.printStackTrace();
+//			e.printStackTrace();
 			return teamNames;
 		}
 
@@ -91,7 +91,7 @@ public class WatchService {
 			return info;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to get Team info");
-			e.printStackTrace();
+//			e.printStackTrace();
 			return info;
 		}
 

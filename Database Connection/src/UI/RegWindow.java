@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Database.service.UserService;
@@ -81,11 +82,11 @@ public class RegWindow {
 						new LoginWindow();
 					}
 				} catch (SQLException e) {
-
+					JOptionPane.showMessageDialog(null, "SQL Exception");
 				} catch (FileNotFoundException e) {
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "File Not Found");
 				} catch (IOException e) {
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "IO Exception");
 				}
 			}
 
