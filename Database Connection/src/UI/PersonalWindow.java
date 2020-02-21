@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Types;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -29,6 +30,7 @@ public class PersonalWindow {
 	DefaultTableModel model;
 	int UID;
 	int Accessbility;
+	private JButton historyButton;
 
 	public PersonalWindow(Connections connection, int UID) {
 		this.UID = UID;
@@ -105,7 +107,7 @@ public class PersonalWindow {
 		likes.setBounds(200, 350, 90, 25);
 		this.frame.getContentPane().add(likes);
 		JButton update = new JButton("Update");
-		update.setBounds(200, 400, 90, 25);
+		update.setBounds(200, 432, 90, 25);
 		ActionListener updateListener = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -120,7 +122,7 @@ public class PersonalWindow {
 		};
 		update.addActionListener(updateListener);
 		JButton goBack = new JButton("Go Back");
-		goBack.setBounds(200, 450, 90, 25);
+		goBack.setBounds(200, 468, 90, 25);
 		ActionListener backListener = new ActionListener() {
 
 			@Override
@@ -135,6 +137,20 @@ public class PersonalWindow {
 		this.frame.getContentPane().add(update);
 		this.frame.getContentPane().add(Driver);
 		this.frame.getContentPane().add(Team);
+		
+		ActionListener historyListener = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		};
+		
+		historyButton = new JButton("Unviewed Race");
+		historyButton.setBounds(194, 398, 107, 23);
+		frame.getContentPane().add(historyButton);
 		this.frame.setVisible(true);
 	}
 
