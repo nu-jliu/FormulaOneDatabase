@@ -75,7 +75,7 @@ public class LikesWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String name = (String) teams.getSelectedItem();
+				String name = (String) drivers.getSelectedItem();
 				LikesWindow.this.deleteQuery("Driver", name);
 			}
 
