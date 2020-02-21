@@ -353,6 +353,5 @@ public class NavigationWindow {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
 }
