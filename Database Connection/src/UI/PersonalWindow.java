@@ -156,11 +156,10 @@ public class PersonalWindow {
 
 		ActionListener historyListener = new ActionListener() {
 			
-			//TODO: Impelement this actionlistener
-
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				WatchService watchService = new WatchService(connection, UID);
+				model = new DefaultTableModel();
+				Table.setModel(model);
 				int year = (int) yearbox.getSelectedItem();
 				getUnviewedRace(UID, year);
 			}
@@ -211,7 +210,7 @@ public class PersonalWindow {
 		WBT.addActionListener(WatchListener);
 		this.frame.getContentPane().add(WBT);
 		
-		JLabel lblNewLabel = new JLabel("New label");
+		JLabel lblNewLabel = new JLabel("Year");
 		lblNewLabel.setBounds(175, 311, 46, 14);
 		frame.getContentPane().add(lblNewLabel);
 		
