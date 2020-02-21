@@ -1,9 +1,7 @@
 package Database.service;
 
-import java.awt.Component;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Types;
@@ -11,11 +9,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
-
-import Database.service.TeamService.TeamInfo;
 
 public class WatchService {
 

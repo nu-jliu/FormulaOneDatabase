@@ -171,13 +171,12 @@ public class LikesWindow {
 			cs2.execute();
 			int errorCode = cs2.getInt(1);
 			if (errorCode == -1) {
-				JOptionPane.showMessageDialog(null, "User or liked item not exist");
+				JOptionPane.showMessageDialog(null, "liked item not exist");
 				return;
 			} else if (errorCode == 2) {
 				JOptionPane.showMessageDialog(null, "The item is not in your favorite list");
 				return;
 			}
-			JOptionPane.showMessageDialog(null, "successfully update");
 			return;
 			
 		} catch (SQLException e) {
