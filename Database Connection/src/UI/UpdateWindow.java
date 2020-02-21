@@ -488,11 +488,10 @@ public class UpdateWindow {
 			public void actionPerformed(ActionEvent e) {
 				String filePath = fileName.getText();
 				String racename = (String) races.getSelectedItem();
-				String yearString = raceYear.getText();
-				int y = Integer.parseInt(yearString);
+				int theYear = Integer.parseInt(raceYear.getText());
 				inputFromFile inputFromFile = new inputFromFile(filePath, dbservice);
 				try {
-					inputFromFile.fileReader(racename, y);
+					inputFromFile.fileReader(racename, theYear);
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null, "Errors Detected in Loading");
 					e1.printStackTrace();

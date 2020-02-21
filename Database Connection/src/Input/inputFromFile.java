@@ -6,11 +6,11 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import Database.service.Connections;
 import Database.service.ParticipatesService;
@@ -37,16 +37,16 @@ public class inputFromFile {
 			return;
 		}
 		String[] split = excel.getName().split("\\.");
-		if (!"xlsx".equals(split[1])) {
+		if (!"xls".equals(split[1])) {
 			JOptionPane.showMessageDialog(null, "Wrong File Type Detected");
 			return;
 		}
 		FileInputStream fis = new FileInputStream(excel);
-		Workbook wb = new XSSFWorkbook(fis);
+		Workbook wb = new HSSFWorkbook(fis);
 		Sheet sheet = wb.getSheetAt(0);
-		int firstRowIndex = sheet.getFirstRowNum() + 1;
+		int firstRowIndex = sheet.getFirstRowNum();
 		int lastRowIndex = sheet.getLastRowNum();
-		for (int r = firstRowIndex; r < lastRowIndex; r++) {
+		for (int r = firstRowIndex; r <= lastRowIndex; r++) {
 			Row row = sheet.getRow(r);
 			if (row != null) {
 				int firstCellIndex = row.getFirstCellNum();
@@ -56,12 +56,14 @@ public class inputFromFile {
 				for (int c = firstCellIndex; c < lastCellIndex; c++) {
 					Cell cell = row.getCell(c);
 					switch (c) {
-					case 1:
+					case 0:
 						driverName = cell.toString();
+						System.out.println("Driver:" + driverName);
 						break;
 
-					case 2:
-						rank = Integer.parseInt(cell.toString());
+					case 1:
+						rank = Double.valueOf(cell.toString()).intValue();
+						System.out.println(rank);
 						break;
 					}
 					participatesService.addParticipates(year, driverName, racename, rank);
